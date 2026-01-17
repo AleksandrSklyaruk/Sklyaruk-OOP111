@@ -19,14 +19,17 @@ namespace Model
         /// Имя
         /// </summary>
         private string _name;
+
         /// <summary>
         /// Фамилия
         /// </summary>
         private string _surname;
+
         /// <summary>
         /// Возраст
         /// </summary>
         private int _age;
+
         /// <summary>
         /// Пол
         /// </summary>
@@ -69,6 +72,7 @@ namespace Model
             set
             {
                 _surname = Validate(value, "Фамилия");
+                //TODO: порядок вызова
                 EnsureLanguage();
             }
         }
