@@ -27,7 +27,7 @@ namespace lb1
             list2.Add(new Person("Николай", "Казначеев", 25, Gender.Male));
             list2.Add(new Person("Роман", "Иванов", 30, Gender.Male));
             list2.Add(new Person("Анастасия", "Петрова", 48, Gender.Female));
-            WaitForKey();
+            WaitForKey(); 
 
             // Вывод содержимого каждого списка
             PrintList(list1, "Список 1");

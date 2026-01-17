@@ -56,6 +56,7 @@ namespace Model
             set
             {
                 _name = Validate(value, "Имя");
+                EnsureLanguage();
             }
         }
 
@@ -156,20 +157,23 @@ namespace Model
         }
 
         /// <summary>
-        /// Проверка языка
+        /// Проверка совпадаения языка имени и фамилии, если оба установлены
         /// </summary>
-        /// <exception cref="InvalidOperationException">если язык имени
-        /// и фамилии не совпадают</exception>
+        /// <exception cref="InvalidOperationException">Если язык имени
+        /// и фамилии не совпадают и оба поля установлены.</exception>
         private void EnsureLanguage()
         {
-            bool nameIsRussian = Regex.IsMatch(_name, RussianPattern);
-            bool surnameIsRussian = Regex.IsMatch(_surname, RussianPattern);
-
-            if (nameIsRussian != surnameIsRussian)
+            if (!string.IsNullOrEmpty(_name) && !string.IsNullOrEmpty(_surname))
             {
-                throw new InvalidOperationException(
-                    $"Язык имени и фамилии не совпадает. " +
-                    "Имя и фамилия должны быть на одном языке.");
+                bool nameIsRussian = Regex.IsMatch(_name, RussianPattern);
+                bool surnameIsRussian = Regex.IsMatch(_surname, RussianPattern);
+
+                if (nameIsRussian != surnameIsRussian)
+                {
+                    throw new InvalidOperationException(
+                        "Язык имени и фамилии не совпадает. " +
+                         "Имя и фамилия должны быть на одном языке.");
+                }
             }
         }
 
