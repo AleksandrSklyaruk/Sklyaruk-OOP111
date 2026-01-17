@@ -72,7 +72,6 @@ namespace Model
             set
             {
                 _surname = Validate(value, "Фамилия");
-                //TODO: порядок вызова
                 EnsureLanguage();
             }
         }
