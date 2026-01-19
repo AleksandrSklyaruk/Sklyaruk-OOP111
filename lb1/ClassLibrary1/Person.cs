@@ -175,7 +175,7 @@ namespace Model
                 {
                     throw new InvalidOperationException(
                         "Язык имени и фамилии не совпадает. " +
-                         "Имя и фамилия должны быть на одном языке.");
+                        "Имя и фамилия должны быть на одном языке.");
                 }
             }
         }
@@ -183,6 +183,6 @@ namespace Model
         /// <summary>
         /// Создание нового экземпляра класса Person по умолчанию.
         /// </summary>
-        public Person() : this("Ivan", "Ivanov", 18, Gender.Male) { }
+        public Person() { }
     }
 }
