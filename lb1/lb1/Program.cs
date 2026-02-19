@@ -48,28 +48,28 @@ namespace lb1
 
             switch (person)
             {
-                //TOOD: отступы
+                //TOOD: отступы +
                 case Adult personAdult:
-                    {
-                        Console.WriteLine(personAdult.GetCar());
-                        break;
-                    }
+                {
+                    Console.WriteLine(personAdult.GetCar());
+                    break;
+                }
                 case Child personChild:
-                    {
-                        Console.WriteLine(personChild.GetGame());
-                        break;
-                    }
+                {
+                    Console.WriteLine(personChild.GetGame());
+                    break;
+                }
                 default:
-                    {
-                        break;
-                    }
+                {
+                    break;
+                }
             }
 
             WaitKey();
         }
 
         /// <summary>
-        /// Метод для ожидания действий пользователя
+        /// Метод ожидания действий пользователя
         /// </summary>
         private static void WaitKey()
         {
