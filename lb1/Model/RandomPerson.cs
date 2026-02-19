@@ -36,7 +36,6 @@ namespace Model
                 ? surnamesMale[random.Next(surnamesMale.Length)]
                 : surnamesFemale[random.Next(surnamesFemale.Length)];
 
-            //TODO: duplication +
             int age = random.Next(Adult.MinAgeAdult, Adult.MaxAgeAdult + 1);
 
             int passportSeria = random.Next(Adult.MinPassportSeria, 
@@ -66,7 +65,6 @@ namespace Model
                     : surname + "а";
 
                 partner = new Adult( partnerName, partnerSurname, 
-                    //TODO: duplication +
                     random.Next(Adult.MinAgeAdult, Adult.MaxAgeAdult + 1), 
                     partnerGender, 
                     random.Next(Adult.MinPassportSeria, 
@@ -87,7 +85,9 @@ namespace Model
         public static Adult GetRandomAdult()
         {
             Random random = new Random();
-            Gender gender = random.Next(2) == 0 ? Gender.Male : Gender.Female;
+            Gender gender = random.Next(2) == 0 
+                ? Gender.Male 
+                : Gender.Female;
             return GetRandomAdult(gender);
         }
 
@@ -98,7 +98,6 @@ namespace Model
         {
             Random random = new Random();
 
-            //TOOD: отступы +
             string[] maleNames = { "Михаил", "Артём", "Никита",
                 "Даниил", "Матвей", "Илья", "Тимофей" };
             string[] femaleNames = { "София", "Алиса", "Виктория",

@@ -6,27 +6,11 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    //TODO: XML +
     /// <summary>
     /// Класс, описывающий ребенка
     /// </summary>
     public class Child : PersonBase
     {
-        /// <summary>
-        /// Отец
-        /// </summary>
-        private Adult _father;
-
-        /// <summary>
-        /// Мама
-        /// </summary>
-        private Adult _mother;
-
-        /// <summary>
-        /// Школа.
-        /// </summary>
-        private string _school;
-
         /// <summary>
         /// Минимальный возраст ребенка
         /// </summary>
@@ -37,7 +21,6 @@ namespace Model
         /// </summary>
         public const int MaxAgeChild = 17;
 
-        //TODO: XML+
         /// <summary>
         /// Конструктор с параметрами
         /// </summary>
@@ -57,19 +40,16 @@ namespace Model
             School = school;
         }
 
-        //TODO: autoproperty +
         /// <summary>
         /// Отец ребенка
         /// </summary>
         public Adult Father { get; set; }
 
-        //TODO: autoproperty +
         /// <summary>
         /// Мама ребенка
         /// </summary>
         public Adult Mother { get; set; }
 
-        //TODO: autoproperty +
         /// <summary>
         /// Школа
         /// </summary>

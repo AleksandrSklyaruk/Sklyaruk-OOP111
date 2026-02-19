@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Model 
 {
-    //TODO: XML +
     /// <summary>
     /// Информация о человеке
     /// </summary>
@@ -21,21 +20,6 @@ namespace Model
         /// Номер паспорта
         /// </summary>
         private int _passportNumber;
-
-        /// <summary>
-        /// Семейное положение
-        /// </summary>
-        private MaritalStatus _maritalStatus;
-        
-        /// <summary>
-        /// Место работы
-        /// </summary>
-        private string _workPlace;
-
-        /// <summary>
-        /// Партнёр
-        /// </summary>
-        private Adult _partner;
 
         /// <summary>
         /// Минимальная серия паспорта
@@ -91,8 +75,6 @@ namespace Model
             Partner = partner;
         }
 
-        //TODO: remove  +
-
         /// <summary>
         /// Свойство позволяет получить или установить серию паспорта
         /// </summary>
@@ -102,7 +84,8 @@ namespace Model
             set
             {
                 _passportSeria = ValidatePassportField
-                (value, MinPassportSeria, MaxPassportSeria, "Серия паспорта");
+                    (value, MinPassportSeria, 
+                    MaxPassportSeria, "Серия паспорта");
             }
         }
 
@@ -115,23 +98,21 @@ namespace Model
             set
             {
                 _passportNumber = ValidatePassportField
-                (value, MinPassportNumber, MaxPassportNumber, "Номер паспорта");
+                    (value, MinPassportNumber, 
+                    MaxPassportNumber, "Номер паспорта");
             }
         }
 
-        //TODO: autoproperty +
         /// <summary>
         /// Свойство позволяет получить или установить семейное положение 
         /// </summary>
         public MaritalStatus MaritalStatus { get; set; }
 
-        //TODO: autoproperty +
         /// <summary>
         /// Свойство позволяет получить или установить партнёра 
         /// </summary>
         public Adult Partner { get; set; }
 
-        //TODO: autoproperty +
         /// <summary>
         /// Ввод места работы
         /// </summary>

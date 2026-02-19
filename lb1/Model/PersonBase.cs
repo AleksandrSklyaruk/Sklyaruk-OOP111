@@ -100,7 +100,6 @@ namespace Model
             }
         }
 
-        //TODO: autoproperty +
         /// <summary>
         /// Свойство Gender позволяет получить или установить пол человека.
         /// </summary>
@@ -179,7 +178,5 @@ namespace Model
         /// </summary>
         /// <param name="age">Возраст человека</param>
         protected abstract void CheckAge(int age);
-        
-        //TODO: remove +
     }
 }
