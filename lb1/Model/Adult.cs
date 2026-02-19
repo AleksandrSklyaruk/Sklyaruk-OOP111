@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model 
 {
+    //TODO: XML
     public class Adult : PersonBase
     {
         /// <summary>
@@ -87,6 +88,7 @@ namespace Model
             Partner = partner;
         }
 
+        //TODO: remove
         /// <summary>
         /// Конструктор по умолчанию
         /// </summary>
@@ -100,6 +102,7 @@ namespace Model
             get { return _passportSeria; }
             set
             {
+                //TODO: duplication
                 if (string.IsNullOrEmpty(Convert.ToString(value)))
                 {
                     throw new Exception("Введите серию паспорта!");
@@ -123,6 +126,7 @@ namespace Model
             get { return _passportNumber; }
             set
             {
+                //TODO: duplication
                 if (string.IsNullOrEmpty(Convert.ToString(value)))
                 {
                     throw new Exception("Введите номер паспорта!");
@@ -138,6 +142,7 @@ namespace Model
             }
         }
 
+        //TODO: autoproperty
         /// <summary>
         /// Свойство позволяет получить или установить семейное положение 
         /// </summary>
@@ -147,21 +152,25 @@ namespace Model
             set { _maritalStatus = value; }
         }
 
+        //TODO: autoproperty
         /// <summary>
         /// Свойство позволяет получить или установить партнёра 
         /// </summary>
         public Adult Partner
         {
             get { return _partner; }
+            //TODO: validation?
             set { _partner = value; }
         }
 
+        //TODO: autoproperty
         /// <summary>
         /// Ввод места работы
         /// </summary>
         public string WorkPlace
         {
             get { return _workPlace; }
+            //TODO: validation?
             set { _workPlace = value; }
         }
 

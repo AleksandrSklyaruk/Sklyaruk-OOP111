@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    //TODO: XML
     public class Child : PersonBase
     {
         /// <summary>
@@ -33,6 +34,7 @@ namespace Model
         /// </summary>
         private const int MaxAge = 17;
 
+        //TODO: XML
         public Child(string name, string surname,
             Gender gender, int age, Adult father, Adult mother,
             string school) : base(name, surname, age, gender)
@@ -42,30 +44,36 @@ namespace Model
             School = school;
         }
 
+        //TODO: autoproperty
         /// <summary>
         /// Отец ребенка
         /// </summary>
         public Adult Father
         {
             get { return _father; }
+            //TODO: validation?
             set { _father = value;}
         }
 
+        //TODO: autoproperty
         /// <summary>
         /// Мама ребенка
         /// </summary>
         public Adult Mother
         {
             get { return _mother; }
+            //TODO: validation?
             set { _mother = value; }
         }
 
+        //TODO: autoproperty
         /// <summary>
         /// Школа
         /// </summary>
         public string School
         {
             get { return _school; }
+            //TODO: validation?
             set { _school = value; }
         }
 

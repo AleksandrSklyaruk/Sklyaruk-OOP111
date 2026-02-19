@@ -15,6 +15,7 @@ namespace Model
         /// Женат(замужем)
         /// </summary>
         Married,
+
         /// <summary>
         /// Не женат(не замужем)
         /// </summary>

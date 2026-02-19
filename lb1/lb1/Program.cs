@@ -48,6 +48,7 @@ namespace lb1
 
             switch (person)
             {
+                //TOOD: отступы
                 case Adult personAdult:
                     {
                         Console.WriteLine(personAdult.GetCar());
@@ -76,5 +77,4 @@ namespace lb1
             Console.ReadKey();
         }
     }
-
 }

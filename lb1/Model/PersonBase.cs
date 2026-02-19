@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using static System.Net.Mime.MediaTypeNames;
+﻿using System.Text.RegularExpressions;
 
 namespace Model
 {
@@ -108,6 +100,7 @@ namespace Model
             }
         }
 
+        //TODO: autoproperty
         /// <summary>
         /// Свойство Gender позволяет получить или установить пол человека.
         /// </summary>
@@ -191,6 +184,7 @@ namespace Model
         /// <param name="age">Возраст человека</param>
         protected abstract void CheckAge(int age);
         
+        //TODO: remove
         /// <summary>
         /// Создание нового экземпляра класса Person по умолчанию.
         /// </summary>

@@ -15,6 +15,7 @@ namespace Model
         /// Пол человека: мужчина
         /// </summary>
         Male,
+
         /// <summary>
         /// Пол человека: женщина
         /// </summary>
