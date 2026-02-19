@@ -36,8 +36,8 @@ namespace Model
                 ? surnamesMale[random.Next(surnamesMale.Length)]
                 : surnamesFemale[random.Next(surnamesFemale.Length)];
 
-            //TODO: duplication
-            int age = random.Next(18, 123 + 1);
+            //TODO: duplication +
+            int age = random.Next(Adult.MinAgeAdult, Adult.MaxAgeAdult + 1);
 
             int passportSeria = random.Next(Adult.MinPassportSeria, 
                 Adult.MaxPassportSeria + 1);
@@ -66,8 +66,9 @@ namespace Model
                     : surname + "а";
 
                 partner = new Adult( partnerName, partnerSurname, 
-                    //TODO: duplication
-                    random.Next(18, 123 + 1), partnerGender, 
+                    //TODO: duplication +
+                    random.Next(Adult.MinAgeAdult, Adult.MaxAgeAdult + 1), 
+                    partnerGender, 
                     random.Next(Adult.MinPassportSeria, 
                     Adult.MaxPassportSeria + 1), 
                     random.Next(Adult.MinPassportNumber, 
@@ -97,21 +98,21 @@ namespace Model
         {
             Random random = new Random();
 
-            //TOOD: отступы
+            //TOOD: отступы +
             string[] maleNames = { "Михаил", "Артём", "Никита",
-        "Даниил", "Матвей", "Илья", "Тимофей" };
+                "Даниил", "Матвей", "Илья", "Тимофей" };
             string[] femaleNames = { "София", "Алиса", "Виктория",
-        "Полина", "Варвара", "Анна", "Мария" };
+                "Полина", "Варвара", "Анна", "Мария" };
 
             string[] surnamesMale = { "Иванов", "Смирнов", "Кузнецов",
-        "Попов", "Соколов" };
+                "Попов", "Соколов" };
             string[] surnamesFemale = { "Иванова", "Смирнова", "Кузнецова",
-        "Попова", "Соколова" };
+                "Попова", "Соколова" };
 
             string[] kindergartens = { "Детский сад №5", "Детский сад №12",
-        "Детский сад №23", "Детский сад №25" };
+                "Детский сад №23", "Детский сад №25" };
             string[] schools = { "Школа №99", "Гимназия №92", "Школа №107",
-        "Школа №108" };
+                "Школа №108" };
 
             Gender gender = random.Next(2) == 0
                 ? Gender.Male
@@ -125,7 +126,7 @@ namespace Model
                 ? surnamesMale[random.Next(surnamesMale.Length)]
                 : surnamesFemale[random.Next(surnamesFemale.Length)];
 
-            int age = random.Next(0, 18);
+            int age = random.Next(Child.MinAgeChild, Child.MaxAgeChild);
 
             Adult father = null;
             Adult mother = null;

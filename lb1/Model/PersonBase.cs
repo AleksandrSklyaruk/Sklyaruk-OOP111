@@ -100,15 +100,11 @@ namespace Model
             }
         }
 
-        //TODO: autoproperty
+        //TODO: autoproperty +
         /// <summary>
         /// Свойство Gender позволяет получить или установить пол человека.
         /// </summary>
-        public Gender Gender
-        {
-            get { return _gender; }
-            set { _gender = value; }
-        }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// Проверка строки, содержащей только кириллические символы
@@ -184,10 +180,6 @@ namespace Model
         /// <param name="age">Возраст человека</param>
         protected abstract void CheckAge(int age);
         
-        //TODO: remove
-        /// <summary>
-        /// Создание нового экземпляра класса Person по умолчанию.
-        /// </summary>
-        public PersonBase() { }
+        //TODO: remove +
     }
 }

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    //TODO: XML
+    //TODO: XML +
+    /// <summary>
+    /// Класс, описывающий ребенка
+    /// </summary>
     public class Child : PersonBase
     {
         /// <summary>
@@ -27,14 +30,24 @@ namespace Model
         /// <summary>
         /// Минимальный возраст ребенка
         /// </summary>
-        private const int MinAge = 0;
+        public const int MinAgeChild = 0;
 
         /// <summary>
         /// Максимальный возвраст ребенка
         /// </summary>
-        private const int MaxAge = 17;
+        public const int MaxAgeChild = 17;
 
-        //TODO: XML
+        //TODO: XML+
+        /// <summary>
+        /// Конструктор с параметрами
+        /// </summary>
+        /// <param name="name">Имя</param>
+        /// <param name="surname">Фамилия</param>
+        /// <param name="gender">Пол</param>
+        /// <param name="age">Возраст</param>
+        /// <param name="father">Отец</param>
+        /// <param name="mother">Мать</param>
+        /// <param name="school">Школа/Дет.сад</param>
         public Child(string name, string surname,
             Gender gender, int age, Adult father, Adult mother,
             string school) : base(name, surname, age, gender)
@@ -44,38 +57,23 @@ namespace Model
             School = school;
         }
 
-        //TODO: autoproperty
+        //TODO: autoproperty +
         /// <summary>
         /// Отец ребенка
         /// </summary>
-        public Adult Father
-        {
-            get { return _father; }
-            //TODO: validation?
-            set { _father = value;}
-        }
+        public Adult Father { get; set; }
 
-        //TODO: autoproperty
+        //TODO: autoproperty +
         /// <summary>
         /// Мама ребенка
         /// </summary>
-        public Adult Mother
-        {
-            get { return _mother; }
-            //TODO: validation?
-            set { _mother = value; }
-        }
+        public Adult Mother { get; set; }
 
-        //TODO: autoproperty
+        //TODO: autoproperty +
         /// <summary>
         /// Школа
         /// </summary>
-        public string School
-        {
-            get { return _school; }
-            //TODO: validation?
-            set { _school = value; }
-        }
+        public string School { get; set; }
 
         /// <summary>
         /// Метод возвращает строковое описание ребёнка
@@ -104,10 +102,10 @@ namespace Model
         /// возрасту ребенка</exception>
         protected override void CheckAge(int age)
         {
-            if ((age < MinAge) || (age > MaxAge))
+            if ((age < MinAgeChild) || (age > MaxAgeChild))
             {
                 throw new Exception($"Возраст ребенка должен быть" +
-                    $" в пределах от {MinAge} до {MaxAge}");
+                    $" в пределах от {MinAgeChild} до {MaxAgeChild}");
             }
         }
 

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model 
 {
-    //TODO: XML
+    //TODO: XML +
+    /// <summary>
+    /// Информация о человеке
+    /// </summary>
     public class Adult : PersonBase
     {
         /// <summary>
@@ -57,12 +60,12 @@ namespace Model
         /// <summary>
         /// Минимальный возраст взрослого человека
         /// </summary>
-        private const int MinAge = 18;
+        public const int MinAgeAdult = 18;
 
         /// <summary>
         /// Максимальный возраст взрослого человека
         /// </summary>
-        private const int MaxAge = 123;
+        public const int MaxAgeAdult = 123;
 
         /// <summary>
         /// Конструктор класса с параметрами
@@ -88,11 +91,7 @@ namespace Model
             Partner = partner;
         }
 
-        //TODO: remove
-        /// <summary>
-        /// Конструктор по умолчанию
-        /// </summary>
-        public Adult() { }
+        //TODO: remove  +
 
         /// <summary>
         /// Свойство позволяет получить или установить серию паспорта
@@ -102,19 +101,8 @@ namespace Model
             get { return _passportSeria; }
             set
             {
-                //TODO: duplication
-                if (string.IsNullOrEmpty(Convert.ToString(value)))
-                {
-                    throw new Exception("Введите серию паспорта!");
-                }
-
-                if (value < MinPassportSeria || value > MaxPassportSeria)
-                {
-                    throw new Exception($"{nameof(PassportSeria)}" +
-                        $"должен быть в дипазоне от " +
-                        $"{MinPassportSeria} до {MaxPassportSeria}");
-                }
-                _passportSeria = value;
+                _passportSeria = ValidatePassportField
+                (value, MinPassportSeria, MaxPassportSeria, "Серия паспорта");
             }
         }
 
@@ -126,53 +114,28 @@ namespace Model
             get { return _passportNumber; }
             set
             {
-                //TODO: duplication
-                if (string.IsNullOrEmpty(Convert.ToString(value)))
-                {
-                    throw new Exception("Введите номер паспорта!");
-                }
-
-                if (value < MinPassportNumber || value > MaxPassportNumber)
-                {
-                    throw new Exception($"{nameof(PassportNumber)} " +
-                        $"должен быть в дипазоне от " +
-                        $"{MinPassportNumber} до {MaxPassportNumber}");
-                }
-                _passportNumber = value;
+                _passportNumber = ValidatePassportField
+                (value, MinPassportNumber, MaxPassportNumber, "Номер паспорта");
             }
         }
 
-        //TODO: autoproperty
+        //TODO: autoproperty +
         /// <summary>
         /// Свойство позволяет получить или установить семейное положение 
         /// </summary>
-        public MaritalStatus MaritalStatus
-        {
-            get { return _maritalStatus; }
-            set { _maritalStatus = value; }
-        }
+        public MaritalStatus MaritalStatus { get; set; }
 
-        //TODO: autoproperty
+        //TODO: autoproperty +
         /// <summary>
         /// Свойство позволяет получить или установить партнёра 
         /// </summary>
-        public Adult Partner
-        {
-            get { return _partner; }
-            //TODO: validation?
-            set { _partner = value; }
-        }
+        public Adult Partner { get; set; }
 
-        //TODO: autoproperty
+        //TODO: autoproperty +
         /// <summary>
         /// Ввод места работы
         /// </summary>
-        public string WorkPlace
-        {
-            get { return _workPlace; }
-            //TODO: validation?
-            set { _workPlace = value; }
-        }
+        public string WorkPlace { get; set; }
 
         /// <summary>
         /// Метод возвращает строковое описание взрослого человека
@@ -207,10 +170,10 @@ namespace Model
         /// в определнном диапозоне</exception>
         protected override void CheckAge(int age)
         {
-            if ((age < MinAge) || (age > MaxAge))
+            if ((age < MinAgeAdult) || (age > MaxAgeAdult))
             {
                 throw new Exception($"Возраст взрослого человека " +
-                    $"от {MinAge} до {MaxAge}");
+                    $"от {MinAgeAdult} до {MaxAgeAdult}");
             }
         }
 
@@ -224,6 +187,26 @@ namespace Model
             var random = new Random();
             string car = cars[random.Next(cars.Length)];
             return $"Это взрослый человек, и он ездит на {car}";
+        }
+
+        /// <summary>
+        /// Проверяет и устанавливает значение паспортного поля (серия или номер)
+        /// </summary>
+        /// <param name="value">Значение для проверки</param>
+        /// <param name="min">Минимальное допустимое значение</param>
+        /// <param name="max">Максимальное допустимое значение</param>
+        /// <param name="fieldName">Название поля</param>
+        /// <returns>Корректное значение</returns>
+        /// <exception cref="Exception"></exception>
+        private static int ValidatePassportField(int value, int min, int max, string fieldName)
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(value)))
+                throw new Exception($"Введите {fieldName}!");
+
+            if (value < min || value > max)
+                throw new Exception($"{fieldName} должен быть в диапазоне от {min} до {max}");
+
+            return value;
         }
     }
 
