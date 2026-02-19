@@ -185,7 +185,7 @@ namespace Model
                 maritalInfo = " Не состоит в браке\n";
             }
             string workInfo = string.IsNullOrWhiteSpace(WorkPlace)
-                ? " Место работы: Безработный(ая)"
+                ? " Место работы: безработный(ая)"
                 : $" Место работы: {WorkPlace}";
             return $"{baseInfo}{passportInfo}{maritalInfo}{workInfo}";
         }
