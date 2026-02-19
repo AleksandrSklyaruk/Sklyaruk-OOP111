@@ -184,7 +184,7 @@ namespace Model
         /// </summary>
         /// <returns></returns>
         public abstract string GetInfo();
-        
+            
         /// <summary>
         /// Абстрактный метод проверки возраста
         /// </summary>
