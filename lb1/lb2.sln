@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.0.11222.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lb2", "lb1\lb2.csproj", "{FE475449-372F-4C32-8B70-8BA737D2AE11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab3", "lb1\lab3.csproj", "{FE475449-372F-4C32-8B70-8BA737D2AE11}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{FD787D54-6A1F-43E7-AAD2-BE51A142FA36}"
 EndProject
