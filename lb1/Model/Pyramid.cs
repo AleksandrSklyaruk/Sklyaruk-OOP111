@@ -9,7 +9,7 @@ namespace Model
     /// <summary>
     /// Класс, представляющий пирамиду
     /// </summary>
-    public class Pyramid : IShape3D
+    public class Pyramid : ShapeBase
     {
         private double _baseArea;
         private double _height;
@@ -22,10 +22,7 @@ namespace Model
             get { return _baseArea; }
             set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("Площадь основания должна быть положительным числом");
-                }
+                ValidatePositiveNumber(value, nameof(BaseArea));
                 _baseArea = value;
             }
         }
@@ -38,10 +35,7 @@ namespace Model
             get { return _height; }
             set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("Высота должна быть положительным числом");
-                }
+                ValidatePositiveNumber(value, nameof(Height));
                 _height = value;
             }
         }
@@ -49,7 +43,7 @@ namespace Model
         /// <summary>
         /// Название фигуры
         /// </summary>
-        public string Name => "Пирамида";
+        public override string Name => "Пирамида";
 
         /// <summary>
         /// Конструктор пирамиды
@@ -66,7 +60,7 @@ namespace Model
         /// Расчёт объёма пирамиды: V = 1/3 × S_осн × h
         /// </summary>
         /// <returns>Объём пирамиды</returns>
-        public double CalculateVolume()
+        public override double CalculateVolume()
         {
             return (1.0 / 3.0) * _baseArea * _height;
         }
@@ -75,7 +69,7 @@ namespace Model
         /// Получение информации о пирамиде
         /// </summary>
         /// <returns>Строковое описание пирамиды</returns>
-        public string GetInfo()
+        public override string GetInfo()
         {
             return $"Пирамида: площадь основания = {_baseArea}, высота = {_height}, объём = {CalculateVolume():F2}";
         }

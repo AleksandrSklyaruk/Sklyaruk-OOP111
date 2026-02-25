@@ -5,7 +5,7 @@ namespace Model
     /// <summary>
     /// Интерфейс для представления трёхмерных фигур
     /// </summary>
-    public interface IShape3D
+    public interface IShape
     {
         /// <summary>
         /// Название фигуры
