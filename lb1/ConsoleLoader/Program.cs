@@ -1,22 +1,29 @@
-﻿using Model;
-using System;
-using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Model;
 
-namespace  ConsoleLeader
+namespace ConsoleLoader
 {
-    public class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("=== Лабораторная работа №3. Вариант 2 ===");
             Console.WriteLine("Трёхмерные фигуры: Шар, Пирамида, Параллелепипед\n");
 
+            // Демонстрация работы через интерфейс IShape3D
             DemonstrateInterfaceUsage();
 
+            // Демонстрация полиморфизма
             DemonstratePolymorphism();
 
+            // Демонстрация валидации данных
             DemonstrateValidation();
 
+            // Интерактивный режим
             RunInteractiveMode();
 
             Console.WriteLine("\nНажмите любую клавишу для выхода...");
@@ -24,22 +31,32 @@ namespace  ConsoleLeader
         }
 
         /// <summary>
-        /// Демонстрация работы с интерфейсом IShape
+        /// Демонстрация работы с интерфейсом IShape3D
         /// </summary>
         private static void DemonstrateInterfaceUsage()
         {
-            Console.WriteLine("1. Демонстрация работы с интерфейсом IShape\n");
+            Console.WriteLine("=== 1. Демонстрация работы с интерфейсом IShape3D ===\n");
 
-            IShape shape;
+            // Создаём переменную-ссылку на интерфейс
+            IShape3D shape;
 
+            // Присваиваем экземпляр Sphere
             shape = new Sphere(5.0);
-            Console.WriteLine($"{shape.GetInfo()}");
+            Console.WriteLine($"Фигура: {shape.Name}");
+            Console.WriteLine($"Информация: {shape.GetInfo()}");
+            Console.WriteLine($"Объём: {shape.CalculateVolume():F2}\n");
 
+            // Присваиваем экземпляр Pyramid
             shape = new Pyramid(25.0, 10.0);
-            Console.WriteLine($"{shape.GetInfo()}");
+            Console.WriteLine($"Фигура: {shape.Name}");
+            Console.WriteLine($"Информация: {shape.GetInfo()}");
+            Console.WriteLine($"Объём: {shape.CalculateVolume():F2}\n");
 
+            // Присваиваем экземпляр Parallelepiped
             shape = new Parallelepiped(4.0, 5.0, 6.0);
-            Console.WriteLine($"{shape.GetInfo()}");
+            Console.WriteLine($"Фигура: {shape.Name}");
+            Console.WriteLine($"Информация: {shape.GetInfo()}");
+            Console.WriteLine($"Объём: {shape.CalculateVolume():F2}\n");
 
             PressAnyKey();
         }
@@ -52,7 +69,7 @@ namespace  ConsoleLeader
             Console.WriteLine("=== 2. Демонстрация полиморфизма (список фигур) ===\n");
 
             // Создаём список интерфейсов
-            List<IShape> shapes = new List<IShape>();
+            List<IShape3D> shapes = new List<IShape3D>();
 
             // Добавляем разные фигуры
             shapes.Add(new Sphere(3.0));
@@ -147,7 +164,7 @@ namespace  ConsoleLeader
         {
             Console.WriteLine("=== 4. Интерактивный режим создания фигур ===\n");
 
-            List<IShape> userShapes = new List<IShape>();
+            List<IShape3D> userShapes = new List<IShape3D>();
             bool continueCreating = true;
 
             while (continueCreating)
@@ -160,7 +177,7 @@ namespace  ConsoleLeader
                 Console.Write("\nВаш выбор: ");
 
                 string choice = Console.ReadLine();
-                IShape newShape = null;
+                IShape3D newShape = null;
 
                 try
                 {
@@ -256,7 +273,7 @@ namespace  ConsoleLeader
         /// </summary>
         private static double ReadPositiveDouble(string prompt)
         {
-            double result = 0;
+            double result;
             bool isValid = false;
 
             while (!isValid)

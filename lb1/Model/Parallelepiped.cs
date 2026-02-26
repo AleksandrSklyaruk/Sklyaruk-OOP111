@@ -16,6 +16,19 @@ namespace Model
         private double _height;
 
         /// <summary>
+        /// Конструктор параллелепипеда
+        /// </summary>
+        /// <param name="length">Длина</param>
+        /// <param name="width">Ширина</param>
+        /// <param name="height">Высота</param>
+        public Parallelepiped(double length, double width, double height)
+        {
+            Length = length;
+            Width = width;
+            Height = height;
+        }
+
+        /// <summary>
         /// Длина параллелепипеда
         /// </summary>
         public double Length
@@ -60,19 +73,6 @@ namespace Model
         public override string Name => "Параллелепипед";
 
         /// <summary>
-        /// Конструктор параллелепипеда
-        /// </summary>
-        /// <param name="length">Длина</param>
-        /// <param name="width">Ширина</param>
-        /// <param name="height">Высота</param>
-        public Parallelepiped(double length, double width, double height)
-        {
-            Length = length;
-            Width = width;
-            Height = height;
-        }
-
-        /// <summary>
         /// Расчёт объёма параллелепипеда: V = a × b × c
         /// </summary>
         /// <returns>Объём параллелепипеда</returns>
@@ -87,7 +87,11 @@ namespace Model
         /// <returns>Строковое описание параллелепипеда</returns>
         public override string GetInfo()
         {
-            return $"Параллелепипед: длина = {_length}, ширина = {_width}, высота = {_height}, объём = {CalculateVolume():F2}";
+            return $" Фигур: параллелепипед\n" +
+                $" Длина = {_length}\n" +
+                $" Ширина = {_width}\n" +
+                $" Высота = {_height}\n" +
+                $" Объём = {CalculateVolume():F2}\n";
         }
     }
 }

@@ -15,6 +15,17 @@ namespace Model
         private double _height;
 
         /// <summary>
+        /// Конструктор пирамиды
+        /// </summary>
+        /// <param name="baseArea">Площадь основания</param>
+        /// <param name="height">Высота пирамиды</param>
+        public Pyramid(double baseArea, double height)
+        {
+            BaseArea = baseArea;
+            Height = height;
+        }
+
+        /// <summary>
         /// Площадь основания пирамиды
         /// </summary>
         public double BaseArea
@@ -46,17 +57,6 @@ namespace Model
         public override string Name => "Пирамида";
 
         /// <summary>
-        /// Конструктор пирамиды
-        /// </summary>
-        /// <param name="baseArea">Площадь основания</param>
-        /// <param name="height">Высота пирамиды</param>
-        public Pyramid(double baseArea, double height)
-        {
-            BaseArea = baseArea;
-            Height = height;
-        }
-
-        /// <summary>
         /// Расчёт объёма пирамиды: V = 1/3 × S_осн × h
         /// </summary>
         /// <returns>Объём пирамиды</returns>
@@ -71,7 +71,10 @@ namespace Model
         /// <returns>Строковое описание пирамиды</returns>
         public override string GetInfo()
         {
-            return $"Пирамида: площадь основания = {_baseArea}, высота = {_height}, объём = {CalculateVolume():F2}";
+            return $" Фигура: пирамида\n" +
+                $" Площадь основания = {_baseArea}\n" +
+                $" Высота = {_height}\n" +
+                $" Объём = {CalculateVolume():F2}\n";
         }
     }
 }

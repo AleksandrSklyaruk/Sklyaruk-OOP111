@@ -14,6 +14,15 @@ namespace Model
         private double _radius;
 
         /// <summary>
+        /// Конструктор сферы
+        /// </summary>
+        /// <param name="radius">Радиус сферы</param>
+        public Sphere(double radius)
+        {
+            Radius = radius;
+        }
+
+        /// <summary>
         /// Радиус сферы
         /// </summary>
         public double Radius
@@ -32,15 +41,6 @@ namespace Model
         public override string Name => "Шар";
 
         /// <summary>
-        /// Конструктор сферы
-        /// </summary>
-        /// <param name="radius">Радиус сферы</param>
-        public Sphere(double radius)
-        {
-            Radius = radius; // Валидация сработает в сеттере
-        }
-
-        /// <summary>
         /// Расчёт объёма сферы: V = 4/3 × π × r³
         /// </summary>
         /// <returns>Объём сферы</returns>
@@ -55,7 +55,9 @@ namespace Model
         /// <returns>Строковое описание сферы</returns>
         public override string GetInfo()
         {
-            return $"Шар: радиус = {_radius}, объём = {CalculateVolume():F2}";
+            return $" Фигура: шар\n" +
+                $" Радиус = {_radius}\n" +
+                $" Объём = {CalculateVolume():F2}\n";
         }
     }
 }
