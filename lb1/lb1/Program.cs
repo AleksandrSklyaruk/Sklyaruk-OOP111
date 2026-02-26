@@ -8,144 +8,6 @@ namespace  ConsoleLeader
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("=== Лабораторная работа №3. Вариант 2 ===");
-            Console.WriteLine("Трёхмерные фигуры: Шар, Пирамида, Параллелепипед\n");
-
-            DemonstrateInterfaceUsage();
-
-            DemonstratePolymorphism();
-
-            DemonstrateValidation();
-
-            RunInteractiveMode();
-
-            Console.WriteLine("\nНажмите любую клавишу для выхода...");
-            Console.ReadKey();
-        }
-
-        /// <summary>
-        /// Демонстрация работы с интерфейсом IShape
-        /// </summary>
-        private static void DemonstrateInterfaceUsage()
-        {
-            Console.WriteLine("1. Демонстрация работы с интерфейсом IShape\n");
-
-            IShape shape;
-
-            shape = new Sphere(5.0);
-            Console.WriteLine($"{shape.GetInfo()}");
-
-            shape = new Pyramid(25.0, 10.0);
-            Console.WriteLine($"{shape.GetInfo()}");
-
-            shape = new Parallelepiped(4.0, 5.0, 6.0);
-            Console.WriteLine($"{shape.GetInfo()}");
-
-            PressAnyKey();
-        }
-
-        /// <summary>
-        /// Демонстрация полиморфизма - работа со списком фигур
-        /// </summary>
-        private static void DemonstratePolymorphism()
-        {
-            Console.WriteLine("=== 2. Демонстрация полиморфизма (список фигур) ===\n");
-
-            // Создаём список интерфейсов
-            List<IShape> shapes = new List<IShape>();
-
-            // Добавляем разные фигуры
-            shapes.Add(new Sphere(3.0));
-            shapes.Add(new Pyramid(15.0, 8.0));
-            shapes.Add(new Parallelepiped(2.0, 3.0, 4.0));
-            shapes.Add(new Sphere(7.5));
-            shapes.Add(new Parallelepiped(5.0, 5.0, 5.0));
-
-            Console.WriteLine($"Всего фигур в списке: {shapes.Count}\n");
-
-            // Демонстрируем полиморфное поведение
-            int index = 1;
-            foreach (var shape in shapes)
-            {
-                Console.WriteLine($"Фигура #{index}:");
-                Console.WriteLine($"  Тип: {shape.Name}");
-                Console.WriteLine($"  Объём: {shape.CalculateVolume():F2}");
-                Console.WriteLine($"  Описание: {shape.GetInfo()}");
-                Console.WriteLine();
-                index++;
-            }
-
-            PressAnyKey();
-        }
-
-        /// <summary>
-        /// Демонстрация валидации данных через исключения
-        /// </summary>
-        private static void DemonstrateValidation()
-        {
-            Console.WriteLine("=== 3. Демонстрация валидации данных ===\n");
-
-            // Тест 1: Отрицательный радиус
-            Console.WriteLine("Тест 1: Попытка создать сферу с отрицательным радиусом (-5.0)");
-            try
-            {
-                Sphere invalidSphere = new Sphere(-5.0);
-                Console.WriteLine("ERROR: Исключение не было выброшено!");
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine($"✓ Корректно поймано исключение:");
-                Console.WriteLine($"  {ex.Message}\n");
-            }
-
-            // Тест 2: Нулевая высота пирамиды
-            Console.WriteLine("Тест 2: Попытка создать пирамиду с нулевой высотой (0.0)");
-            try
-            {
-                Pyramid invalidPyramid = new Pyramid(10.0, 0.0);
-                Console.WriteLine("ERROR: Исключение не было выброшено!");
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine($"✓ Корректно поймано исключение:");
-                Console.WriteLine($"  {ex.Message}\n");
-            }
-
-            // Тест 3: Отрицательная длина параллелепипеда
-            Console.WriteLine("Тест 3: Попытка создать параллелепипед с отрицательной длиной (-3.0)");
-            try
-            {
-                Parallelepiped invalidBox = new Parallelepiped(-3.0, 5.0, 4.0);
-                Console.WriteLine("ERROR: Исключение не было выброшено!");
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine($"✓ Корректно поймано исключение:");
-                Console.WriteLine($"  {ex.Message}\n");
-            }
-
-            // Тест 4: NaN значение
-            Console.WriteLine("Тест 4: Попытка создать сферу с радиусом NaN");
-            try
-            {
-                Sphere nanSphere = new Sphere(double.NaN);
-                Console.WriteLine("ERROR: Исключение не было выброшено!");
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine($"✓ Корректно поймано исключение:");
-                Console.WriteLine($"  {ex.Message}\n");
-            }
-
-            PressAnyKey();
-        }
-
-        /// <summary>
-        /// Интерактивный режим создания фигур
-        /// </summary>
-        private static void RunInteractiveMode()
-        {
-            Console.WriteLine("=== 4. Интерактивный режим создания фигур ===\n");
 
             List<IShape> userShapes = new List<IShape>();
             bool continueCreating = true;
@@ -153,9 +15,9 @@ namespace  ConsoleLeader
             while (continueCreating)
             {
                 Console.WriteLine("Выберите тип фигуры:");
-                Console.WriteLine("1. Шар (Sphere)");
-                Console.WriteLine("2. Пирамида (Pyramid)");
-                Console.WriteLine("3. Параллелепипед (Parallelepiped)");
+                Console.WriteLine("1. Шар");
+                Console.WriteLine("2. Пирамида");
+                Console.WriteLine("3. Параллелепипед");
                 Console.WriteLine("0. Завершить создание фигур");
                 Console.Write("\nВаш выбор: ");
 
@@ -180,7 +42,7 @@ namespace  ConsoleLeader
                             Console.WriteLine("\nЗавершение создания фигур.");
                             break;
                         default:
-                            Console.WriteLine("\n❌ Неверный выбор. Попробуйте снова.\n");
+                            Console.WriteLine("\nНеверный выбор. Попробуйте снова.\n");
                             continue;
                     }
 
@@ -193,7 +55,7 @@ namespace  ConsoleLeader
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"\n❌ Ошибка при создании фигуры: {ex.Message}\n");
+                    Console.WriteLine($"\n Ошибка при создании фигуры: {ex.Message}\n");
                 }
             }
 
@@ -216,6 +78,9 @@ namespace  ConsoleLeader
                 Console.WriteLine($"Всего фигур: {userShapes.Count}");
                 Console.WriteLine($"Суммарный объём: {totalVolume:F2}");
             }
+
+            Console.WriteLine("\nНажмите любую клавишу для выхода...");
+            Console.ReadKey();
         }
 
         /// <summary>
@@ -297,5 +162,6 @@ namespace  ConsoleLeader
             Console.ReadKey();
             Console.WriteLine();
         }
+
     }
 }

@@ -87,7 +87,7 @@ namespace Model
         /// <returns>Строковое описание параллелепипеда</returns>
         public override string GetInfo()
         {
-            return $" Фигур: параллелепипед\n" +
+            return $" Фигура: параллелепипед\n" +
                 $" Длина = {_length}\n" +
                 $" Ширина = {_width}\n" +
                 $" Высота = {_height}\n" +
