@@ -41,17 +41,7 @@ namespace Model
             {
                 throw new ArgumentException(
                     $"Значение параметра '{parameterName}'" +
-                    $" должно быть положительным числом. " +
-                    $"Получено: {value}", parameterName);
-            }
-
-            // Проверка на бесконечность и NaN (Not a Number)
-            if (double.IsNaN(value) || double.IsInfinity(value))
-            {
-                throw new ArgumentException(
-                    $"Значение параметра '{parameterName}' " +
-                    $"не может быть NaN или бесконечностью.",
-                    parameterName);
+                    $" должно быть положительным числом.");
             }
         }
     }

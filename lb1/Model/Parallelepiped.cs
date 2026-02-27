@@ -87,11 +87,7 @@ namespace Model
         /// <returns>Строковое описание параллелепипеда</returns>
         public override string GetInfo()
         {
-            return $" Фигура: параллелепипед\n" +
-                $" Длина = {_length}\n" +
-                $" Ширина = {_width}\n" +
-                $" Высота = {_height}\n" +
-                $" Объём = {CalculateVolume():F2}\n";
+            return $"Объём = {CalculateVolume():F2}\n";
         }
     }
 }

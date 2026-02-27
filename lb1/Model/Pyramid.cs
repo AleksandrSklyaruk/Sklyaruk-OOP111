@@ -11,7 +11,8 @@ namespace Model
     /// </summary>
     public class Pyramid : ShapeBase
     {
-        private double _baseArea;
+        private double _length;
+        private double _width;
         private double _height;
 
         /// <summary>
@@ -19,22 +20,36 @@ namespace Model
         /// </summary>
         /// <param name="baseArea">Площадь основания</param>
         /// <param name="height">Высота пирамиды</param>
-        public Pyramid(double baseArea, double height)
+        public Pyramid(double length, double width, double height)
         {
-            BaseArea = baseArea;
+            Length = length;
+            Width = width;
             Height = height;
         }
 
         /// <summary>
-        /// Площадь основания пирамиды
+        /// Длина основания пирамиды
         /// </summary>
-        public double BaseArea
+        public double Length
         {
-            get { return _baseArea; }
+            get { return _length; }
             set
             {
-                ValidatePositiveNumber(value, nameof(BaseArea));
-                _baseArea = value;
+                ValidatePositiveNumber(value, nameof(Length));
+                _length = value;
+            }
+        }
+
+        /// <summary>
+        /// Ширина основания пирамиды
+        /// </summary>
+        public double Width
+        {
+            get { return _width; }
+            set
+            {
+                ValidatePositiveNumber(value, nameof(Width));
+                _width = value;
             }
         }
 
@@ -62,7 +77,7 @@ namespace Model
         /// <returns>Объём пирамиды</returns>
         public override double CalculateVolume()
         {
-            return (1.0 / 3.0) * _baseArea * _height;
+            return (1.0 / 3.0) * _length * _width * _height;
         }
 
         /// <summary>
@@ -71,10 +86,7 @@ namespace Model
         /// <returns>Строковое описание пирамиды</returns>
         public override string GetInfo()
         {
-            return $" Фигура: пирамида\n" +
-                $" Площадь основания = {_baseArea}\n" +
-                $" Высота = {_height}\n" +
-                $" Объём = {CalculateVolume():F2}\n";
+            return $"Объём = {CalculateVolume():F2}\n";
         }
     }
 }

@@ -55,9 +55,7 @@ namespace Model
         /// <returns>Строковое описание сферы</returns>
         public override string GetInfo()
         {
-            return $" Фигура: шар\n" +
-                $" Радиус = {_radius}\n" +
-                $" Объём = {CalculateVolume():F2}\n";
+            return $"Объём шара = {CalculateVolume():F2}\n";
         }
     }
 }
