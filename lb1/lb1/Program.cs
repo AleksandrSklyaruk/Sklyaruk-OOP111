@@ -31,6 +31,7 @@ namespace  ConsoleLeader
 
                   switch (choice)
                   {
+                    //TODO: {}
                       case "1":
                           newShape = CreateSphereFromInput();
                           break;
@@ -49,6 +50,7 @@ namespace  ConsoleLeader
 
                   if (newShape != null)
                   {
+                      //TODO: rewrite
                       Console.WriteLine($"{newShape.GetInfo()}");
                   }
             }
@@ -90,6 +92,7 @@ namespace  ConsoleLeader
         /// </summary>
         private static double ReadPositiveDouble(string prompt)
         {
+            //TODO: rewrite
             double result = 0;
             bool isValid = false;
 

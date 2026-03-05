@@ -11,8 +11,11 @@ namespace Model
     /// </summary>
     public class Parallelepiped : ShapeBase
     {
+        //TODO: XML
         private double _length;
+        //TODO: XML
         private double _width;
+        //TODO: XML
         private double _height;
 
         /// <summary>
