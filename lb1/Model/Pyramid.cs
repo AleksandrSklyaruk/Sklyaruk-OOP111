@@ -11,11 +11,20 @@ namespace Model
     /// </summary>
     public class Pyramid : ShapeBase
     {
-        //TODO: XML
+        //TODO: XML +
+        /// <summary>
+        /// Длина
+        /// </summary>
         private double _length;
-        //TODO: XML
+        //TODO: XML +
+        /// <summary>
+        /// Ширина
+        /// </summary>
         private double _width;
-        //TODO: XML
+        //TODO: XML +
+        /// <summary>
+        /// Высота
+        /// </summary>
         private double _height;
 
         /// <summary>

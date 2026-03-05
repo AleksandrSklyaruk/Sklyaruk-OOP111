@@ -11,7 +11,10 @@ namespace Model
     /// </summary>
     public class Sphere : ShapeBase
     {
-        //TODO: XML
+        //TODO: XML +
+        /// <summary>
+        /// Радиус
+        /// </summary>
         private double _radius;
 
         /// <summary>

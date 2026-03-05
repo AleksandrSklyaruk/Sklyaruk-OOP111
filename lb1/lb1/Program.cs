@@ -92,11 +92,10 @@ namespace  ConsoleLeader
         /// </summary>
         private static double ReadPositiveDouble(string prompt)
         {
-            //TODO: rewrite
+            //TODO: rewrite +
             double result = 0;
-            bool isValid = false;
 
-            while (!isValid)
+            while (true)
             {
                 Console.Write(prompt);
                 string input = Console.ReadLine();
@@ -110,7 +109,7 @@ namespace  ConsoleLeader
                     }
                     else
                     {
-                        isValid = true;
+                        return result;
                     }
                 }
                 else
@@ -119,7 +118,7 @@ namespace  ConsoleLeader
                 }
             }
 
-            return result;
+
         }
     }
 }
