@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace Model
 {
     /// <summary>
-    /// Абстрактный базовый класс для трёхмерных фигур.
-    /// Реализует общую логику валидации данных.
+    /// Абстрактный базовый класс для трёхмерных фигур. 
     /// </summary>
     public abstract class ShapeBase : IShape
     {

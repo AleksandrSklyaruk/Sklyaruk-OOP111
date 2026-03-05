@@ -15,7 +15,6 @@ namespace  ConsoleLeader
         static void Main()
         {
 
-            List<IShape> userShapes = new List<IShape>();
             bool continueCreating = true;
 
             while (continueCreating)
@@ -50,7 +49,6 @@ namespace  ConsoleLeader
 
                   if (newShape != null)
                   {
-                      userShapes.Add(newShape);
                       Console.WriteLine($"{newShape.GetInfo()}");
                   }
             }
