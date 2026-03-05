@@ -59,7 +59,7 @@ namespace Model
         /// <returns>Строковое описание шара</returns>
         public override string GetInfo()
         {
-            return $"Объём шара = {CalculateVolume():F2}\n";
+            return $"Объём шара = {CalculateVolume()}\n";
         }
     }
 }

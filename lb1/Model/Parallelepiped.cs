@@ -99,7 +99,7 @@ namespace Model
         /// <returns>Строковое описание параллелепипеда</returns>
         public override string GetInfo()
         {
-            return $"Объём = {CalculateVolume():F2}\n";
+            return $"Объём = {CalculateVolume()}\n";
         }
     }
 }

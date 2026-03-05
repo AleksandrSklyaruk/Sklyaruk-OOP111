@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    //TODO: RSDN
+    //TODO: RSDN +
     /// <summary>
-    /// Абстрактный базовый класс для трёхмерных фигур. 
+    /// Абстрактный базовый класс для трёхмерных фигур
     /// </summary>
     public abstract class ShapeBase : IShape
     {

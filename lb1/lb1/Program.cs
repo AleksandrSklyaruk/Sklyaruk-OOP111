@@ -31,26 +31,33 @@ namespace  ConsoleLeader
 
                   switch (choice)
                   {
-                    //TODO: {}
+                    //TODO: {} +
                       case "1":
+                      {
                           newShape = CreateSphereFromInput();
                           break;
+                      }
                       case "2":
+                      {
                           newShape = CreatePyramidFromInput();
                           break;
+                      }
                       case "3":
+                      {
                           newShape = CreateParallelepipedFromInput();
                           break;
-                      case "0":
-                          return;
+                      }
+                      case "0": return;
                       default:
+                      {
                           Console.WriteLine("\nНеверный выбор. Попробуйте снова.\n");
                           continue;
+                      }             
                   }
 
                   if (newShape != null)
                   {
-                      //TODO: rewrite
+                      //TODO: rewrite +
                       Console.WriteLine($"{newShape.GetInfo()}");
                   }
             }
