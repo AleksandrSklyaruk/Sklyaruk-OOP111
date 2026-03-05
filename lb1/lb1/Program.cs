@@ -29,37 +29,36 @@ namespace  ConsoleLeader
                 string choice = Console.ReadLine();
                 IShape newShape = null;
 
-                  switch (choice)
-                  {
-                    //TODO: {} +
-                      case "1":
-                      {
-                          newShape = CreateSphereFromInput();
-                          break;
-                      }
-                      case "2":
-                      {
-                          newShape = CreatePyramidFromInput();
-                          break;
-                      }
-                      case "3":
-                      {
-                          newShape = CreateParallelepipedFromInput();
-                          break;
-                      }
-                      case "0": return;
-                      default:
-                      {
-                          Console.WriteLine("\nНеверный выбор. Попробуйте снова.\n");
-                          continue;
-                      }             
-                  }
+                switch (choice)
+                {
+                    case "1":
+                    {
+                        newShape = CreateSphereFromInput();
+                        break;
+                    }
+                    case "2":
+                    {
+                        newShape = CreatePyramidFromInput();
+                        break;
+                    }
+                    case "3":
+                    {
+                        newShape = CreateParallelepipedFromInput();
+                        break;
+                    }
+                    case "0": return;
 
-                  if (newShape != null)
-                  {
-                      //TODO: rewrite +
-                      Console.WriteLine($"{newShape.GetInfo()}");
-                  }
+                    default:
+                    {
+                        Console.WriteLine("\nНеверный выбор. Попробуйте снова.\n");
+                        continue;
+                    }             
+                }
+
+                if (newShape != null)
+                {
+                    Console.WriteLine($"{newShape.GetInfo()}");
+                }
             }
         }
 
@@ -99,15 +98,12 @@ namespace  ConsoleLeader
         /// </summary>
         private static double ReadPositiveDouble(string prompt)
         {
-            //TODO: rewrite +
-            double result = 0;
-
             while (true)
             {
                 Console.Write(prompt);
                 string input = Console.ReadLine();
 
-                if (double.TryParse(input, out result))
+                if (double.TryParse(input, out double result))
                 {
                     if (result <= 0)
                     {
@@ -124,8 +120,6 @@ namespace  ConsoleLeader
                     Console.WriteLine("Неверный формат числа. Попробуйте снова.");
                 }
             }
-
-
         }
     }
 }

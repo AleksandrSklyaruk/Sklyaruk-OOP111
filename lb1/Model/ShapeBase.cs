@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    //TODO: RSDN +
     /// <summary>
     /// Абстрактный базовый класс для трёхмерных фигур
     /// </summary>

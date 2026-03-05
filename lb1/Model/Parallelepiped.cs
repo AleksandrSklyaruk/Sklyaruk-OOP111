@@ -11,17 +11,16 @@ namespace Model
     /// </summary>
     public class Parallelepiped : ShapeBase
     {
-        //TODO: XML +
         /// <summary>
         /// Длина
         /// </summary>
         private double _length;
-        //TODO: XML +
+
         /// <summary>
         /// Ширина
         /// </summary>
         private double _width;
-        //TODO: XML +
+
         /// <summary>
         /// Высота
         /// </summary>
