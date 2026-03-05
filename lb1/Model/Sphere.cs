@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 namespace Model
 {
     /// <summary>
-    /// Класс, представляющий сферу
+    /// Класс, представляющий шар
     /// </summary>
     public class Sphere : ShapeBase
     {
         private double _radius;
 
         /// <summary>
-        /// Конструктор сферы
+        /// Конструктор шара
         /// </summary>
-        /// <param name="radius">Радиус сферы</param>
+        /// <param name="radius">Радиус шара</param>
         public Sphere(double radius)
         {
             Radius = radius;
         }
 
         /// <summary>
-        /// Радиус сферы
+        /// Радиус шара
         /// </summary>
         public double Radius
         {
@@ -41,18 +41,18 @@ namespace Model
         public override string Name => "Шар";
 
         /// <summary>
-        /// Расчёт объёма сферы: V = 4/3 × π × r³
+        /// Расчёт объёма шара: V = 4/3 × π × r³
         /// </summary>
-        /// <returns>Объём сферы</returns>
+        /// <returns>Объём шара</returns>
         public override double CalculateVolume()
         {
             return (4.0 / 3.0) * Math.PI * Math.Pow(_radius, 3);
         }
 
         /// <summary>
-        /// Получение информации о сфере
+        /// Получение информации о шаре
         /// </summary>
-        /// <returns>Строковое описание сферы</returns>
+        /// <returns>Строковое описание шара</returns>
         public override string GetInfo()
         {
             return $"Объём шара = {CalculateVolume():F2}\n";
