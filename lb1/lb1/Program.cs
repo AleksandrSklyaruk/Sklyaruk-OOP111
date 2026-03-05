@@ -102,7 +102,8 @@ namespace  ConsoleLeader
                 {
                     if (result <= 0)
                     {
-                        Console.WriteLine("Значение должно быть положительным числом. Попробуйте снова.");
+                        Console.WriteLine("Значение должно быть положительным числом." +
+                            " Попробуйте снова.");
                     }
                     else
                     {
