@@ -27,7 +27,9 @@ namespace View
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-
+            groupBoxSphere.Visible = rbSphere.Checked;
+            groupBoxPyramid.Visible = rbPyramid.Checked;
+            groupBoxParallelepiped.Visible = rbParallelepiped.Checked;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -69,31 +71,35 @@ namespace View
         {
             try
             {
-                // Проверка на пустые поля
-                if (string.IsNullOrWhiteSpace(txtRadius.Text) ||
-                    string.IsNullOrWhiteSpace(txtPyramidLength.Text) ||
-                    string.IsNullOrWhiteSpace(txtPyramidWidth.Text) ||
-                    string.IsNullOrWhiteSpace(txtPyramidHeight.Text) ||
-                    string.IsNullOrWhiteSpace(txtParallelepipedLength.Text) ||
-                    string.IsNullOrWhiteSpace(txtParallelepipedWidth.Text) ||
-                    string.IsNullOrWhiteSpace(txtParallelepipedHeight.Text))
+                // Проверка: выбрана ли фигура
+                if (!rbSphere.Checked && !rbPyramid.Checked && !rbParallelepiped.Checked)
                 {
-                    MessageBox.Show(
-                        "Пожалуйста, заполните все поля!",
-                        "Ошибка ввода",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
+                    MessageBox.Show("Пожалуйста, выберите тип фигуры!", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                // Определяем, какая фигура выбрана, и создаём объект
                 if (rbSphere.Checked)
                 {
-                    double radius = double.Parse(txtRadiu.Text);
+                    if (string.IsNullOrWhiteSpace(txtRadius.Text))
+                    {
+                        MessageBox.Show("Заполните радиус шара!", "Ошибка ввода",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtRadius.Focus();
+                        return;
+                    }
+                    double radius = double.Parse(txtRadius.Text); // ✅ ИСПРАВЛЕНО: txtRadius
                     CreatedShape = new Sphere(radius);
                 }
                 else if (rbPyramid.Checked)
                 {
+                    if (string.IsNullOrWhiteSpace(txtPyramidLength.Text) ||
+                        string.IsNullOrWhiteSpace(txtPyramidWidth.Text) ||
+                        string.IsNullOrWhiteSpace(txtPyramidHeight.Text))
+                    {
+                        MessageBox.Show("Заполните все поля пирамиды!", "Ошибка ввода",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     double length = double.Parse(txtPyramidLength.Text);
                     double width = double.Parse(txtPyramidWidth.Text);
                     double height = double.Parse(txtPyramidHeight.Text);
@@ -101,19 +107,18 @@ namespace View
                 }
                 else if (rbParallelepiped.Checked)
                 {
+                    if (string.IsNullOrWhiteSpace(txtParallelepipedLength.Text) ||
+                        string.IsNullOrWhiteSpace(txtParallelepipedWidth.Text) ||
+                        string.IsNullOrWhiteSpace(txtParallelepipedHeight.Text))
+                    {
+                        MessageBox.Show("Заполните все поля параллелепипеда!", "Ошибка ввода",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     double length = double.Parse(txtParallelepipedLength.Text);
                     double width = double.Parse(txtParallelepipedWidth.Text);
                     double height = double.Parse(txtParallelepipedHeight.Text);
                     CreatedShape = new Parallelepiped(length, width, height);
-                }
-                else
-                {
-                    MessageBox.Show(
-                        "Пожалуйста, выберите тип фигуры!",
-                        "Ошибка",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
                 }
 
                 this.DialogResult = DialogResult.OK;
@@ -121,36 +126,154 @@ namespace View
             }
             catch (FormatException)
             {
-                MessageBox.Show(
-                    "Пожалуйста, введите корректные числовые значения!\n" +
+                MessageBox.Show("Пожалуйста, введите корректные числовые значения!\n" +
                     "Используйте точку для разделения целой и дробной части.",
-                    "Ошибка формата",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    "Ошибка формата", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (ArgumentException ex)
             {
-                // Ловим исключения валидации из бизнес-логики (Model)
-                MessageBox.Show(
-                    ex.Message,
-                    "Ошибка валидации",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка валидации",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    $"Произошла непредвиденная ошибка: {ex.Message}",
-                    "Ошибка",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show($"Произошла непредвиденная ошибка: {ex.Message}",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
 
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void txtRadius_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void AddShapeForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void txtRadius_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Разрешаем только цифры, точку и backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Разрешаем только одну точку
+            if (e.KeyChar == '.' && ((sender as TextBox).Text.IndexOf('.') >= 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPyramidLength_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Разрешаем только цифры, точку и backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Разрешаем только одну точку
+            if (e.KeyChar == '.' && ((sender as TextBox).Text.IndexOf('.') >= 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPyramidWidth_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Разрешаем только цифры, точку и backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Разрешаем только одну точку
+            if (e.KeyChar == '.' && ((sender as TextBox).Text.IndexOf('.') >= 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPyramidHeight_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Разрешаем только цифры, точку и backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Разрешаем только одну точку
+            if (e.KeyChar == '.' && ((sender as TextBox).Text.IndexOf('.') >= 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtParallelepipedLength_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Разрешаем только цифры, точку и backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Разрешаем только одну точку
+            if (e.KeyChar == '.' && ((sender as TextBox).Text.IndexOf('.') >= 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtParallelepipedWidth_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Разрешаем только цифры, точку и backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Разрешаем только одну точку
+            if (e.KeyChar == '.' && ((sender as TextBox).Text.IndexOf('.') >= 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtParallelepipedHeight_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Разрешаем только цифры, точку и backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Разрешаем только одну точку
+            if (e.KeyChar == '.' && ((sender as TextBox).Text.IndexOf('.') >= 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void rbPyramid_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
