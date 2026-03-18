@@ -335,5 +335,13 @@ namespace View
                 }
             }
         }
+
+        private void btnSearchShape_Click_1(object sender, EventArgs e)
+        {
+            using (var searchForm = new SearchForm(_shapes))
+            {
+                searchForm.ShowDialog();
+            }
+        }
     }
 }

@@ -34,6 +34,7 @@
             btnRemoveShape = new Button();
             btnSave = new Button();
             btnLoad = new Button();
+            btnSearchShape = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewShapes).BeginInit();
             SuspendLayout();
@@ -99,11 +100,22 @@
             btnLoad.UseVisualStyleBackColor = true;
             btnLoad.Click += btnLoad_Click;
             // 
+            // btnSearchShape
+            // 
+            btnSearchShape.Location = new Point(214, 359);
+            btnSearchShape.Name = "btnSearchShape";
+            btnSearchShape.Size = new Size(141, 23);
+            btnSearchShape.TabIndex = 5;
+            btnSearchShape.Text = "Поиск фигуры";
+            btnSearchShape.UseVisualStyleBackColor = true;
+            btnSearchShape.Click += btnSearchShape_Click_1;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnSearchShape);
             Controls.Add(btnLoad);
             Controls.Add(btnSave);
             Controls.Add(btnRemoveShape);
@@ -124,5 +136,6 @@
         private Button btnRemoveShape;
         private Button btnSave;
         private Button btnLoad;
+        private Button btnSearchShape;
     }
 }
