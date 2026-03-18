@@ -25,7 +25,6 @@ namespace View
             groupBoxPyramid.Visible = false;
             groupBoxParallelepiped.Visible = false;
 
-            // ✅ УСЛОВНАЯ КОМПИЛЯЦИЯ (Пункт 11)
             // В Release-версии кнопка будет скрыта
             #if !DEBUG
                 btnRandomData.Visible = false;
@@ -45,11 +44,6 @@ namespace View
         }
 
         private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
