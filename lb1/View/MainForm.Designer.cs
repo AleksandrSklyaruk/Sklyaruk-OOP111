@@ -41,7 +41,7 @@
             groupBox1.Controls.Add(dataGridViewShapes);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(776, 303);
+            groupBox1.Size = new Size(776, 369);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "groupBoxShapes";
@@ -52,14 +52,14 @@
             dataGridViewShapes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewShapes.Location = new Point(6, 23);
             dataGridViewShapes.Name = "dataGridViewShapes";
-            dataGridViewShapes.Size = new Size(764, 275);
+            dataGridViewShapes.Size = new Size(764, 340);
             dataGridViewShapes.TabIndex = 0;
             dataGridViewShapes.CellContentClick += dataGridView1_CellContentClick;
             // 
             // btnAddShape
             // 
             btnAddShape.DialogResult = DialogResult.OK;
-            btnAddShape.Location = new Point(18, 342);
+            btnAddShape.Location = new Point(43, 399);
             btnAddShape.Name = "btnAddShape";
             btnAddShape.Size = new Size(141, 23);
             btnAddShape.TabIndex = 1;
@@ -69,12 +69,13 @@
             // 
             // btnRemoveShape
             // 
-            btnRemoveShape.Location = new Point(206, 342);
+            btnRemoveShape.Location = new Point(600, 399);
             btnRemoveShape.Name = "btnRemoveShape";
             btnRemoveShape.Size = new Size(129, 23);
             btnRemoveShape.TabIndex = 2;
             btnRemoveShape.Text = "Удалить  фигуру";
             btnRemoveShape.UseVisualStyleBackColor = true;
+            btnRemoveShape.Click += btnRemoveShape_Click_1;
             // 
             // MainForm
             // 

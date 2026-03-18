@@ -20,6 +20,11 @@ namespace View
             InitializeComponent();
 
             _shapes = new List<IShape>();
+
+            // ✅ Настройка DataGridView
+            dataGridViewShapes.AutoGenerateColumns = true;
+            dataGridViewShapes.ReadOnly = true;
+            dataGridViewShapes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -61,9 +66,52 @@ namespace View
             }
         }
 
+        private void btnRemoveShape_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewShapes.CurrentRow != null)
+            {
+                int selectedIndex = dataGridViewShapes.CurrentRow.Index;
+                if (selectedIndex >= 0 && selectedIndex < _shapes.Count)
+                {
+                    _shapes.RemoveAt(selectedIndex);
+                    dataGridViewShapes.DataSource = null;
+                    dataGridViewShapes.DataSource = _shapes;
+
+                    MessageBox.Show("Фигура удалена!", "Успех",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите фигуру для удаления!", "Предупреждение",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnRemoveShape_Click_1(object sender, EventArgs e)
+        {
+            if (dataGridViewShapes.CurrentRow != null)
+            {
+                int idx = dataGridViewShapes.CurrentRow.Index;
+                if (idx >= 0 && idx < _shapes.Count)
+                {
+                    _shapes.RemoveAt(idx);
+                    dataGridViewShapes.DataSource = null;
+                    dataGridViewShapes.DataSource = _shapes;
+                    MessageBox.Show("Удалено!", "Успех",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите фигуру!", "Предупреждение",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

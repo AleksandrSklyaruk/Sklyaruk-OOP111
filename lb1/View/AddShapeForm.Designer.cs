@@ -53,6 +53,7 @@
             txtParallelepipedWidth = new TextBox();
             txtParallelepipedLength = new TextBox();
             contextMenuStrip1 = new ContextMenuStrip(components);
+            btnRandomData = new Button();
             groupBoxShapeType.SuspendLayout();
             groupBoxSphere.SuspendLayout();
             groupBoxPyramid.SuspendLayout();
@@ -82,6 +83,7 @@
             rbParallelepiped.TabStop = true;
             rbParallelepiped.Text = "Параллелепипед";
             rbParallelepiped.UseVisualStyleBackColor = true;
+            rbParallelepiped.CheckedChanged += radioButton1_CheckedChanged;
             // 
             // rbPyramid
             // 
@@ -93,7 +95,7 @@
             rbPyramid.TabStop = true;
             rbPyramid.Text = "Пирамида";
             rbPyramid.UseVisualStyleBackColor = true;
-            rbPyramid.CheckedChanged += rbPyramid_CheckedChanged;
+            rbPyramid.CheckedChanged += radioButton1_CheckedChanged;
             // 
             // rbSphere
             // 
@@ -299,6 +301,16 @@
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
             // 
+            // btnRandomData
+            // 
+            btnRandomData.Location = new Point(27, 242);
+            btnRandomData.Name = "btnRandomData";
+            btnRandomData.Size = new Size(141, 23);
+            btnRandomData.TabIndex = 23;
+            btnRandomData.Text = "Случайные данные";
+            btnRandomData.UseVisualStyleBackColor = true;
+            btnRandomData.Click += this.btnRandomData_Click;
+            // 
             // AddShapeForm
             // 
             AcceptButton = butOk;
@@ -306,6 +318,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnCancel;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnRandomData);
             Controls.Add(groupBoxParallelepiped);
             Controls.Add(groupBoxPyramid);
             Controls.Add(groupBoxSphere);
@@ -354,5 +367,6 @@
         private TextBox txtParallelepipedLength;
         private TextBox txtParallelepipedWidth;
         private TextBox txtParallelepipedHeight;
+        private Button btnRandomData;
     }
 }

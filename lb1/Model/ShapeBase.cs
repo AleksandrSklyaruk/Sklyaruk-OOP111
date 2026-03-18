@@ -28,6 +28,22 @@ namespace Model
         /// <returns>Строковое описание фигуры</returns>
         public abstract string GetInfo();
 
+        // ✅ Свойства для привязки к DataGridView
+        /// <summary>
+        /// Название фигуры (для DataGridView)
+        /// </summary>
+        public string ShapeName => Name;
+
+        /// <summary>
+        /// Объём фигуры (для DataGridView)
+        /// </summary>
+        public double Volume => CalculateVolume();
+
+        /// <summary>
+        /// Информация о фигуре (для DataGridView)
+        /// </summary>
+        public string Info => GetInfo();
+
         /// <summary>
         /// Метод валидации положительного числа
         /// </summary>

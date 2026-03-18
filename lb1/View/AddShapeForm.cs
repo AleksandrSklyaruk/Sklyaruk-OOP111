@@ -14,6 +14,7 @@ namespace View
     public partial class AddShapeForm : Form
     {
 
+        private Random _random = new Random();
         public IShape CreatedShape { get; private set; }
 
         public AddShapeForm()
@@ -23,6 +24,12 @@ namespace View
             groupBoxSphere.Visible = false;
             groupBoxPyramid.Visible = false;
             groupBoxParallelepiped.Visible = false;
+
+            // ✅ УСЛОВНАЯ КОМПИЛЯЦИЯ (Пункт 11)
+            // В Release-версии кнопка будет скрыта
+            #if !DEBUG
+                btnRandomData.Visible = false;
+            #endif
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -149,11 +156,6 @@ namespace View
             this.Close();
         }
 
-        private void txtRadius_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
         private void AddShapeForm_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -271,9 +273,57 @@ namespace View
             }
         }
 
-        private void rbPyramid_CheckedChanged(object sender, EventArgs e)
+        private void btnRandomData_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Генерируем случайные данные в зависимости от выбранной фигуры
+                if (rbSphere.Checked)
+                {
+                    // Шар: радиус от 1 до 100
+                    double radius = _random.NextDouble() * 99 + 1; // 1.0 - 100.0
+                    txtRadius.Text = radius.ToString("F2");
+                }
+                else if (rbPyramid.Checked)
+                {
+                    // Пирамида: длина, ширина, высота от 1 до 50
+                    double length = _random.NextDouble() * 49 + 1; // 1.0 - 50.0
+                    double width = _random.NextDouble() * 49 + 1;
+                    double height = _random.NextDouble() * 49 + 1;
 
+                    txtPyramidLength.Text = length.ToString("F2");
+                    txtPyramidWidth.Text = width.ToString("F2");
+                    txtPyramidHeight.Text = height.ToString("F2");
+                }
+                else if (rbParallelepiped.Checked)
+                {
+                    // Параллелепипед: длина, ширина, высота от 1 до 50
+                    double length = _random.NextDouble() * 49 + 1; // 1.0 - 50.0
+                    double width = _random.NextDouble() * 49 + 1;
+                    double height = _random.NextDouble() * 49 + 1;
+
+                    txtParallelepipedLength.Text = length.ToString("F2");
+                    txtParallelepipedWidth.Text = width.ToString("F2");
+                    txtParallelepipedHeight.Text = height.ToString("F2");
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "Сначала выберите тип фигуры!",
+                        "Предупреждение",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Ошибка при генерации случайных данных: {ex.Message}",
+                    "Ошибка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
+
     }
 }

@@ -23,6 +23,10 @@ namespace Model
         /// </summary>
         /// <returns>Строковое описание фигуры</returns>
         string GetInfo();
+
+        string ShapeName => Name;
+        double Volume => CalculateVolume();
+        string Info => GetInfo();
     }
 
 }
