@@ -7,97 +7,77 @@ using System.Threading.Tasks;
 namespace Model
 {
     /// <summary>
-    /// Класс, представляющий пирамиду
+    /// Класс, представляющий пирамиду.
     /// </summary>
     public class Pyramid : ShapeBase
     {
-        /// <summary>
-        /// Длина
-        /// </summary>
-        private double _length;
+        private readonly double _length;
+        private readonly double _width;
+        private readonly double _height;
 
         /// <summary>
-        /// Ширина
+        /// Конструктор пирамиды.
         /// </summary>
-        private double _width;
-
-        /// <summary>
-        /// Высота
-        /// </summary>
-        private double _height;
-
-        /// <summary>
-        /// Конструктор пирамиды
-        /// </summary>
-        /// <param name="baseArea">Площадь основания</param>
-        /// <param name="height">Высота пирамиды</param>
+        /// <param name="length">Длина основания.</param>
+        /// <param name="width">Ширина основания.</param>
+        /// <param name="height">Высота пирамиды.</param>
         public Pyramid(double length, double width, double height)
         {
-            Length = length;
-            Width = width;
-            Height = height;
+            ValidatePositiveNumber(length, nameof(length));
+            ValidatePositiveNumber(width, nameof(width));
+            ValidatePositiveNumber(height, nameof(height));
+            _length = length;
+            _width = width;
+            _height = height;
         }
 
         /// <summary>
-        /// Длина основания пирамиды
-        /// </summary>
-        public double Length
-        {
-            get { return _length; }
-            set
-            {
-                ValidatePositiveNumber(value, nameof(Length));
-                _length = value;
-            }
-        }
-
-        /// <summary>
-        /// Ширина основания пирамиды
-        /// </summary>
-        public double Width
-        {
-            get { return _width; }
-            set
-            {
-                ValidatePositiveNumber(value, nameof(Width));
-                _width = value;
-            }
-        }
-
-        /// <summary>
-        /// Высота пирамиды
-        /// </summary>
-        public double Height
-        {
-            get { return _height; }
-            set
-            {
-                ValidatePositiveNumber(value, nameof(Height));
-                _height = value;
-            }
-        }
-
-        /// <summary>
-        /// Название фигуры
+        /// Название фигуры.
         /// </summary>
         public override string Name => "Пирамида";
 
         /// <summary>
-        /// Расчёт объёма пирамиды: V = 1/3 × S_осн × h
+        /// Расчёт объёма пирамиды: V = 1/3 × a × b × h.
         /// </summary>
-        /// <returns>Объём пирамиды</returns>
+        /// <returns>Объём пирамиды.</returns>
         public override double CalculateVolume()
         {
             return (1.0 / 3.0) * _length * _width * _height;
         }
 
         /// <summary>
-        /// Получение информации о пирамиде
+        /// Получение информации о пирамиде.
         /// </summary>
-        /// <returns>Строковое описание пирамиды</returns>
+        /// <returns>Строковое описание пирамиды.</returns>
         public override string GetInfo()
         {
-            return $"Объём = {CalculateVolume()}\n";
+            return $"Длина = {_length:F2}\n" +
+                $", Ширина = {_width:F2}\n" +
+                $", Высота = {_height:F2}\n" +
+                $", Объём = {CalculateVolume():F2}";
         }
+
+        /// <summary>
+        /// Параметры пирамиды.
+        /// </summary>
+        public override string Parameters =>
+            $"Длина = {_length:F2}\n" +
+            $"Ширина = {_width:F2}\n" +
+            $"Высота = {_height:F2}";
+
+        /// <summary>
+        /// Длина основания пирамиды.
+        /// </summary>
+        public override double Length => _length;
+
+        /// <summary>
+        /// Ширина основания пирамиды.
+        /// </summary>
+        public override double Width => _width;
+
+        /// <summary>
+        /// Высота пирамиды.
+        /// </summary>
+        public override double Height => _height;
     }
 }

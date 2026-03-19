@@ -12,51 +12,65 @@ namespace Model
     public abstract class ShapeBase : IShape
     {
         /// <summary>
-        /// Название фигуры
+        /// Название фигуры.
         /// </summary>
         public abstract string Name { get; }
 
         /// <summary>
-        /// Метод для расчёта объёма фигуры
+        /// Метод для расчёта объёма фигуры.
         /// </summary>
-        /// <returns>Объём фигуры</returns>
+        /// <returns>Объём фигуры.</returns>
         public abstract double CalculateVolume();
 
         /// <summary>
-        /// Метод для получения информации о фигуре
+        /// Метод для получения информации о фигуре.
         /// </summary>
-        /// <returns>Строковое описание фигуры</returns>
+        /// <returns>Строковое описание фигуры.</returns>
         public abstract string GetInfo();
 
-        // ✅ Свойства для привязки к DataGridView
         /// <summary>
-        /// Название фигуры (для DataGridView)
+        /// Строковое представление параметров фигуры.
         /// </summary>
-        public string ShapeName => Name;
+        public abstract string Parameters { get; }
 
         /// <summary>
-        /// Объём фигуры (для DataGridView)
+        /// Длина фигуры (по умолчанию 0).
+        /// </summary>
+        public virtual double Length => 0;
+
+        /// <summary>
+        /// Ширина фигуры (по умолчанию 0).
+        /// </summary>
+        public virtual double Width => 0;
+
+        /// <summary>
+        /// Высота фигуры (по умолчанию 0).
+        /// </summary>
+        public virtual double Height => 0;
+
+        /// <summary>
+        /// Радиус фигуры (по умолчанию 0).
+        /// </summary>
+        public virtual double Radius => 0;
+
+        /// <summary>
+        /// Объём фигуры (для привязки к DataGridView).
         /// </summary>
         public double Volume => CalculateVolume();
 
         /// <summary>
-        /// Информация о фигуре (для DataGridView)
+        /// Метод валидации положительного числа.
         /// </summary>
-        public string Info => GetInfo();
-
-        /// <summary>
-        /// Метод валидации положительного числа
-        /// </summary>
-        /// <param name="value">Проверяемое значение</param>
-        /// <param name="parameterName">Имя параметра для сообщения об ошибке</param>
+        /// <param name="value">Проверяемое значение.</param>
+        /// <param name="parameterName">Имя параметра для сообщения об ошибке.</param>
         protected void ValidatePositiveNumber
             (double value, string parameterName)
         {
             if (value <= 0)
             {
                 throw new ArgumentException(
-                    $"Значение параметра '{parameterName}'" +
-                    $" должно быть положительным числом.");
+                    $"Значение параметра '{parameterName}' " +
+                    $"должно быть положительным числом.");
             }
         }
     }

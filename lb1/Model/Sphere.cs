@@ -11,54 +11,51 @@ namespace Model
     /// </summary>
     public class Sphere : ShapeBase
     {
-        /// <summary>
-        /// Радиус
-        /// </summary>
-        private double _radius;
+        private readonly double _radius;
 
         /// <summary>
-        /// Конструктор шара
+        /// Конструктор шара.
         /// </summary>
-        /// <param name="radius">Радиус шара</param>
+        /// <param name="radius">Радиус шара.</param>
         public Sphere(double radius)
         {
-            Radius = radius;
+            ValidatePositiveNumber(radius, nameof(radius));
+            _radius = radius;
         }
 
         /// <summary>
-        /// Радиус шара
-        /// </summary>
-        public double Radius
-        {
-            get { return _radius; }
-            set
-            {
-                ValidatePositiveNumber(value, nameof(Radius));
-                _radius = value;
-            }
-        }
-
-        /// <summary>
-        /// Название фигуры
+        /// Название фигуры.
         /// </summary>
         public override string Name => "Шар";
 
         /// <summary>
-        /// Расчёт объёма шара: V = 4/3 × π × r³
+        /// Расчёт объёма шара: V = 4/3 × π × r³.
         /// </summary>
-        /// <returns>Объём шара</returns>
+        /// <returns>Объём шара.</returns>
         public override double CalculateVolume()
         {
             return (4.0 / 3.0) * Math.PI * Math.Pow(_radius, 3);
         }
 
         /// <summary>
-        /// Получение информации о шаре
+        /// Получение информации о шаре.
         /// </summary>
-        /// <returns>Строковое описание шара</returns>
+        /// <returns>Строковое описание шара.</returns>
         public override string GetInfo()
         {
-            return $"Объём шара = {CalculateVolume()}\n";
+            return $"Радиус = {_radius:F2}, " +
+                $"Объём = {CalculateVolume():F2}";
         }
+
+        /// <summary>
+        /// Параметры шара.
+        /// </summary>
+        public override string Parameters => 
+            $"Радиус = {_radius:F2}";
+
+        /// <summary>
+        /// Радиус шара.
+        /// </summary>
+        public override double Radius => _radius;
     }
 }

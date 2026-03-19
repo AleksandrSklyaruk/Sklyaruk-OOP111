@@ -48,7 +48,6 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "groupBoxShapes";
-            groupBox1.Enter += groupBox1_Enter;
             // 
             // dataGridViewShapes
             // 
@@ -57,7 +56,6 @@
             dataGridViewShapes.Name = "dataGridViewShapes";
             dataGridViewShapes.Size = new Size(764, 297);
             dataGridViewShapes.TabIndex = 0;
-            dataGridViewShapes.CellContentClick += dataGridView1_CellContentClick;
             // 
             // btnAddShape
             // 
