@@ -17,6 +17,7 @@ namespace View
     /// </summary>
     public partial class MainForm : Form
     {
+        //TODO: XML
         private List<IShape> _shapes;
         private string _currentFilePath = "";
 
@@ -102,6 +103,7 @@ namespace View
             }
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Обработчик нажатия кнопки "Удалить фигуру"
         /// </summary>
@@ -128,6 +130,7 @@ namespace View
             }
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Обработчик нажатия кнопки "Сохранить"
         /// </summary>
@@ -178,6 +181,7 @@ namespace View
             }
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Обработчик нажатия кнопки "Загрузить"
         /// </summary>
@@ -311,11 +315,13 @@ namespace View
             }
         }
 
+        //TODO: remove
         /// <summary>
         /// Вспомогательный класс для сериализации фигур
         /// </summary>
         public class ShapeData
         {
+            //TODO: XML
             public string ShapeType { get; set; }
             public double Param1 { get; set; } // Радиус или Длина
             public double Param2 { get; set; } // Ширина 
@@ -349,6 +355,7 @@ namespace View
             {
                 switch (ShapeType)
                 {
+                    //TODO: refactor
                     case "Sphere":
                         return new Sphere(Param1);
                     case "Pyramid":
@@ -361,6 +368,7 @@ namespace View
             }
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Обработчик нажатия кнопки "Поиск фигуры"
         /// </summary>

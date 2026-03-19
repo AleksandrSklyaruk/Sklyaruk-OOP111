@@ -16,6 +16,7 @@ namespace View
     /// </summary>
     public partial class SearchForm : Form
     {
+        //TODO: XML
         private List<IShape> _allShapes;
 
         /// <summary>
@@ -113,11 +114,12 @@ namespace View
 
             switch (selectedField)
             {
+                //TODO: {}
                 case 0:
                     foundShapes = _allShapes.FindAll(s =>
                         s.Name.ToLower().Contains(searchText));
                     break;
-
+                //TODO: duplication
                 case 1:
                     if (double.TryParse
                         (searchText, out double volumeValue))
@@ -237,6 +239,7 @@ namespace View
             }
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Обработчик нажатия кнопки "Закрыть".
         /// </summary>

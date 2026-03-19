@@ -16,9 +16,11 @@ namespace View
     /// </summary>
     public partial class AddShapeForm : Form
     {
-
+        //TODO: XML
         private Random _random = new Random();
 
+        //TODO: XML
+        //TODO: нарушение инкапсуляции
         public IShape CreatedShape { get; set; }
 
         /// <summary>
@@ -37,6 +39,7 @@ namespace View
 #endif
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Обработчик события изменения состояния RadioButton 
         /// для выбора типа фигуры
@@ -50,6 +53,7 @@ namespace View
             groupBoxParallelepiped.Visible = rbParallelepiped.Checked;
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Обработчик нажатия кнопки "ОК".
         /// Выполняет валидацию введённых данных, создаёт объект выбранной фигуры
@@ -138,6 +142,7 @@ namespace View
             }
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Обработчик нажатия кнопки "Отмена".
         /// Закрывает форму с результатом <see cref="DialogResult.Cancel"/> без создания фигуры.
@@ -150,6 +155,8 @@ namespace View
             this.Close();
         }
 
+        //TODO: duplication
+        //TODO: RSDN
         /// <summary>
         /// Обработчик события KeyPress для поля ввода радиуса шара.
         /// Разрешает ввод только цифр, точки и управляющих символов (Backspace).
@@ -171,6 +178,8 @@ namespace View
             }
         }
 
+        //TODO: duplication
+        //TODO: RSDN
         /// <summary>
         /// Обработчик события KeyPress для поля ввода длины пирамиды.
         /// Разрешает ввод только цифр, точки и управляющих символов (Backspace).
@@ -192,6 +201,8 @@ namespace View
             }
         }
 
+        //TODO: RSDN
+        //TODO: duplication
         /// <summary>
         /// Обработчик события KeyPress для поля ввода ширины пирамиды.
         /// Разрешает ввод только цифр, точки и управляющих символов (Backspace).
@@ -213,6 +224,8 @@ namespace View
             }
         }
 
+        //TODO: RSDN
+        //TODO: duplication
         /// <summary>
         /// Обработчик события KeyPress для поля ввода высоты пирамиды.
         /// Разрешает ввод только цифр, точки и управляющих символов (Backspace).
@@ -234,6 +247,8 @@ namespace View
             }
         }
 
+        //TODO: RSDN
+        //TODO: duplication
         /// <summary>
         /// Обработчик события KeyPress для поля ввода длины параллелепипеда.
         /// Разрешает ввод только цифр, точки и управляющих символов (Backspace).
@@ -255,6 +270,7 @@ namespace View
             }
         }
 
+        //TODO: duplication
         /// <summary>
         /// Обработчик события KeyPress для поля ввода ширины параллелепипеда.
         /// Разрешает ввод только цифр, точки и управляющих символов (Backspace).
@@ -276,6 +292,7 @@ namespace View
             }
         }
 
+        //TODO: duplication
         /// <summary>
         /// Обработчик события KeyPress для поля ввода высоты параллелепипеда.
         /// Разрешает ввод только цифр, точки и управляющих символов (Backspace).
@@ -297,6 +314,7 @@ namespace View
             }
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Обработчик нажатия кнопки "Случайные данные" (отладочная функция).
         /// Заполняет поля формы случайными корректными значениями для выбранного типа фигуры.
