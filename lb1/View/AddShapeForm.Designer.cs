@@ -65,7 +65,7 @@
             groupBoxShapeType.Controls.Add(rbParallelepiped);
             groupBoxShapeType.Controls.Add(rbPyramid);
             groupBoxShapeType.Controls.Add(rbSphere);
-            groupBoxShapeType.Location = new Point(22, 65);
+            groupBoxShapeType.Location = new Point(208, 86);
             groupBoxShapeType.Name = "groupBoxShapeType";
             groupBoxShapeType.Size = new Size(173, 224);
             groupBoxShapeType.TabIndex = 0;
@@ -198,7 +198,7 @@
             // 
             groupBoxSphere.Controls.Add(txtRadius);
             groupBoxSphere.Controls.Add(Radius);
-            groupBoxSphere.Location = new Point(217, 65);
+            groupBoxSphere.Location = new Point(403, 86);
             groupBoxSphere.Name = "groupBoxSphere";
             groupBoxSphere.Size = new Size(165, 224);
             groupBoxSphere.TabIndex = 20;
@@ -221,7 +221,7 @@
             groupBoxPyramid.Controls.Add(label2);
             groupBoxPyramid.Controls.Add(txtPyramidLength);
             groupBoxPyramid.Controls.Add(label1);
-            groupBoxPyramid.Location = new Point(407, 65);
+            groupBoxPyramid.Location = new Point(403, 86);
             groupBoxPyramid.Name = "groupBoxPyramid";
             groupBoxPyramid.Size = new Size(165, 225);
             groupBoxPyramid.TabIndex = 21;
@@ -260,7 +260,7 @@
             groupBoxParallelepiped.Controls.Add(txtParallelepipedLength);
             groupBoxParallelepiped.Controls.Add(label5);
             groupBoxParallelepiped.Controls.Add(label4);
-            groupBoxParallelepiped.Location = new Point(598, 66);
+            groupBoxParallelepiped.Location = new Point(403, 87);
             groupBoxParallelepiped.Name = "groupBoxParallelepiped";
             groupBoxParallelepiped.Size = new Size(177, 224);
             groupBoxParallelepiped.TabIndex = 22;
@@ -298,9 +298,9 @@
             // 
             // btnRandomData
             // 
-            btnRandomData.Location = new Point(35, 295);
+            btnRandomData.Location = new Point(209, 328);
             btnRandomData.Name = "btnRandomData";
-            btnRandomData.Size = new Size(141, 23);
+            btnRandomData.Size = new Size(371, 23);
             btnRandomData.TabIndex = 23;
             btnRandomData.Text = "Случайные данные";
             btnRandomData.UseVisualStyleBackColor = true;
