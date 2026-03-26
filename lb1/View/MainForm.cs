@@ -17,8 +17,15 @@ namespace View
     /// </summary>
     public partial class MainForm : Form
     {
-        //TODO: XML
+        //TODO: XML +
+        /// <summary>
+        /// Список хранящихся трёхмерных фигур.
+        /// </summary>
         private List<IShape> _shapes;
+
+        /// <summary>
+        /// Путь к текущему файлу данных (для сохранения/загрузки).
+        /// </summary> 
         private string _currentFilePath = "";
 
         /// <summary>
@@ -36,10 +43,9 @@ namespace View
                 DataGridViewSelectionMode.FullRowSelect;
             dataGridViewShapes.AutoSizeColumnsMode = 
                 DataGridViewAutoSizeColumnsMode.Fill;
-
             dataGridViewShapes.DefaultCellStyle.WrapMode = 
                 DataGridViewTriState.True;
-            dataGridViewShapes.RowTemplate.Height = 60;
+            dataGridViewShapes.RowTemplate.Height = 50;
 
             dataGridViewShapes.Columns.Clear();
 
@@ -72,7 +78,7 @@ namespace View
         /// </summary>
         /// <param name="sender">Источник события</param>
         /// <param name="e">Аргументы события</param>
-        private void btnAddShape_Click(object sender, EventArgs e)
+        private void ButtonAddShape_Click(object sender, EventArgs e)
         {
             using (var addForm = new AddShapeForm())
             {
@@ -86,11 +92,9 @@ namespace View
                     {
                         _shapes.Add(newShape);
 
-                        // Обновляем DataGridView
                         dataGridViewShapes.DataSource = null;
                         dataGridViewShapes.DataSource = _shapes;
 
-                        // Заполняем колонку "Параметры" вручную
                         UpdateParametersColumn();
 
                         MessageBox.Show(
@@ -103,13 +107,13 @@ namespace View
             }
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Удалить фигуру"
         /// </summary>
         /// <param name="sender">Источник события</param>
         /// <param name="e">Аргументы события</param>
-        private void btnRemoveShape_Click_1(object sender, EventArgs e)
+        private void ButtonRemoveShape_Click(object sender, EventArgs e)
         {
             if (dataGridViewShapes.CurrentRow != null)
             {
@@ -130,13 +134,13 @@ namespace View
             }
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Сохранить"
         /// </summary>
         /// <param name="sender">Источник события</param>
         /// <param name="e">Аргументы события</param>
-        private void btnSave_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (_shapes.Count == 0)
             {
@@ -181,13 +185,13 @@ namespace View
             }
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Загрузить"
         /// </summary>
         /// <param name="sender">Источник события</param>
         /// <param name="e">Аргументы события</param>
-        private void btnLoad_Click(object sender, EventArgs e)
+        private void ButtonLoad_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openDialog = new OpenFileDialog())
             {
@@ -314,67 +318,14 @@ namespace View
                     $"{ex.Message}", ex);
             }
         }
-
-        //TODO: remove
-        /// <summary>
-        /// Вспомогательный класс для сериализации фигур
-        /// </summary>
-        public class ShapeData
-        {
-            //TODO: XML
-            public string ShapeType { get; set; }
-            public double Param1 { get; set; } // Радиус или Длина
-            public double Param2 { get; set; } // Ширина 
-            public double Param3 { get; set; } // Высота
-
-            public double Length { get; set; }
-            public double Width { get; set; }
-            public double Height { get; set; }
-            public double Radius { get; set; }
-
-            public ShapeData() { }
-
-            public static ShapeData FromShape(IShape shape)
-            {
-                return new ShapeData
-                {
-                    ShapeType = shape.Name,
-                    Length = shape.Length,
-                    Width = shape.Width,
-                    Height = shape.Height,
-                    Radius = shape.Radius,
-                };
-
-            }
-
-            /// <summary>
-            /// Создаёт фигуру <see cref="IShape"/> из объекта <see cref="ShapeData"
-            /// </summary>
-            /// <returns>Фигура типа <see cref="IShape"/> или null, если тип неизвестен</returns>
-            public IShape ToShape()
-            {
-                switch (ShapeType)
-                {
-                    //TODO: refactor
-                    case "Sphere":
-                        return new Sphere(Param1);
-                    case "Pyramid":
-                        return new Pyramid(Param1, Param2, Param3);
-                    case "Parallelepiped":
-                        return new Parallelepiped(Param1, Param2, Param3);
-                    default:
-                        return null;
-                }
-            }
-        }
-
-        //TODO: RSDN
+        
+        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Поиск фигуры"
         /// </summary>
         /// <param name="sender">Источник события</param>
         /// <param name="e">Аргументы события</param>
-        private void btnSearchShape_Click_1(object sender, EventArgs e)
+        private void ButtonSearchShape_Click(object sender, EventArgs e)
         {
             using (var searchForm = new SearchForm(_shapes))
             {

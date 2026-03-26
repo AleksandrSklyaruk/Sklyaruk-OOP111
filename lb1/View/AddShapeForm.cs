@@ -16,12 +16,17 @@ namespace View
     /// </summary>
     public partial class AddShapeForm : Form
     {
-        //TODO: XML
+        //TODO: XML +
+        /// <summary>
+        /// Генератор случайных чисел
+        /// </summary>
         private Random _random = new Random();
 
-        //TODO: XML
-        //TODO: нарушение инкапсуляции
-        public IShape CreatedShape { get; set; }
+        //TODO: XML +
+        /// <summary>
+        /// Созданная фигура, передаётся в главную форму
+        /// </summary>
+        public IShape CreatedShape { get; private set; }
 
         /// <summary>
         /// Инициализирует новый экземпляр класса
@@ -35,86 +40,92 @@ namespace View
             groupBoxParallelepiped.Visible = false;
 
 #if !DEBUG
-                btnRandomData.Visible = false;
+                buttonRandomData.Visible = false;
 #endif
+
+            AttachKeyPressHandler(textRadius);
+            AttachKeyPressHandler(textPyramidLength);
+            AttachKeyPressHandler(textPyramidWidth);
+            AttachKeyPressHandler(textPyramidHeight);
+            AttachKeyPressHandler(textParallelepipedLength);
+            AttachKeyPressHandler(textParallelepipedWidth);
+            AttachKeyPressHandler(txtParallelepipedHeight);
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Обработчик события изменения состояния RadioButton 
-        /// для выбора типа фигуры
         /// </summary>
         /// <param name="sender">Источник события</param>
         /// <param name="e">Аргументы события</param>
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            groupBoxSphere.Visible = rbSphere.Checked;
-            groupBoxPyramid.Visible = rbPyramid.Checked;
-            groupBoxParallelepiped.Visible = rbParallelepiped.Checked;
+            groupBoxSphere.Visible = radioBattonSphere.Checked;
+            groupBoxPyramid.Visible = radioBattonPyramid.Checked;
+            groupBoxParallelepiped.Visible = radioBattonParallelepiped.Checked;
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "ОК".
-        /// Выполняет валидацию введённых данных, создаёт объект выбранной фигуры
         /// и закрывает форму с результатом <see cref="DialogResult.OK"/>.
         /// </summary>
         /// <param name="sender">Источник события (кнопка butOk).</param>
         /// <param name="e">Аргументы события <see cref="EventArgs"/>.</param>
-        private void butOk_Click(object sender, EventArgs e)
+        private void ButttonOk_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!rbSphere.Checked && !rbPyramid.Checked && 
-                    !rbParallelepiped.Checked)
+                if (!radioBattonSphere.Checked && !radioBattonPyramid.Checked &&
+                    !radioBattonParallelepiped.Checked)
                 {
-                    MessageBox.Show("Пожалуйста, выберите тип фигуры!", 
-                        "Ошибка", MessageBoxButtons.OK, 
+                    MessageBox.Show("Пожалуйста, выберите тип фигуры!",
+                        "Ошибка", MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
                     return;
                 }
-                if (rbSphere.Checked)
+                if (radioBattonSphere.Checked)
                 {
-                    if (string.IsNullOrWhiteSpace(txtRadius.Text))
+                    if (string.IsNullOrWhiteSpace(textRadius.Text))
                     {
-                        MessageBox.Show("Заполните радиус шара!", 
-                            "Ошибка ввода", MessageBoxButtons.OK, 
+                        MessageBox.Show("Заполните радиус шара!",
+                            "Ошибка ввода", MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
-                        txtRadius.Focus();
+                        textRadius.Focus();
                         return;
                     }
-                    double radius = double.Parse(txtRadius.Text);
+                    double radius = double.Parse(textRadius.Text);
                     CreatedShape = new Sphere(radius);
                 }
-                else if (rbPyramid.Checked)
+                else if (radioBattonPyramid.Checked)
                 {
-                    if (string.IsNullOrWhiteSpace(txtPyramidLength.Text) ||
-                        string.IsNullOrWhiteSpace(txtPyramidWidth.Text) ||
-                        string.IsNullOrWhiteSpace(txtPyramidHeight.Text))
+                    if (string.IsNullOrWhiteSpace(textPyramidLength.Text) ||
+                        string.IsNullOrWhiteSpace(textPyramidWidth.Text) ||
+                        string.IsNullOrWhiteSpace(textPyramidHeight.Text))
                     {
-                        MessageBox.Show("Заполните все поля пирамиды!", 
-                            "Ошибка ввода", MessageBoxButtons.OK, 
+                        MessageBox.Show("Заполните все поля пирамиды!",
+                            "Ошибка ввода", MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
                         return;
                     }
-                    double length = double.Parse(txtPyramidLength.Text);
-                    double width = double.Parse(txtPyramidWidth.Text);
-                    double height = double.Parse(txtPyramidHeight.Text);
+                    double length = double.Parse(textPyramidLength.Text);
+                    double width = double.Parse(textPyramidWidth.Text);
+                    double height = double.Parse(textPyramidHeight.Text);
                     CreatedShape = new Pyramid(length, width, height);
                 }
-                else if (rbParallelepiped.Checked)
+                else if (radioBattonParallelepiped.Checked)
                 {
-                    if (string.IsNullOrWhiteSpace(txtParallelepipedLength.Text) ||
-                        string.IsNullOrWhiteSpace(txtParallelepipedWidth.Text) ||
+                    if (string.IsNullOrWhiteSpace(textParallelepipedLength.Text) ||
+                        string.IsNullOrWhiteSpace(textParallelepipedWidth.Text) ||
                         string.IsNullOrWhiteSpace(txtParallelepipedHeight.Text))
                     {
-                        MessageBox.Show("Заполните все поля параллелепипеда!", 
-                            "Ошибка ввода", MessageBoxButtons.OK, 
+                        MessageBox.Show("Заполните все поля параллелепипеда!",
+                            "Ошибка ввода", MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
                         return;
                     }
-                    double length = double.Parse(txtParallelepipedLength.Text);
-                    double width = double.Parse(txtParallelepipedWidth.Text);
+                    double length = double.Parse(textParallelepipedLength.Text);
+                    double width = double.Parse(textParallelepipedWidth.Text);
                     double height = double.Parse(txtParallelepipedHeight.Text);
                     CreatedShape = new Parallelepiped(length, width, height);
                 }
@@ -126,7 +137,7 @@ namespace View
             {
                 MessageBox.Show("Пожалуйста, введите корректные " +
                     "числовые значения!\n" + "Используйте точку для " +
-                    "разделения целой и дробной части.", "Ошибка формата", 
+                    "разделения целой и дробной части.", "Ошибка формата",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (ArgumentException ex)
@@ -137,34 +148,44 @@ namespace View
             catch (Exception ex)
             {
                 MessageBox.Show($"Произошла непредвиденная ошибка: " +
-                    $"{ex.Message}", "Ошибка", 
+                    $"{ex.Message}", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Отмена".
         /// Закрывает форму с результатом <see cref="DialogResult.Cancel"/> без создания фигуры.
         /// </summary>
-        /// <param name="sender">Источник события (кнопка btnCancel).</param>
+        /// <param name="sender">Источник события (кнопка buyyonCancel).</param>
         /// <param name="e">Аргументы события <see cref="EventArgs"/>.</param>
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        //TODO: duplication
-        //TODO: RSDN
+        //TODO: duplication +
+        //TODO: RSDN +
         /// <summary>
-        /// Обработчик события KeyPress для поля ввода радиуса шара.
-        /// Разрешает ввод только цифр, точки и управляющих символов (Backspace).
-        /// Запрещает ввод более одной точки в числе.
+        /// Привязывает универсальный обработчик KeyPress к TextBox.
+        /// </summary>
+        /// <param name="textBox">TextBox для привязки.</param>
+        private void AttachKeyPressHandler(TextBox textBox)
+        {
+            if (textBox != null)
+            {
+                textBox.KeyPress += NumericTextBox_KeyPress;
+            }
+        }
+
+        /// <summary>
+        /// Универсальный обработчик KeyPress для ввода положительных чисел.
         /// </summary>
         /// <param name="sender">Источник события (TextBox).</param>
         /// <param name="e">Аргументы события <see cref="KeyPressEventArgs"/>.</param>
-        private void txtRadius_KeyPress(object sender, KeyPressEventArgs e)
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
             {
@@ -172,183 +193,45 @@ namespace View
                 return;
             }
 
-            if (e.KeyChar == '.' && ((sender as TextBox).Text.IndexOf('.') >= 0))
+            if (e.KeyChar == '.' && ((sender as TextBox)?.Text.IndexOf('.') >= 0))
             {
                 e.Handled = true;
             }
         }
 
-        //TODO: duplication
-        //TODO: RSDN
-        /// <summary>
-        /// Обработчик события KeyPress для поля ввода длины пирамиды.
-        /// Разрешает ввод только цифр, точки и управляющих символов (Backspace).
-        /// Запрещает ввод более одной точки в числе.
-        /// </summary>
-        /// <param name="sender">Источник события (TextBox).</param>
-        /// <param name="e">Аргументы события <see cref="KeyPressEventArgs"/>.</param>
-        private void txtPyramidLength_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
-            {
-                e.Handled = true;
-                return;
-            }
-
-            if (e.KeyChar == '.' && ((sender as TextBox).Text.IndexOf('.') >= 0))
-            {
-                e.Handled = true;
-            }
-        }
-
-        //TODO: RSDN
-        //TODO: duplication
-        /// <summary>
-        /// Обработчик события KeyPress для поля ввода ширины пирамиды.
-        /// Разрешает ввод только цифр, точки и управляющих символов (Backspace).
-        /// Запрещает ввод более одной точки в числе.
-        /// </summary>
-        /// <param name="sender">Источник события (TextBox).</param>
-        /// <param name="e">Аргументы события <see cref="KeyPressEventArgs"/>.</param>
-        private void txtPyramidWidth_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
-            {
-                e.Handled = true;
-                return;
-            }
-
-            if (e.KeyChar == '.' && ((sender as TextBox).Text.IndexOf('.') >= 0))
-            {
-                e.Handled = true;
-            }
-        }
-
-        //TODO: RSDN
-        //TODO: duplication
-        /// <summary>
-        /// Обработчик события KeyPress для поля ввода высоты пирамиды.
-        /// Разрешает ввод только цифр, точки и управляющих символов (Backspace).
-        /// Запрещает ввод более одной точки в числе.
-        /// </summary>
-        /// <param name="sender">Источник события (TextBox).</param>
-        /// <param name="e">Аргументы события <see cref="KeyPressEventArgs"/>.</param>
-        private void txtPyramidHeight_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
-            {
-                e.Handled = true;
-                return;
-            }
-
-            if (e.KeyChar == '.' && ((sender as TextBox).Text.IndexOf('.') >= 0))
-            {
-                e.Handled = true;
-            }
-        }
-
-        //TODO: RSDN
-        //TODO: duplication
-        /// <summary>
-        /// Обработчик события KeyPress для поля ввода длины параллелепипеда.
-        /// Разрешает ввод только цифр, точки и управляющих символов (Backspace).
-        /// Запрещает ввод более одной точки в числе.
-        /// </summary>
-        /// <param name="sender">Источник события (TextBox).</param>
-        /// <param name="e">Аргументы события <see cref="KeyPressEventArgs"/>.</param>
-        private void txtParallelepipedLength_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
-            {
-                e.Handled = true;
-                return;
-            }
-
-            if (e.KeyChar == '.' && ((sender as TextBox).Text.IndexOf('.') >= 0))
-            {
-                e.Handled = true;
-            }
-        }
-
-        //TODO: duplication
-        /// <summary>
-        /// Обработчик события KeyPress для поля ввода ширины параллелепипеда.
-        /// Разрешает ввод только цифр, точки и управляющих символов (Backspace).
-        /// Запрещает ввод более одной точки в числе.
-        /// </summary>
-        /// <param name="sender">Источник события (TextBox).</param>
-        /// <param name="e">Аргументы события <see cref="KeyPressEventArgs"/>.</param>
-        private void txtParallelepipedWidth_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
-            {
-                e.Handled = true;
-                return;
-            }
-
-            if (e.KeyChar == '.' && ((sender as TextBox).Text.IndexOf('.') >= 0))
-            {
-                e.Handled = true;
-            }
-        }
-
-        //TODO: duplication
-        /// <summary>
-        /// Обработчик события KeyPress для поля ввода высоты параллелепипеда.
-        /// Разрешает ввод только цифр, точки и управляющих символов (Backspace).
-        /// Запрещает ввод более одной точки в числе.
-        /// </summary>
-        /// <param name="sender">Источник события (TextBox).</param>
-        /// <param name="e">Аргументы события <see cref="KeyPressEventArgs"/>.</param>
-        private void txtParallelepipedHeight_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
-            {
-                e.Handled = true;
-                return;
-            }
-
-            if (e.KeyChar == '.' && ((sender as TextBox).Text.IndexOf('.') >= 0))
-            {
-                e.Handled = true;
-            }
-        }
-
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Случайные данные" (отладочная функция).
-        /// Заполняет поля формы случайными корректными значениями для выбранного типа фигуры.
-        /// Кнопка видима только в режиме отладки (Debug) благодаря условной компиляции.
         /// </summary>
-        /// <param name="sender">Источник события (кнопка btnRandomData).</param>
+        /// <param name="sender">Источник события (кнопка buttonRandomData).</param>
         /// <param name="e">Аргументы события <see cref="EventArgs"/>.</param>
-        private void btnRandomData_Click(object sender, EventArgs e)
+        private void ButtonRandomData_Click(object sender, EventArgs e)
         {
             try
             {
-                if (rbSphere.Checked)
+                if (radioBattonSphere.Checked)
                 {
                     double radius = _random.NextDouble() * 99 + 1;
-                    txtRadius.Text = radius.ToString("F2");
+                    textRadius.Text = radius.ToString("F2");
                 }
-                else if (rbPyramid.Checked)
+                else if (radioBattonPyramid.Checked)
                 {
                     double length = _random.NextDouble() * 99 + 1;
                     double width = _random.NextDouble() * 99 + 1;
                     double height = _random.NextDouble() * 99 + 1;
 
-                    txtPyramidLength.Text = length.ToString("F2");
-                    txtPyramidWidth.Text = width.ToString("F2");
-                    txtPyramidHeight.Text = height.ToString("F2");
+                    textPyramidLength.Text = length.ToString("F2");
+                    textPyramidWidth.Text = width.ToString("F2");
+                    textPyramidHeight.Text = height.ToString("F2");
                 }
-                else if (rbParallelepiped.Checked)
+                else if (radioBattonParallelepiped.Checked)
                 {
                     double length = _random.NextDouble() * 99 + 1;
                     double width = _random.NextDouble() * 99 + 1;
                     double height = _random.NextDouble() * 99 + 1;
 
-                    txtParallelepipedLength.Text = length.ToString("F2");
-                    txtParallelepipedWidth.Text = width.ToString("F2");
+                    textParallelepipedLength.Text = length.ToString("F2");
+                    textParallelepipedWidth.Text = width.ToString("F2");
                     txtParallelepipedHeight.Text = height.ToString("F2");
                 }
                 else
@@ -368,6 +251,11 @@ namespace View
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+        }
+
+        private void Radius_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

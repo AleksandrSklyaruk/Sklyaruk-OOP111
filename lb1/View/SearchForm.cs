@@ -16,7 +16,10 @@ namespace View
     /// </summary>
     public partial class SearchForm : Form
     {
-        //TODO: XML
+        //TODO: XML +
+        /// <summary>
+        /// Список всех фигур для поиска
+        /// </summary>
         private List<IShape> _allShapes;
 
         /// <summary>
@@ -32,7 +35,7 @@ namespace View
         }
 
         /// <summary>
-        /// Конструктор по умолчанию для дизайнера.
+        /// Конструктор по умолчанию для дизайнера
         /// </summary>
         public SearchForm()
         {
@@ -40,8 +43,8 @@ namespace View
         }
 
         /// <summary>
-        /// Настраивает DataGridView для отображения результатов поиска.
-        /// Колонки аналогичны главной форме.
+        /// Настраивает DataGridView для отображения результатов поиска
+        /// Колонки аналогичны главной форме
         /// </summary>
         private void SetupDataGridView()
         {
@@ -68,15 +71,15 @@ namespace View
                 Width = 300
             });
 
-            dataGridViewResults.DefaultCellStyle.WrapMode = 
+            dataGridViewResults.DefaultCellStyle.WrapMode =
                 DataGridViewTriState.True;
-            dataGridViewResults.RowTemplate.Height = 60;
-            dataGridViewResults.AutoSizeColumnsMode = 
+            dataGridViewResults.RowTemplate.Height = 50;
+            dataGridViewResults.AutoSizeColumnsMode =
                 DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         /// <summary>
-        /// Настраивает поля для поиска в ComboBox.
+        /// Настраивает поля для поиска в ComboBox
         /// </summary>
         private void SetupSearchFields()
         {
@@ -88,14 +91,16 @@ namespace View
             comboBoxSearchField.Items.Add("Высота");
             comboBoxSearchField.Items.Add("Радиус");
             comboBoxSearchField.SelectedIndex = 0;
+
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки "Найти".
+        /// Обработчик нажатия кнопки "Найти"
         /// </summary>
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void ButtonSearch_Click(object sender, EventArgs e)
         {
-            string searchText = textBoxSearchValue.Text.Trim().ToLower();
+            string searchText;
+            searchText = textBoxSearchValue.Text.Trim().ToLower();
             int selectedField = comboBoxSearchField.SelectedIndex;
 
             dataGridViewResults.Rows.Clear();
@@ -114,102 +119,33 @@ namespace View
 
             switch (selectedField)
             {
-                //TODO: {}
                 case 0:
                     foundShapes = _allShapes.FindAll(s =>
                         s.Name.ToLower().Contains(searchText));
                     break;
-                //TODO: duplication
                 case 1:
-                    if (double.TryParse
-                        (searchText, out double volumeValue))
-                    {
-                        foundShapes = _allShapes.FindAll(s =>
-                            Math.Abs
-                            (s.CalculateVolume() - volumeValue) < 0.01);
-                    }
-                    else
-                    {
-                        MessageBox.Show(
-                            "Введите корректное числовое " +
-                            "значение для поиска по объёму!",
-                            "Ошибка",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                        return;
-                    }
+                    foundShapes = SearchByNumericValue
+                        (s => s.CalculateVolume(), searchText, "объёму");
                     break;
 
                 case 2:
-                    if (double.TryParse(searchText, out double lengthValue))
-                    {
-                        foundShapes = _allShapes.FindAll(s =>
-                            Math.Abs(s.Length - lengthValue) < 0.01);
-                    }
-                    else
-                    {
-                        MessageBox.Show(
-                            "Введите корректное числовое " +
-                            "значение для поиска по длине!",
-                            "Ошибка",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                        return;
-                    }
+                    foundShapes = SearchByNumericValue
+                        (s => s.Length, searchText, "длине");
                     break;
 
                 case 3:
-                    if (double.TryParse(searchText, out double widthValue))
-                    {
-                        foundShapes = _allShapes.FindAll(s =>
-                            Math.Abs(s.Width - widthValue) < 0.01);
-                    }
-                    else
-                    {
-                        MessageBox.Show(
-                            "Введите корректное числовое " +
-                            "значение для поиска по ширине!",
-                            "Ошибка",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                        return;
-                    }
+                    foundShapes = SearchByNumericValue
+                        (s => s.Width, searchText, "ширине");
                     break;
 
                 case 4:
-                    if (double.TryParse(searchText, out double heightValue))
-                    {
-                        foundShapes = _allShapes.FindAll(s =>
-                            Math.Abs(s.Height - heightValue) < 0.01);
-                    }
-                    else
-                    {
-                        MessageBox.Show(
-                            "Введите корректное числовое " +
-                            "значение для поиска по высоте!",
-                            "Ошибка",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                        return;
-                    }
+                    foundShapes = SearchByNumericValue
+                        (s => s.Height, searchText, "высоте");
                     break;
 
                 case 5:
-                    if (double.TryParse(searchText, out double radiusValue))
-                    {
-                        foundShapes = _allShapes.FindAll(s =>
-                            Math.Abs(s.Radius - radiusValue) < 0.01);
-                    }
-                    else
-                    {
-                        MessageBox.Show(
-                            "Введите корректное числовое " +
-                            "значение для поиска по радиусу!",
-                            "Ошибка",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                        return;
-                    }
+                    foundShapes = SearchByNumericValue
+                        (s => s.Radius, searchText, "радиусу");
                     break;
             }
 
@@ -239,13 +175,43 @@ namespace View
             }
         }
 
-        //TODO: RSDN
+        //TODO: duplication +
+        /// <summary>
+        /// Выполняет поиск по числовому полю с погрешностью
+        /// </summary>
+        /// <param name="getValue">Делегат (Func) для получения значения из фигуры</param>
+        /// <param name="searchText">Искомое значение</param>
+        /// <param name="fieldName">Название поля для сообщения об ошибке</param>
+        /// <returns>Список найденных фигур или пустой список при ошибке</returns>
+        private List<IShape> SearchByNumericValue(
+            Func<IShape, double> getValue,
+            string searchText,
+            string fieldName)
+        {
+            if (double.TryParse(searchText, out double searchValue))
+            {
+                return _allShapes.FindAll(s =>
+                    Math.Abs(getValue(s) - searchValue) < 0.01);
+            }
+
+            MessageBox.Show(
+                $"Введите корректное числовое значение " +
+                $"для поиска по {fieldName}!",
+                "Ошибка",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+
+            return new List<IShape>();
+        }
+
+        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Закрыть".
         /// </summary>
-        private void btnClose_Click(object sender, EventArgs e)
+        private void ButtonClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
     }
 }
