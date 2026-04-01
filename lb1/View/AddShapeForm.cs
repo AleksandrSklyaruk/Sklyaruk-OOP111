@@ -94,7 +94,8 @@ namespace View
                         textRadius.Focus();
                         return;
                     }
-                    double radius = double.Parse(textRadius.Text);
+                    string radiusText = textRadius.Text.Replace(',', '.');
+                    double radius = double.Parse(radiusText, System.Globalization.CultureInfo.InvariantCulture);
                     CreatedShape = new Sphere(radius);
                 }
                 else if (radioBattonPyramid.Checked)
@@ -136,7 +137,7 @@ namespace View
             catch (FormatException)
             {
                 MessageBox.Show("Пожалуйста, введите корректные " +
-                    "числовые значения!\n" + "Используйте точку для " +
+                    "числовые значения!\n" + "Используйте запятую для " +
                     "разделения целой и дробной части.", "Ошибка формата",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -187,13 +188,13 @@ namespace View
         /// <param name="e">Аргументы события <see cref="KeyPressEventArgs"/>.</param>
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
             {
                 e.Handled = true;
                 return;
             }
 
-            if (e.KeyChar == '.' && ((sender as TextBox)?.Text.IndexOf('.') >= 0))
+            if (e.KeyChar == ',' && ((sender as TextBox)?.Text.IndexOf(',') >= 0))
             {
                 e.Handled = true;
             }

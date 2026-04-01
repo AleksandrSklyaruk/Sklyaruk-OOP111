@@ -118,7 +118,6 @@
             Radius.Size = new Size(45, 15);
             Radius.TabIndex = 3;
             Radius.Text = "Радиус";
-            Radius.Click += Radius_Click;
             // 
             // label1
             // 
