@@ -179,7 +179,8 @@ namespace View
         /// <summary>
         /// Выполняет поиск по числовому полю с погрешностью
         /// </summary>
-        /// <param name="getValue">Делегат (Func) для получения значения из фигуры</param>
+        /// <param name="getValue"
+        /// >Делегат (Func) для получения значения из фигуры</param>
         /// <param name="searchText">Искомое значение</param>
         /// <param name="fieldName">Название поля для сообщения об ошибке</param>
         /// <returns>Список найденных фигур или пустой список при ошибке</returns>
