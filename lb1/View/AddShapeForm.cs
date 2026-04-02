@@ -42,11 +42,6 @@ namespace View
         private const double MaxRandom = 100.0;
 
         /// <summary>
-        /// Символ разделителя для русской локали
-        /// </summary>
-        private const char DecimalSeparator = ',';
-
-        /// <summary>
         /// Инициализирует новый экземпляр класса
         /// </summary>
         public AddShapeForm()
@@ -56,6 +51,7 @@ namespace View
             groupBoxSphere.Visible = false;
             groupBoxPyramid.Visible = false;
             groupBoxParallelepiped.Visible = false;
+
 
             #if DEBUG
             CreateDebugButton();
@@ -89,6 +85,7 @@ namespace View
         }
         #endif
 
+        //TODO: RSDN +
         /// <summary>
         /// Обработчик события изменения состояния RadioButton 
         /// </summary>
@@ -223,6 +220,10 @@ namespace View
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             //TODO: magic (to const)
+            /// <summary>
+            /// Символ разделителя для русской локали
+            /// </summary>
+            const char DecimalSeparator = ',';
             if (!char.IsControl(e.KeyChar) && 
                 !char.IsDigit(e.KeyChar) && 
                 e.KeyChar != DecimalSeparator)
