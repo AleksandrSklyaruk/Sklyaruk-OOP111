@@ -55,7 +55,6 @@
             textParallelepipedWidth = new TextBox();
             textParallelepipedLength = new TextBox();
             contextMenuStrip1 = new ContextMenuStrip(components);
-            buttonRandomData = new Button();
             groupBoxShapeType.SuspendLayout();
             groupBoxSphere.SuspendLayout();
             groupBoxPyramid.SuspendLayout();
@@ -287,16 +286,6 @@
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
             // 
-            // buttonRandomData
-            // 
-            buttonRandomData.Location = new Point(12, 138);
-            buttonRandomData.Name = "buttonRandomData";
-            buttonRandomData.Size = new Size(383, 23);
-            buttonRandomData.TabIndex = 23;
-            buttonRandomData.Text = "Заполнить случайными данными";
-            buttonRandomData.UseVisualStyleBackColor = true;
-            buttonRandomData.Click += ButtonRandomData_Click;
-            // 
             // AddShapeForm
             // 
             AcceptButton = buttonOk;
@@ -304,7 +293,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = buttonCancel;
             ClientSize = new Size(403, 199);
-            Controls.Add(buttonRandomData);
             Controls.Add(groupBoxPyramid);
             Controls.Add(groupBoxParallelepiped);
             Controls.Add(groupBoxSphere);
@@ -352,6 +340,5 @@
         private TextBox textParallelepipedLength;
         private TextBox textParallelepipedWidth;
         private TextBox txtParallelepipedHeight;
-        private Button buttonRandomData;
     }
 }

@@ -57,8 +57,8 @@ namespace View
             groupBoxPyramid.Visible = false;
             groupBoxParallelepiped.Visible = false;
 
-            #if !DEBUG
-                buttonRandomData.Visible = false;
+            #if DEBUG
+            CreateDebugButton();
             #endif
 
             AttachKeyPressHandler(textRadius);
@@ -69,6 +69,25 @@ namespace View
             AttachKeyPressHandler(textParallelepipedWidth);
             AttachKeyPressHandler(txtParallelepipedHeight);
         }
+
+        #if DEBUG
+        /// <summary>
+        /// Создаёт и добавляет отладочную кнопку "Заполнить случайными данными"
+        /// </summary>
+        private void CreateDebugButton()
+        {
+            Button buttonRandomData = new Button();
+            buttonRandomData.Location = new Point(12, 138);
+            buttonRandomData.Name = "buttonRandomData";
+            buttonRandomData.Size = new Size(383, 23);
+            buttonRandomData.TabIndex = 23;
+            buttonRandomData.Text = "Заполнить случайными данными";
+            buttonRandomData.UseVisualStyleBackColor = true;
+            buttonRandomData.Click += ButtonRandomData_Click;
+
+            this.Controls.Add(buttonRandomData);
+        }
+        #endif
 
         //TODO: RSDN +
         /// <summary>
