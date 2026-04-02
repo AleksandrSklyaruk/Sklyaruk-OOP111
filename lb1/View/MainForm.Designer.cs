@@ -46,14 +46,14 @@
             groupBox1.Controls.Add(dataGridViewShapes);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(776, 329);
+            groupBox1.Size = new Size(782, 327);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             // 
             // dataGridViewShapes
             // 
             dataGridViewShapes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewShapes.Location = new Point(6, 23);
+            dataGridViewShapes.Location = new Point(6, 22);
             dataGridViewShapes.Name = "dataGridViewShapes";
             dataGridViewShapes.Size = new Size(764, 297);
             dataGridViewShapes.TabIndex = 0;
@@ -63,7 +63,7 @@
             buttonAddShape.BackgroundImageLayout = ImageLayout.None;
             buttonAddShape.DialogResult = DialogResult.OK;
             buttonAddShape.ForeColor = SystemColors.ActiveCaptionText;
-            buttonAddShape.Location = new Point(47, 359);
+            buttonAddShape.Location = new Point(18, 345);
             buttonAddShape.Name = "buttonAddShape";
             buttonAddShape.Size = new Size(141, 23);
             buttonAddShape.TabIndex = 1;
@@ -74,7 +74,7 @@
             // buttonRemoveShape
             // 
             buttonRemoveShape.BackColor = Color.FromArgb(224, 224, 224);
-            buttonRemoveShape.Location = new Point(47, 400);
+            buttonRemoveShape.Location = new Point(18, 374);
             buttonRemoveShape.Name = "buttonRemoveShape";
             buttonRemoveShape.Size = new Size(141, 23);
             buttonRemoveShape.TabIndex = 2;
@@ -84,7 +84,7 @@
             // 
             // buttonSave
             // 
-            buttonSave.Location = new Point(618, 359);
+            buttonSave.Location = new Point(641, 345);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(141, 23);
             buttonSave.TabIndex = 3;
@@ -94,7 +94,7 @@
             // 
             // buttonLoad
             // 
-            buttonLoad.Location = new Point(618, 400);
+            buttonLoad.Location = new Point(641, 374);
             buttonLoad.Name = "buttonLoad";
             buttonLoad.Size = new Size(141, 23);
             buttonLoad.TabIndex = 4;
@@ -104,7 +104,7 @@
             // 
             // buttonSearchShape
             // 
-            buttonSearchShape.Location = new Point(214, 359);
+            buttonSearchShape.Location = new Point(165, 345);
             buttonSearchShape.Name = "buttonSearchShape";
             buttonSearchShape.Size = new Size(141, 23);
             buttonSearchShape.TabIndex = 5;
@@ -116,7 +116,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 401);
             Controls.Add(buttonSearchShape);
             Controls.Add(buttonLoad);
             Controls.Add(buttonSave);
@@ -125,7 +125,7 @@
             Controls.Add(groupBox1);
             MaximizeBox = false;
             Name = "MainForm";
-            Text = "Form2";
+            Text = "Главня страница";
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewShapes).EndInit();
             ResumeLayout(false);

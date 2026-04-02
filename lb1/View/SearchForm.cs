@@ -22,6 +22,16 @@ namespace View
         private List<IShape> _allShapes;
 
         /// <summary>
+        /// Формат отображения чисел.
+        /// </summary>
+        private const string NumberFormat = "F2";
+
+        /// <summary>
+        /// Допустимая погрешность при сравнении чисел.
+        /// </summary>
+        private const double Epsilon = 0.01;
+
+        /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="SearchForm"/>.
         /// </summary>
         /// <param name="shapes">Список фигур для поиска.</param>
@@ -118,35 +128,43 @@ namespace View
 
             switch (selectedField)
             {
-                //TODO: {}
+                //TODO: {} +
                 case 0:
+                {
                     foundShapes = _allShapes.FindAll(s =>
-                        s.Name.ToLower().Contains(searchText));
+                    s.Name.ToLower().Contains(searchText));
                     break;
+                }
                 case 1:
-                    foundShapes = SearchByNumericValue
-                        (s => s.CalculateVolume(), searchText, "объёму");
+                {
+                    foundShapes = SearchByNumericValue 
+                            (s => s.CalculateVolume(), searchText, "объёму");
                     break;
-
+                }
                 case 2:
-                    foundShapes = SearchByNumericValue
-                        (s => s.Length, searchText, "длине");
+                {
+                    foundShapes = SearchByNumericValue 
+                            (s => s.Length, searchText, "длине");
                     break;
-
+                }
                 case 3:
+                {
                     foundShapes = SearchByNumericValue
-                        (s => s.Width, searchText, "ширине");
+                            (s => s.Width, searchText, "ширине");
                     break;
-
+                }
                 case 4:
-                    foundShapes = SearchByNumericValue
-                        (s => s.Height, searchText, "высоте");
+                {
+                    foundShapes = SearchByNumericValue 
+                            (s => s.Height, searchText, "высоте");
                     break;
-
+                }
                 case 5:
-                    foundShapes = SearchByNumericValue
-                        (s => s.Radius, searchText, "радиусу");
+                {
+                    foundShapes = SearchByNumericValue 
+                            (s => s.Radius, searchText, "радиусу");
                     break;
+                }  
             }
 
             if (foundShapes.Count == 0)
@@ -163,8 +181,8 @@ namespace View
                 {
                     dataGridViewResults.Rows.Add(
                         shape.Name,
-                        //TODO: duplication
-                        shape.CalculateVolume().ToString("F2"),
+                        //TODO: duplication +
+                        shape.CalculateVolume(),
                         shape.Parameters);
                 }
 
@@ -182,8 +200,10 @@ namespace View
         /// <param name="getValue"
         /// >Делегат (Func) для получения значения из фигуры</param>
         /// <param name="searchText">Искомое значение</param>
-        /// <param name="fieldName">Название поля для сообщения об ошибке</param>
-        /// <returns>Список найденных фигур или пустой список при ошибке</returns>
+        /// <param name="fieldName"
+        /// >Название поля для сообщения об ошибке</param>
+        /// <returns>Список найденных фигур 
+        /// или пустой список при ошибке</returns>
         private List<IShape> SearchByNumericValue(
             Func<IShape, double> getValue,
             string searchText,
@@ -192,7 +212,7 @@ namespace View
             if (double.TryParse(searchText, out double searchValue))
             {
                 return _allShapes.FindAll(s =>
-                    Math.Abs(getValue(s) - searchValue) < 0.01);
+                    Math.Abs(getValue(s) - searchValue) < Epsilon);
             }
 
             MessageBox.Show(

@@ -27,6 +27,26 @@ namespace View
         public IShape CreatedShape { get; private set; }
 
         /// <summary>
+        /// Формат отображения чисел
+        /// </summary>
+        private const string NumberFormat = "F2";
+
+        /// <summary>
+        /// Минимальное значение для генерации случайных данных
+        /// </summary>
+        private const double MinRandom = 1.0;
+
+        /// <summary>
+        /// Максимальное значение для генерации случайных данных
+        /// </summary>
+        private const double MaxRandom = 100.0;
+
+        /// <summary>
+        /// Символ разделителя для русской локали
+        /// </summary>
+        private const char DecimalSeparator = ',';
+
+        /// <summary>
         /// Инициализирует новый экземпляр класса
         /// </summary>
         public AddShapeForm()
@@ -50,13 +70,13 @@ namespace View
             AttachKeyPressHandler(txtParallelepipedHeight);
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Обработчик события изменения состояния RadioButton 
         /// </summary>
         /// <param name="sender">Источник события</param>
         /// <param name="e">Аргументы события</param>
-        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             groupBoxSphere.Visible = radioBattonSphere.Checked;
             groupBoxPyramid.Visible = radioBattonPyramid.Checked;
@@ -64,7 +84,7 @@ namespace View
                 radioBattonParallelepiped.Checked;
         }
 
-        //TODO: refactor
+        //TODO: refactor +
         /// <summary>
         /// Обработчик нажатия кнопки "ОК".
         /// и закрывает форму с результатом <see cref="DialogResult.OK"/>.
@@ -87,50 +107,46 @@ namespace View
                 }
                 if (radioBattonSphere.Checked)
                 {
-                    if (string.IsNullOrWhiteSpace(textRadius.Text))
+                    if (!AreTextBoxesFilled(textRadius))
                     {
                         MessageBox.Show("Заполните радиус шара!",
-                            "Ошибка ввода", MessageBoxButtons.OK,
+                            "Ошибка ввода", MessageBoxButtons.OK, 
                             MessageBoxIcon.Warning);
                         textRadius.Focus();
                         return;
                     }
-                    string radiusText = textRadius.Text.Replace(',', '.');
-                    double radius = double.Parse(radiusText, 
-                        System.Globalization.CultureInfo.InvariantCulture);
-                    CreatedShape = new Sphere(radius);
+                    CreatedShape = new Sphere(ParseNumber(textRadius.Text));
                 }
                 else if (radioBattonPyramid.Checked)
                 {
-                    if (string.IsNullOrWhiteSpace(textPyramidLength.Text) ||
-                        string.IsNullOrWhiteSpace(textPyramidWidth.Text) ||
-                        string.IsNullOrWhiteSpace(textPyramidHeight.Text))
+                    if (!AreTextBoxesFilled(textPyramidLength, 
+                        textPyramidWidth, textPyramidHeight))
                     {
                         MessageBox.Show("Заполните все поля пирамиды!",
-                            "Ошибка ввода", MessageBoxButtons.OK,
+                            "Ошибка ввода", MessageBoxButtons.OK, 
                             MessageBoxIcon.Warning);
                         return;
                     }
-                    double length = double.Parse(textPyramidLength.Text);
-                    double width = double.Parse(textPyramidWidth.Text);
-                    double height = double.Parse(textPyramidHeight.Text);
-                    CreatedShape = new Pyramid(length, width, height);
+                    CreatedShape = new Pyramid(
+                        ParseNumber(textPyramidLength.Text),
+                        ParseNumber(textPyramidWidth.Text),
+                        ParseNumber(textPyramidHeight.Text));
                 }
                 else if (radioBattonParallelepiped.Checked)
                 {
-                    if (string.IsNullOrWhiteSpace(textParallelepipedLength.Text) ||
-                        string.IsNullOrWhiteSpace(textParallelepipedWidth.Text) ||
-                        string.IsNullOrWhiteSpace(txtParallelepipedHeight.Text))
+                    if (!AreTextBoxesFilled(textParallelepipedLength, 
+                        textParallelepipedWidth, 
+                        txtParallelepipedHeight))
                     {
                         MessageBox.Show("Заполните все поля параллелепипеда!",
-                            "Ошибка ввода", MessageBoxButtons.OK,
+                            "Ошибка ввода", MessageBoxButtons.OK, 
                             MessageBoxIcon.Warning);
                         return;
                     }
-                    double length = double.Parse(textParallelepipedLength.Text);
-                    double width = double.Parse(textParallelepipedWidth.Text);
-                    double height = double.Parse(txtParallelepipedHeight.Text);
-                    CreatedShape = new Parallelepiped(length, width, height);
+                    CreatedShape = new Parallelepiped(
+                        ParseNumber(textParallelepipedLength.Text),
+                        ParseNumber(textParallelepipedWidth.Text),
+                        ParseNumber(txtParallelepipedHeight.Text));
                 }
 
                 this.DialogResult = DialogResult.OK;
@@ -189,16 +205,17 @@ namespace View
         /// <see cref="KeyPressEventArgs"/>.</param>
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //TODO: magic (to const)
+            //TODO: magic (to const) +
             if (!char.IsControl(e.KeyChar) && 
-                !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
+                !char.IsDigit(e.KeyChar) && 
+                e.KeyChar != DecimalSeparator)
             {
                 e.Handled = true;
                 return;
             }
 
-            if (e.KeyChar == ',' && 
-                ((sender as TextBox)?.Text.IndexOf(',') >= 0))
+            if (e.KeyChar == DecimalSeparator && 
+                ((sender as TextBox)?.Text.IndexOf(DecimalSeparator) >= 0))
             {
                 e.Handled = true;
             }
@@ -215,29 +232,20 @@ namespace View
             {
                 if (radioBattonSphere.Checked)
                 {
-                    double radius = _random.NextDouble() * 99 + 1;
-                    //TODO: duplication
-                    textRadius.Text = radius.ToString("F2");
+                    //TODO: duplication +
+                    textRadius.Text = GenerateRandomNumber();
                 }
                 else if (radioBattonPyramid.Checked)
                 {
-                    double length = _random.NextDouble() * 99 + 1;
-                    double width = _random.NextDouble() * 99 + 1;
-                    double height = _random.NextDouble() * 99 + 1;
-
-                    textPyramidLength.Text = length.ToString("F2");
-                    textPyramidWidth.Text = width.ToString("F2");
-                    textPyramidHeight.Text = height.ToString("F2");
+                    textPyramidLength.Text = GenerateRandomNumber();
+                    textPyramidWidth.Text = GenerateRandomNumber();
+                    textPyramidHeight.Text = GenerateRandomNumber();
                 }
                 else if (radioBattonParallelepiped.Checked)
                 {
-                    double length = _random.NextDouble() * 99 + 1;
-                    double width = _random.NextDouble() * 99 + 1;
-                    double height = _random.NextDouble() * 99 + 1;
-
-                    textParallelepipedLength.Text = length.ToString("F2");
-                    textParallelepipedWidth.Text = width.ToString("F2");
-                    txtParallelepipedHeight.Text = height.ToString("F2");
+                    textParallelepipedLength.Text = GenerateRandomNumber();
+                    textParallelepipedWidth.Text = GenerateRandomNumber();
+                    txtParallelepipedHeight.Text = GenerateRandomNumber();
                 }
                 else
                 {
@@ -256,12 +264,44 @@ namespace View
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+
         }
 
-        //TODO: remove
-        private void Radius_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Генерирует случайное число в заданном диапазоне
+        /// </summary>
+        /// <returns>Отформатированная строка со случайным числом.</returns>
+        private string GenerateRandomNumber()
         {
+            double value = _random.NextDouble() * 
+                (MaxRandom - MinRandom) + MinRandom;
+            return value.ToString(NumberFormat);
+        }
 
+        /// <summary>
+        /// Преобразует строку в double, заменяя запятую на точку.
+        /// </summary>
+        /// <param name="text">Строка с числовым значением.</param>
+        /// <returns>Значение типа double.</returns>
+        private double ParseNumber(string text)
+        {
+            string normalized = text.Replace(',', '.');
+            return double.Parse(normalized, System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Проверяет, что все TextBox заполнены.
+        /// </summary>
+        private bool AreTextBoxesFilled(params TextBox[] textBoxes)
+        {
+            foreach (var textBox in textBoxes)
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

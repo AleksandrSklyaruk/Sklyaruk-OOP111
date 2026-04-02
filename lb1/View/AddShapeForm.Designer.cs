@@ -67,53 +67,52 @@
             groupBoxShapeType.Controls.Add(radioBattonParallelepiped);
             groupBoxShapeType.Controls.Add(radioBattonPyramid);
             groupBoxShapeType.Controls.Add(radioBattonSphere);
-            groupBoxShapeType.Location = new Point(35, 37);
+            groupBoxShapeType.Location = new Point(12, 12);
             groupBoxShapeType.Name = "groupBoxShapeType";
-            groupBoxShapeType.Size = new Size(173, 224);
+            groupBoxShapeType.Size = new Size(133, 120);
             groupBoxShapeType.TabIndex = 0;
             groupBoxShapeType.TabStop = false;
-            groupBoxShapeType.Text = "Тип фигуры";
             // 
             // radioBattonParallelepiped
             // 
             radioBattonParallelepiped.AutoSize = true;
-            radioBattonParallelepiped.Location = new Point(25, 144);
+            radioBattonParallelepiped.Location = new Point(6, 79);
             radioBattonParallelepiped.Name = "radioBattonParallelepiped";
             radioBattonParallelepiped.Size = new Size(119, 19);
             radioBattonParallelepiped.TabIndex = 2;
             radioBattonParallelepiped.TabStop = true;
             radioBattonParallelepiped.Text = "Параллелепипед";
             radioBattonParallelepiped.UseVisualStyleBackColor = true;
-            radioBattonParallelepiped.CheckedChanged += RadioButton1_CheckedChanged;
+            radioBattonParallelepiped.CheckedChanged += RadioButton_CheckedChanged;
             // 
             // radioBattonPyramid
             // 
             radioBattonPyramid.AutoSize = true;
-            radioBattonPyramid.Location = new Point(25, 98);
+            radioBattonPyramid.Location = new Point(6, 51);
             radioBattonPyramid.Name = "radioBattonPyramid";
             radioBattonPyramid.Size = new Size(82, 19);
             radioBattonPyramid.TabIndex = 1;
             radioBattonPyramid.TabStop = true;
             radioBattonPyramid.Text = "Пирамида";
             radioBattonPyramid.UseVisualStyleBackColor = true;
-            radioBattonPyramid.CheckedChanged += RadioButton1_CheckedChanged;
+            radioBattonPyramid.CheckedChanged += RadioButton_CheckedChanged;
             // 
             // radioBattonSphere
             // 
             radioBattonSphere.AutoSize = true;
-            radioBattonSphere.Location = new Point(25, 52);
+            radioBattonSphere.Location = new Point(6, 23);
             radioBattonSphere.Name = "radioBattonSphere";
             radioBattonSphere.Size = new Size(49, 19);
             radioBattonSphere.TabIndex = 0;
             radioBattonSphere.TabStop = true;
             radioBattonSphere.Text = "Шар";
             radioBattonSphere.UseVisualStyleBackColor = true;
-            radioBattonSphere.CheckedChanged += RadioButton1_CheckedChanged;
+            radioBattonSphere.CheckedChanged += RadioButton_CheckedChanged;
             // 
             // Radius
             // 
             Radius.AutoSize = true;
-            Radius.Location = new Point(60, 36);
+            Radius.Location = new Point(6, 25);
             Radius.Name = "Radius";
             Radius.Size = new Size(45, 15);
             Radius.TabIndex = 3;
@@ -122,7 +121,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(31, 37);
+            label1.Location = new Point(6, 27);
             label1.Name = "label1";
             label1.Size = new Size(104, 15);
             label1.TabIndex = 6;
@@ -131,7 +130,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(27, 90);
+            label2.Location = new Point(6, 56);
             label2.Name = "label2";
             label2.Size = new Size(114, 15);
             label2.TabIndex = 7;
@@ -140,7 +139,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(60, 144);
+            label3.Location = new Point(6, 85);
             label3.Name = "label3";
             label3.Size = new Size(50, 15);
             label3.TabIndex = 8;
@@ -149,7 +148,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(60, 143);
+            label4.Location = new Point(8, 83);
             label4.Name = "label4";
             label4.Size = new Size(50, 15);
             label4.TabIndex = 14;
@@ -158,7 +157,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(56, 89);
+            label5.Location = new Point(6, 55);
             label5.Name = "label5";
             label5.Size = new Size(52, 15);
             label5.TabIndex = 13;
@@ -167,7 +166,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(60, 34);
+            label6.Location = new Point(6, 26);
             label6.Name = "label6";
             label6.Size = new Size(42, 15);
             label6.TabIndex = 12;
@@ -176,7 +175,7 @@
             // buttonOk
             // 
             buttonOk.DialogResult = DialogResult.OK;
-            buttonOk.Location = new Point(35, 331);
+            buttonOk.Location = new Point(12, 167);
             buttonOk.Name = "buttonOk";
             buttonOk.Size = new Size(75, 23);
             buttonOk.TabIndex = 18;
@@ -187,7 +186,7 @@
             // buttonCancel
             // 
             buttonCancel.DialogResult = DialogResult.Cancel;
-            buttonCancel.Location = new Point(332, 331);
+            buttonCancel.Location = new Point(320, 167);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.RightToLeft = RightToLeft.Yes;
             buttonCancel.Size = new Size(75, 23);
@@ -200,16 +199,15 @@
             // 
             groupBoxSphere.Controls.Add(textRadius);
             groupBoxSphere.Controls.Add(Radius);
-            groupBoxSphere.Location = new Point(242, 37);
+            groupBoxSphere.Location = new Point(151, 12);
             groupBoxSphere.Name = "groupBoxSphere";
-            groupBoxSphere.Size = new Size(165, 224);
+            groupBoxSphere.Size = new Size(244, 120);
             groupBoxSphere.TabIndex = 20;
             groupBoxSphere.TabStop = false;
-            groupBoxSphere.Text = "Параметры шара";
             // 
             // textRadius
             // 
-            textRadius.Location = new Point(33, 54);
+            textRadius.Location = new Point(69, 22);
             textRadius.Name = "textRadius";
             textRadius.Size = new Size(100, 23);
             textRadius.TabIndex = 24;
@@ -222,30 +220,29 @@
             groupBoxPyramid.Controls.Add(label2);
             groupBoxPyramid.Controls.Add(textPyramidLength);
             groupBoxPyramid.Controls.Add(label1);
-            groupBoxPyramid.Location = new Point(242, 37);
+            groupBoxPyramid.Location = new Point(151, 12);
             groupBoxPyramid.Name = "groupBoxPyramid";
-            groupBoxPyramid.Size = new Size(165, 225);
+            groupBoxPyramid.Size = new Size(244, 120);
             groupBoxPyramid.TabIndex = 21;
             groupBoxPyramid.TabStop = false;
-            groupBoxPyramid.Text = "Параметры пирамиды";
             // 
             // textPyramidHeight
             // 
-            textPyramidHeight.Location = new Point(34, 162);
+            textPyramidHeight.Location = new Point(135, 82);
             textPyramidHeight.Name = "textPyramidHeight";
             textPyramidHeight.Size = new Size(100, 23);
             textPyramidHeight.TabIndex = 29;
             // 
             // textPyramidWidth
             // 
-            textPyramidWidth.Location = new Point(34, 108);
+            textPyramidWidth.Location = new Point(135, 53);
             textPyramidWidth.Name = "textPyramidWidth";
             textPyramidWidth.Size = new Size(100, 23);
             textPyramidWidth.TabIndex = 28;
             // 
             // textPyramidLength
             // 
-            textPyramidLength.Location = new Point(33, 55);
+            textPyramidLength.Location = new Point(135, 24);
             textPyramidLength.Name = "textPyramidLength";
             textPyramidLength.Size = new Size(100, 23);
             textPyramidLength.TabIndex = 27;
@@ -258,30 +255,29 @@
             groupBoxParallelepiped.Controls.Add(textParallelepipedLength);
             groupBoxParallelepiped.Controls.Add(label5);
             groupBoxParallelepiped.Controls.Add(label4);
-            groupBoxParallelepiped.Location = new Point(242, 38);
+            groupBoxParallelepiped.Location = new Point(151, 12);
             groupBoxParallelepiped.Name = "groupBoxParallelepiped";
-            groupBoxParallelepiped.Size = new Size(165, 224);
+            groupBoxParallelepiped.Size = new Size(244, 120);
             groupBoxParallelepiped.TabIndex = 22;
             groupBoxParallelepiped.TabStop = false;
-            groupBoxParallelepiped.Text = "Параметры параллелепипеда";
             // 
             // txtParallelepipedHeight
             // 
-            txtParallelepipedHeight.Location = new Point(34, 160);
+            txtParallelepipedHeight.Location = new Point(69, 80);
             txtParallelepipedHeight.Name = "txtParallelepipedHeight";
             txtParallelepipedHeight.Size = new Size(100, 23);
             txtParallelepipedHeight.TabIndex = 35;
             // 
             // textParallelepipedWidth
             // 
-            textParallelepipedWidth.Location = new Point(33, 106);
+            textParallelepipedWidth.Location = new Point(69, 51);
             textParallelepipedWidth.Name = "textParallelepipedWidth";
             textParallelepipedWidth.Size = new Size(100, 23);
             textParallelepipedWidth.TabIndex = 34;
             // 
             // textParallelepipedLength
             // 
-            textParallelepipedLength.Location = new Point(33, 52);
+            textParallelepipedLength.Location = new Point(69, 22);
             textParallelepipedLength.Name = "textParallelepipedLength";
             textParallelepipedLength.Size = new Size(100, 23);
             textParallelepipedLength.TabIndex = 33;
@@ -293,9 +289,9 @@
             // 
             // buttonRandomData
             // 
-            buttonRandomData.Location = new Point(36, 279);
+            buttonRandomData.Location = new Point(12, 138);
             buttonRandomData.Name = "buttonRandomData";
-            buttonRandomData.Size = new Size(371, 23);
+            buttonRandomData.Size = new Size(383, 23);
             buttonRandomData.TabIndex = 23;
             buttonRandomData.Text = "Заполнить случайными данными";
             buttonRandomData.UseVisualStyleBackColor = true;
@@ -307,7 +303,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = buttonCancel;
-            ClientSize = new Size(453, 378);
+            ClientSize = new Size(403, 199);
             Controls.Add(buttonRandomData);
             Controls.Add(groupBoxPyramid);
             Controls.Add(groupBoxParallelepiped);
@@ -317,7 +313,7 @@
             Controls.Add(buttonOk);
             MaximizeBox = false;
             Name = "AddShapeForm";
-            Text = "AddShapeForm";
+            Text = "Добавить фигуру";
             groupBoxShapeType.ResumeLayout(false);
             groupBoxShapeType.PerformLayout();
             groupBoxSphere.ResumeLayout(false);
