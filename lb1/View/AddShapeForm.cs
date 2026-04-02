@@ -89,7 +89,6 @@ namespace View
         }
         #endif
 
-        //TODO: RSDN +
         /// <summary>
         /// Обработчик события изменения состояния RadioButton 
         /// </summary>
@@ -103,7 +102,6 @@ namespace View
                 radioBattonParallelepiped.Checked;
         }
 
-        //TODO: refactor +
         /// <summary>
         /// Обработчик нажатия кнопки "ОК".
         /// и закрывает форму с результатом <see cref="DialogResult.OK"/>.
@@ -224,7 +222,7 @@ namespace View
         /// <see cref="KeyPressEventArgs"/>.</param>
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //TODO: magic (to const) +
+            //TODO: magic (to const)
             if (!char.IsControl(e.KeyChar) && 
                 !char.IsDigit(e.KeyChar) && 
                 e.KeyChar != DecimalSeparator)
@@ -251,7 +249,6 @@ namespace View
             {
                 if (radioBattonSphere.Checked)
                 {
-                    //TODO: duplication +
                     textRadius.Text = GenerateRandomNumber();
                 }
                 else if (radioBattonPyramid.Checked)

@@ -128,7 +128,6 @@ namespace View
 
             switch (selectedField)
             {
-                //TODO: {} +
                 case 0:
                 {
                     foundShapes = _allShapes.FindAll(s =>
@@ -181,7 +180,6 @@ namespace View
                 {
                     dataGridViewResults.Rows.Add(
                         shape.Name,
-                        //TODO: duplication +
                         shape.CalculateVolume(),
                         shape.Parameters);
                 }
