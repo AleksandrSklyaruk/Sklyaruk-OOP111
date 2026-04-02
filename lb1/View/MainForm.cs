@@ -95,12 +95,6 @@ namespace View
                         dataGridViewShapes.DataSource = _shapes;
 
                         UpdateParametersColumn();
-
-                        MessageBox.Show(
-                            $"Фигура '{newShape.Name}' успешно добавлена!",
-                            "Успех",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
                     }
                 }
             }
@@ -113,22 +107,40 @@ namespace View
         /// <param name="e">Аргументы события</param>
         private void ButtonRemoveShape_Click(object sender, EventArgs e)
         {
-            if (dataGridViewShapes.CurrentRow != null)
+            if (dataGridViewShapes.SelectedRows.Count > 0)
             {
-                int idx = dataGridViewShapes.CurrentRow.Index;
-                if (idx >= 0 && idx < _shapes.Count)
+                var indicesToDelete = dataGridViewShapes.SelectedRows
+                    .Cast<DataGridViewRow>()
+                    .Select(row => row.Index)
+                    .OrderByDescending(idx => idx)
+                    .ToList();
+
+                foreach (var idx in indicesToDelete)
                 {
-                    _shapes.RemoveAt(idx);
-                    dataGridViewShapes.DataSource = null;
-                    dataGridViewShapes.DataSource = _shapes;
-                    MessageBox.Show("Удалено!", "Успех",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (idx >= 0 && idx < _shapes.Count)
+                    {
+                        _shapes.RemoveAt(idx);
+                    }
                 }
+
+                dataGridViewShapes.DataSource = null;
+                dataGridViewShapes.DataSource = _shapes;
+
+                UpdateParametersColumn();
+
+                MessageBox.Show(
+                    $"Удалено фигур: {indicesToDelete.Count}!",
+                    "Успех",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Выберите фигуру!", "Предупреждение",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Выберите одну или несколько фигур для удаления!",
+                    "Предупреждение",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
             }
         }
 
@@ -204,6 +216,7 @@ namespace View
 
                         dataGridViewShapes.DataSource = null;
                         dataGridViewShapes.DataSource = _shapes;
+                        UpdateParametersColumn();
 
                         if (_shapes.Count > 0)
                         {

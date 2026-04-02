@@ -47,17 +47,17 @@
             groupBoxSearchCriteria.Controls.Add(textBoxSearchValue);
             groupBoxSearchCriteria.Controls.Add(labelSearchValue);
             groupBoxSearchCriteria.Controls.Add(comboBoxSearchField);
+            groupBoxSearchCriteria.Controls.Add(buttonSearch);
             groupBoxSearchCriteria.Controls.Add(labelSearchField);
             groupBoxSearchCriteria.Location = new Point(12, 12);
             groupBoxSearchCriteria.Name = "groupBoxSearchCriteria";
-            groupBoxSearchCriteria.Size = new Size(770, 98);
+            groupBoxSearchCriteria.Size = new Size(770, 67);
             groupBoxSearchCriteria.TabIndex = 0;
             groupBoxSearchCriteria.TabStop = false;
-            groupBoxSearchCriteria.Text = "Критерии поиска";
             // 
             // textBoxSearchValue
             // 
-            textBoxSearchValue.Location = new Point(183, 49);
+            textBoxSearchValue.Location = new Point(163, 31);
             textBoxSearchValue.Name = "textBoxSearchValue";
             textBoxSearchValue.Size = new Size(130, 23);
             textBoxSearchValue.TabIndex = 4;
@@ -65,7 +65,7 @@
             // labelSearchValue
             // 
             labelSearchValue.AutoSize = true;
-            labelSearchValue.Location = new Point(183, 31);
+            labelSearchValue.Location = new Point(172, 13);
             labelSearchValue.Name = "labelSearchValue";
             labelSearchValue.Size = new Size(114, 15);
             labelSearchValue.TabIndex = 3;
@@ -76,7 +76,7 @@
             // 
             comboBoxSearchField.FormattingEnabled = true;
             comboBoxSearchField.Items.AddRange(new object[] { "Название фигуры", "Объём", "Информация" });
-            comboBoxSearchField.Location = new Point(6, 49);
+            comboBoxSearchField.Location = new Point(6, 31);
             comboBoxSearchField.Name = "comboBoxSearchField";
             comboBoxSearchField.Size = new Size(136, 23);
             comboBoxSearchField.TabIndex = 2;
@@ -84,7 +84,7 @@
             // labelSearchField
             // 
             labelSearchField.AutoSize = true;
-            labelSearchField.Location = new Point(23, 31);
+            labelSearchField.Location = new Point(23, 13);
             labelSearchField.Name = "labelSearchField";
             labelSearchField.Size = new Size(100, 15);
             labelSearchField.TabIndex = 1;
@@ -93,7 +93,7 @@
             // 
             // buttonSearch
             // 
-            buttonSearch.Location = new Point(28, 401);
+            buttonSearch.Location = new Point(313, 31);
             buttonSearch.Name = "buttonSearch";
             buttonSearch.Size = new Size(75, 23);
             buttonSearch.TabIndex = 5;
@@ -104,7 +104,7 @@
             // buttonClose
             // 
             buttonClose.DialogResult = DialogResult.Cancel;
-            buttonClose.Location = new Point(671, 401);
+            buttonClose.Location = new Point(713, 329);
             buttonClose.Name = "buttonClose";
             buttonClose.Size = new Size(75, 23);
             buttonClose.TabIndex = 6;
@@ -115,9 +115,9 @@
             // groupBoxResults
             // 
             groupBoxResults.Controls.Add(dataGridViewResults);
-            groupBoxResults.Location = new Point(12, 130);
+            groupBoxResults.Location = new Point(12, 85);
             groupBoxResults.Name = "groupBoxResults";
-            groupBoxResults.Size = new Size(776, 248);
+            groupBoxResults.Size = new Size(776, 238);
             groupBoxResults.TabIndex = 5;
             groupBoxResults.TabStop = false;
             groupBoxResults.Text = "Результаты поиска";
@@ -141,11 +141,10 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = buttonClose;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 360);
             Controls.Add(groupBoxResults);
             Controls.Add(buttonClose);
             Controls.Add(groupBoxSearchCriteria);
-            Controls.Add(buttonSearch);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             Name = "SearchForm";
