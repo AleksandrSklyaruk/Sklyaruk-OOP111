@@ -39,9 +39,9 @@ namespace View
             groupBoxPyramid.Visible = false;
             groupBoxParallelepiped.Visible = false;
 
-#if !DEBUG
+            #if !DEBUG
                 buttonRandomData.Visible = false;
-#endif
+            #endif
 
             AttachKeyPressHandler(textRadius);
             AttachKeyPressHandler(textPyramidLength);
@@ -62,7 +62,8 @@ namespace View
         {
             groupBoxSphere.Visible = radioBattonSphere.Checked;
             groupBoxPyramid.Visible = radioBattonPyramid.Checked;
-            groupBoxParallelepiped.Visible = radioBattonParallelepiped.Checked;
+            groupBoxParallelepiped.Visible = 
+                radioBattonParallelepiped.Checked;
         }
 
         //TODO: RSDN +
@@ -71,12 +72,14 @@ namespace View
         /// и закрывает форму с результатом <see cref="DialogResult.OK"/>.
         /// </summary>
         /// <param name="sender">Источник события (кнопка butOk).</param>
-        /// <param name="e">Аргументы события <see cref="EventArgs"/>.</param>
+        /// <param name="e">Аргументы события 
+        /// <see cref="EventArgs"/>.</param>
         private void ButttonOk_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!radioBattonSphere.Checked && !radioBattonPyramid.Checked &&
+                if (!radioBattonSphere.Checked && 
+                    !radioBattonPyramid.Checked &&
                     !radioBattonParallelepiped.Checked)
                 {
                     MessageBox.Show("Пожалуйста, выберите тип фигуры!",
@@ -95,7 +98,8 @@ namespace View
                         return;
                     }
                     string radiusText = textRadius.Text.Replace(',', '.');
-                    double radius = double.Parse(radiusText, System.Globalization.CultureInfo.InvariantCulture);
+                    double radius = double.Parse(radiusText, 
+                        System.Globalization.CultureInfo.InvariantCulture);
                     CreatedShape = new Sphere(radius);
                 }
                 else if (radioBattonPyramid.Checked)
@@ -157,7 +161,8 @@ namespace View
         //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Отмена".
-        /// Закрывает форму с результатом <see cref="DialogResult.Cancel"/> без создания фигуры.
+        /// Закрывает форму с результатом 
+        /// <see cref="DialogResult.Cancel"/> без создания фигуры.
         /// </summary>
         /// <param name="sender">Источник события (кнопка buyyonCancel).</param>
         /// <param name="e">Аргументы события <see cref="EventArgs"/>.</param>
@@ -185,16 +190,19 @@ namespace View
         /// Универсальный обработчик KeyPress для ввода положительных чисел.
         /// </summary>
         /// <param name="sender">Источник события (TextBox).</param>
-        /// <param name="e">Аргументы события <see cref="KeyPressEventArgs"/>.</param>
+        /// <param name="e">Аргументы события 
+        /// <see cref="KeyPressEventArgs"/>.</param>
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
+            if (!char.IsControl(e.KeyChar) && 
+                !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
             {
                 e.Handled = true;
                 return;
             }
 
-            if (e.KeyChar == ',' && ((sender as TextBox)?.Text.IndexOf(',') >= 0))
+            if (e.KeyChar == ',' && 
+                ((sender as TextBox)?.Text.IndexOf(',') >= 0))
             {
                 e.Handled = true;
             }

@@ -297,7 +297,7 @@
             buttonRandomData.Name = "buttonRandomData";
             buttonRandomData.Size = new Size(371, 23);
             buttonRandomData.TabIndex = 23;
-            buttonRandomData.Text = "Случайные данные";
+            buttonRandomData.Text = "Заполнить случайными данными";
             buttonRandomData.UseVisualStyleBackColor = true;
             buttonRandomData.Click += ButtonRandomData_Click;
             // 
