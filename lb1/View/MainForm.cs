@@ -17,7 +17,6 @@ namespace View
     /// </summary>
     public partial class MainForm : Form
     {
-        //TODO: XML +
         /// <summary>
         /// Список хранящихся трёхмерных фигур.
         /// </summary>
@@ -107,7 +106,6 @@ namespace View
             }
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Удалить фигуру"
         /// </summary>
@@ -134,7 +132,6 @@ namespace View
             }
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Сохранить"
         /// </summary>
@@ -185,7 +182,6 @@ namespace View
             }
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Загрузить"
         /// </summary>
@@ -320,7 +316,6 @@ namespace View
             }
         }
         
-        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Поиск фигуры"
         /// </summary>

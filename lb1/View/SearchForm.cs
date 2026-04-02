@@ -16,7 +16,6 @@ namespace View
     /// </summary>
     public partial class SearchForm : Form
     {
-        //TODO: XML +
         /// <summary>
         /// Список всех фигур для поиска
         /// </summary>
@@ -119,6 +118,7 @@ namespace View
 
             switch (selectedField)
             {
+                //TODO: {}
                 case 0:
                     foundShapes = _allShapes.FindAll(s =>
                         s.Name.ToLower().Contains(searchText));
@@ -163,6 +163,7 @@ namespace View
                 {
                     dataGridViewResults.Rows.Add(
                         shape.Name,
+                        //TODO: duplication
                         shape.CalculateVolume().ToString("F2"),
                         shape.Parameters);
                 }
@@ -175,7 +176,6 @@ namespace View
             }
         }
 
-        //TODO: duplication +
         /// <summary>
         /// Выполняет поиск по числовому полю с погрешностью
         /// </summary>
@@ -205,7 +205,6 @@ namespace View
             return new List<IShape>();
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Закрыть".
         /// </summary>

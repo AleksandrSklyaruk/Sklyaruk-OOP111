@@ -16,13 +16,11 @@ namespace View
     /// </summary>
     public partial class AddShapeForm : Form
     {
-        //TODO: XML +
         /// <summary>
         /// Генератор случайных чисел
         /// </summary>
         private Random _random = new Random();
 
-        //TODO: XML +
         /// <summary>
         /// Созданная фигура, передаётся в главную форму
         /// </summary>
@@ -52,7 +50,7 @@ namespace View
             AttachKeyPressHandler(txtParallelepipedHeight);
         }
 
-        //TODO: RSDN +
+        //TODO: RSDN
         /// <summary>
         /// Обработчик события изменения состояния RadioButton 
         /// </summary>
@@ -66,7 +64,7 @@ namespace View
                 radioBattonParallelepiped.Checked;
         }
 
-        //TODO: RSDN +
+        //TODO: refactor
         /// <summary>
         /// Обработчик нажатия кнопки "ОК".
         /// и закрывает форму с результатом <see cref="DialogResult.OK"/>.
@@ -158,7 +156,6 @@ namespace View
             }
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Отмена".
         /// Закрывает форму с результатом 
@@ -172,8 +169,6 @@ namespace View
             this.Close();
         }
 
-        //TODO: duplication +
-        //TODO: RSDN +
         /// <summary>
         /// Привязывает универсальный обработчик KeyPress к TextBox.
         /// </summary>
@@ -194,6 +189,7 @@ namespace View
         /// <see cref="KeyPressEventArgs"/>.</param>
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            //TODO: magic (to const)
             if (!char.IsControl(e.KeyChar) && 
                 !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
             {
@@ -208,7 +204,6 @@ namespace View
             }
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Обработчик нажатия кнопки "Случайные данные" (отладочная функция).
         /// </summary>
@@ -221,6 +216,7 @@ namespace View
                 if (radioBattonSphere.Checked)
                 {
                     double radius = _random.NextDouble() * 99 + 1;
+                    //TODO: duplication
                     textRadius.Text = radius.ToString("F2");
                 }
                 else if (radioBattonPyramid.Checked)
@@ -262,6 +258,7 @@ namespace View
             }
         }
 
+        //TODO: remove
         private void Radius_Click(object sender, EventArgs e)
         {
 
