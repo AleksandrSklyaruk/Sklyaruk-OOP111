@@ -80,5 +80,6 @@ namespace Model
         /// Высота параллелепипеда.
         /// </summary>
         public override double Height => _height;
+
     }
 }
