@@ -260,7 +260,8 @@ namespace View
         /// Сериализует список фигур в XML-файл
         /// </summary>
         /// <param name="filePath">Путь к файлу для сохранения</param>
-        /// <exception cref="Exception">Выбрасывается при ошибке сериализации</exception>
+        /// <exception cref="Exception">
+        /// Выбрасывается при ошибке сериализации</exception>
         private void SerializeShapes(string filePath)
         {
             try
