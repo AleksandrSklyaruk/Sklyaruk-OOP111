@@ -218,19 +218,19 @@ namespace View
         /// <see cref="KeyPressEventArgs"/>.</param>
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //TODO: RSDN
-            const char DecimalSeparator = ',';
+            //TODO: RSDN +
+            const char decimalSeparator = ',';
 
             if (!char.IsControl(e.KeyChar) && 
                 !char.IsDigit(e.KeyChar) && 
-                e.KeyChar != DecimalSeparator)
+                e.KeyChar != decimalSeparator)
             {
                 e.Handled = true;
                 return;
             }
 
-            if (e.KeyChar == DecimalSeparator && 
-                ((sender as TextBox)?.Text.IndexOf(DecimalSeparator) >= 0))
+            if (e.KeyChar == decimalSeparator && 
+                ((sender as TextBox)?.Text.IndexOf(decimalSeparator) >= 0))
             {
                 e.Handled = true;
             }
@@ -301,8 +301,9 @@ namespace View
         {
             string normalized = text.Replace(',', '.');
 
-            //TODO: RSDN
-            return double.Parse(normalized, System.Globalization.CultureInfo.InvariantCulture);
+            //TODO: RSDN +
+            return double.Parse(normalized, 
+                System.Globalization.CultureInfo.InvariantCulture);
         }
 
         /// <summary>

@@ -57,36 +57,9 @@ namespace View
         /// </summary>
         private void SetupDataGridView()
         {
-            dataGridViewResults.Columns.Clear();
-            //TODO: duplication
-            dataGridViewResults.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Name",
-                HeaderText = "Название",
-                Width = 150
-            });
-
-            dataGridViewResults.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Volume",
-                HeaderText = "Объём",
-                Width = 150
-            });
-
-            dataGridViewResults.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Parameters",
-                HeaderText = "Параметры",
-                Width = 300
-            });
-
-            dataGridViewResults.DefaultCellStyle.WrapMode =
-                DataGridViewTriState.True;
-            dataGridViewResults.RowTemplate.Height = 50;
-            dataGridViewResults.AutoSizeColumnsMode =
-                DataGridViewAutoSizeColumnsMode.Fill;
+            //TODO: duplication +
+            DataGridViewHelper.SetupShapeColumns(dataGridViewResults);
         }
-
         /// <summary>
         /// Настраивает поля для поиска в ComboBox
         /// </summary>

@@ -45,31 +45,8 @@ namespace View
             dataGridViewShapes.DefaultCellStyle.WrapMode = 
                 DataGridViewTriState.True;
             dataGridViewShapes.RowTemplate.Height = 50;
-
-            dataGridViewShapes.Columns.Clear();
-            //TODO: duplication
-            dataGridViewShapes.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Name",
-                HeaderText = "Название",
-                DataPropertyName = "Name",
-                Width = 150
-            });
-
-            dataGridViewShapes.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Volume",
-                HeaderText = "Объём",
-                DataPropertyName = "Volume",
-                Width = 150
-            });
-
-            dataGridViewShapes.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Parameters",
-                HeaderText = "Параметры",
-                Width = 300
-            });
+            //TODO: duplication +
+            DataGridViewHelper.SetupShapeColumns(dataGridViewShapes);
         }
 
         /// <summary>
@@ -338,7 +315,7 @@ namespace View
         {
             using (var searchForm = new SearchForm(_shapes))
             {
-                searchForm.ShowDialog();
+                searchForm.ShowDialog(); Parameters
             }
         }
 
