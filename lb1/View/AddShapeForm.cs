@@ -85,7 +85,6 @@ namespace View
         }
         #endif
 
-        //TODO: RSDN +
         /// <summary>
         /// Обработчик события изменения состояния RadioButton 
         /// </summary>
@@ -219,11 +218,9 @@ namespace View
         /// <see cref="KeyPressEventArgs"/>.</param>
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //TODO: magic (to const) +
-            /// <summary>
-            /// Символ разделителя для русской локали
-            /// </summary>
+            //TODO: RSDN
             const char DecimalSeparator = ',';
+
             if (!char.IsControl(e.KeyChar) && 
                 !char.IsDigit(e.KeyChar) && 
                 e.KeyChar != DecimalSeparator)
@@ -303,6 +300,8 @@ namespace View
         private double ParseNumber(string text)
         {
             string normalized = text.Replace(',', '.');
+
+            //TODO: RSDN
             return double.Parse(normalized, System.Globalization.CultureInfo.InvariantCulture);
         }
 

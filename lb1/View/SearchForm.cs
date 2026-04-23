@@ -58,7 +58,7 @@ namespace View
         private void SetupDataGridView()
         {
             dataGridViewResults.Columns.Clear();
-
+            //TODO: duplication
             dataGridViewResults.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Name",

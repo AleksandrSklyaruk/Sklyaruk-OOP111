@@ -47,7 +47,7 @@ namespace View
             dataGridViewShapes.RowTemplate.Height = 50;
 
             dataGridViewShapes.Columns.Clear();
-
+            //TODO: duplication
             dataGridViewShapes.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Name",
@@ -351,6 +351,7 @@ namespace View
             {
                 if (i < _shapes.Count)
                 {
+                    //TODO: to const
                     dataGridViewShapes.Rows[i].Cells["Parameters"].Value 
                         = _shapes[i].Parameters;
                 }
