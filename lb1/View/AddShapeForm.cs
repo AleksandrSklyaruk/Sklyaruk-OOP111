@@ -219,7 +219,7 @@ namespace View
         /// <see cref="KeyPressEventArgs"/>.</param>
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //TODO: magic (to const)
+            //TODO: magic (to const) +
             /// <summary>
             /// Символ разделителя для русской локали
             /// </summary>
