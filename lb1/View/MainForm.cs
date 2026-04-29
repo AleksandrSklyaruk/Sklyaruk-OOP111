@@ -315,7 +315,7 @@ namespace View
         {
             using (var searchForm = new SearchForm(_shapes))
             {
-                searchForm.ShowDialog(); Parameters
+                searchForm.ShowDialog(); 
             }
         }
 
@@ -328,8 +328,9 @@ namespace View
             {
                 if (i < _shapes.Count)
                 {
-                    //TODO: to const
-                    dataGridViewShapes.Rows[i].Cells["Parameters"].Value 
+                    //TODO: to const +
+                    dataGridViewShapes.Rows[i].Cells
+                        [DataGridViewHelper.ColumnNameParameters].Value 
                         = _shapes[i].Parameters;
                 }
             }
