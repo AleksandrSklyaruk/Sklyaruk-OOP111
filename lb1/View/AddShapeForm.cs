@@ -53,9 +53,9 @@ namespace View
             groupBoxParallelepiped.Visible = false;
 
 
-            #if DEBUG
+#if DEBUG
             CreateDebugButton();
-            #endif
+#endif
 
             AttachKeyPressHandler(textRadius);
             AttachKeyPressHandler(textPyramidLength);
@@ -66,7 +66,7 @@ namespace View
             AttachKeyPressHandler(txtParallelepipedHeight);
         }
 
-        #if DEBUG
+#if DEBUG
         /// <summary>
         /// Создаёт и добавляет отладочную кнопку "Заполнить случайными данными"
         /// </summary>
@@ -83,7 +83,7 @@ namespace View
 
             this.Controls.Add(buttonRandomData);
         }
-        #endif
+#endif
 
         /// <summary>
         /// Обработчик события изменения состояния RadioButton 
@@ -94,7 +94,7 @@ namespace View
         {
             groupBoxSphere.Visible = radioBattonSphere.Checked;
             groupBoxPyramid.Visible = radioBattonPyramid.Checked;
-            groupBoxParallelepiped.Visible = 
+            groupBoxParallelepiped.Visible =
                 radioBattonParallelepiped.Checked;
         }
 
@@ -109,7 +109,7 @@ namespace View
         {
             try
             {
-                if (!radioBattonSphere.Checked && 
+                if (!radioBattonSphere.Checked &&
                     !radioBattonPyramid.Checked &&
                     !radioBattonParallelepiped.Checked)
                 {
@@ -123,7 +123,7 @@ namespace View
                     if (!AreTextBoxesFilled(textRadius))
                     {
                         MessageBox.Show("Заполните радиус шара!",
-                            "Ошибка ввода", MessageBoxButtons.OK, 
+                            "Ошибка ввода", MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
                         textRadius.Focus();
                         return;
@@ -132,11 +132,11 @@ namespace View
                 }
                 else if (radioBattonPyramid.Checked)
                 {
-                    if (!AreTextBoxesFilled(textPyramidLength, 
+                    if (!AreTextBoxesFilled(textPyramidLength,
                         textPyramidWidth, textPyramidHeight))
                     {
                         MessageBox.Show("Заполните все поля пирамиды!",
-                            "Ошибка ввода", MessageBoxButtons.OK, 
+                            "Ошибка ввода", MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
                         return;
                     }
@@ -147,12 +147,12 @@ namespace View
                 }
                 else if (radioBattonParallelepiped.Checked)
                 {
-                    if (!AreTextBoxesFilled(textParallelepipedLength, 
-                        textParallelepipedWidth, 
+                    if (!AreTextBoxesFilled(textParallelepipedLength,
+                        textParallelepipedWidth,
                         txtParallelepipedHeight))
                     {
                         MessageBox.Show("Заполните все поля параллелепипеда!",
-                            "Ошибка ввода", MessageBoxButtons.OK, 
+                            "Ошибка ввода", MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
                         return;
                     }
@@ -221,15 +221,15 @@ namespace View
             //TODO: RSDN +
             const char decimalSeparator = ',';
 
-            if (!char.IsControl(e.KeyChar) && 
-                !char.IsDigit(e.KeyChar) && 
+            if (!char.IsControl(e.KeyChar) &&
+                !char.IsDigit(e.KeyChar) &&
                 e.KeyChar != decimalSeparator)
             {
                 e.Handled = true;
                 return;
             }
 
-            if (e.KeyChar == decimalSeparator && 
+            if (e.KeyChar == decimalSeparator &&
                 ((sender as TextBox)?.Text.IndexOf(decimalSeparator) >= 0))
             {
                 e.Handled = true;
@@ -287,7 +287,7 @@ namespace View
         /// <returns>Отформатированная строка со случайным числом.</returns>
         private string GenerateRandomNumber()
         {
-            double value = _random.NextDouble() * 
+            double value = _random.NextDouble() *
                 (MaxRandom - MinRandom) + MinRandom;
             return value.ToString(NumberFormat);
         }
@@ -302,7 +302,7 @@ namespace View
             string normalized = text.Replace(',', '.');
 
             //TODO: RSDN +
-            return double.Parse(normalized, 
+            return double.Parse(normalized,
                 System.Globalization.CultureInfo.InvariantCulture);
         }
 
@@ -319,6 +319,16 @@ namespace View
                 }
             }
             return true;
+        }
+
+        private void textParallelepipedLength_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

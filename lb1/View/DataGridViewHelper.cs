@@ -13,6 +13,11 @@ namespace View
     public static class DataGridViewHelper
     {
         /// <summary>
+        /// Parameters
+        /// </summary>
+        public const string ColumnNameParameters = "Parameters";
+
+        /// <summary>
         /// Настраивает стандартные колонки для отображения фигур
         /// </summary>
         public static void SetupShapeColumns(DataGridView dataGridView)
@@ -37,7 +42,7 @@ namespace View
 
             dataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "Parameters",
+                Name = ColumnNameParameters,
                 HeaderText = "Параметры",
                 Width = 300
             });

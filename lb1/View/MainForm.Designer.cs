@@ -123,6 +123,7 @@
             Controls.Add(buttonRemoveShape);
             Controls.Add(buttonAddShape);
             Controls.Add(groupBox1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             Name = "MainForm";
             Text = "Главня страница";
