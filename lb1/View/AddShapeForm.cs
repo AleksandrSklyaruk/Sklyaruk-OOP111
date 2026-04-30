@@ -1,48 +1,44 @@
 ﻿using Model;
+using View.Helper;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace View
 {
     /// <summary>
-    /// Форма для добавления новой трёхмерной фигуры
+    /// Форма для добавления новой трёхмерной фигуры.
     /// </summary>
     public partial class AddShapeForm : Form
     {
         /// <summary>
-        /// Генератор случайных чисел
-        /// </summary>
-        private Random _random = new Random();
-
-        /// <summary>
-        /// Созданная фигура, передаётся в главную форму
-        /// </summary>
-        public IShape CreatedShape { get; private set; }
-
-        /// <summary>
-        /// Формат отображения чисел
+        /// Формат отображения чисел.
         /// </summary>
         private const string NumberFormat = "F2";
 
         /// <summary>
-        /// Минимальное значение для генерации случайных данных
+        /// Минимальное значение для генерации случайных данных.
         /// </summary>
         private const double MinRandom = 1.0;
 
         /// <summary>
-        /// Максимальное значение для генерации случайных данных
+        /// Максимальное значение для генерации случайных данных.
         /// </summary>
         private const double MaxRandom = 100.0;
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса
+        /// Генератор случайных чисел.
+        /// </summary>
+        private readonly Random _random = new Random();
+
+        /// <summary>
+        /// Созданная фигура, передаётся в главную форму.
+        /// </summary>
+        public IShape CreatedShape { get; private set; }
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса.
         /// </summary>
         public AddShapeForm()
         {
@@ -52,27 +48,29 @@ namespace View
             groupBoxPyramid.Visible = false;
             groupBoxParallelepiped.Visible = false;
 
-
 #if DEBUG
             CreateDebugButton();
 #endif
 
-            AttachKeyPressHandler(textRadius);
-            AttachKeyPressHandler(textPyramidLength);
-            AttachKeyPressHandler(textPyramidWidth);
-            AttachKeyPressHandler(textPyramidHeight);
-            AttachKeyPressHandler(textParallelepipedLength);
-            AttachKeyPressHandler(textParallelepipedWidth);
-            AttachKeyPressHandler(txtParallelepipedHeight);
+            AttachKeyPressHandlers(
+                textRadius,
+                textPyramidLength,
+                textPyramidWidth,
+                textPyramidHeight,
+                textParallelepipedLength,
+                textParallelepipedWidth,
+                txtParallelepipedHeight);
         }
 
 #if DEBUG
         /// <summary>
-        /// Создаёт и добавляет отладочную кнопку "Заполнить случайными данными"
+        /// Создаёт и добавляет отладочную кнопку 
+        /// "Заполнить случайными данными".
         /// </summary>
         private void CreateDebugButton()
         {
             Button buttonRandomData = new Button();
+
             buttonRandomData.Location = new Point(12, 138);
             buttonRandomData.Name = "buttonRandomData";
             buttonRandomData.Size = new Size(383, 23);
@@ -81,15 +79,15 @@ namespace View
             buttonRandomData.UseVisualStyleBackColor = true;
             buttonRandomData.Click += ButtonRandomData_Click;
 
-            this.Controls.Add(buttonRandomData);
+            Controls.Add(buttonRandomData);
         }
 #endif
 
         /// <summary>
-        /// Обработчик события изменения состояния RadioButton 
+        /// Обработчик события изменения состояния RadioButton.
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Аргументы события</param>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             groupBoxSphere.Visible = radioBattonSphere.Checked;
@@ -100,91 +98,72 @@ namespace View
 
         /// <summary>
         /// Обработчик нажатия кнопки "ОК".
-        /// и закрывает форму с результатом <see cref="DialogResult.OK"/>.
+        /// Создаёт фигуру и закрывает форму с результатом
+        /// <see cref="DialogResult.OK"/>.
         /// </summary>
-        /// <param name="sender">Источник события (кнопка butOk).</param>
-        /// <param name="e">Аргументы события 
-        /// <see cref="EventArgs"/>.</param>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void ButttonOk_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!radioBattonSphere.Checked &&
-                    !radioBattonPyramid.Checked &&
-                    !radioBattonParallelepiped.Checked)
+                if (!IsShapeTypeSelected())
                 {
-                    MessageBox.Show("Пожалуйста, выберите тип фигуры!",
-                        "Ошибка", MessageBoxButtons.OK,
+                    MessageBox.Show(
+                        "Пожалуйста, выберите тип фигуры!",
+                        "Ошибка",
+                        MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
+
                     return;
                 }
+
                 if (radioBattonSphere.Checked)
                 {
-                    //TODO: duplication ?
-                    if (!AreTextBoxesFilled(textRadius))
-                    {
-                        MessageBox.Show("Заполните радиус шара!",
-                            "Ошибка ввода", MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning);
-                        textRadius.Focus();
-                        return;
-                    }
-                    CreatedShape = new Sphere(ParseNumber(textRadius.Text));
+                    CreatedShape = CreateSphere();
                 }
                 else if (radioBattonPyramid.Checked)
                 {
-                    //TODO: duplication ?
-                    if (!AreTextBoxesFilled(textPyramidLength,
-                        textPyramidWidth, textPyramidHeight))
-                    {
-                        MessageBox.Show("Заполните все поля пирамиды!",
-                            "Ошибка ввода", MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning);
-                        return;
-                    }
-                    CreatedShape = new Pyramid(
-                        ParseNumber(textPyramidLength.Text),
-                        ParseNumber(textPyramidWidth.Text),
-                        ParseNumber(textPyramidHeight.Text));
+                    CreatedShape = CreatePyramid();
                 }
                 else if (radioBattonParallelepiped.Checked)
                 {
-                    //TODO: duplication ?
-                    if (!AreTextBoxesFilled(textParallelepipedLength,
-                        textParallelepipedWidth,
-                        txtParallelepipedHeight))
-                    {
-                        MessageBox.Show("Заполните все поля параллелепипеда!",
-                            "Ошибка ввода", MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning);
-                        return;
-                    }
-                    CreatedShape = new Parallelepiped(
-                        ParseNumber(textParallelepipedLength.Text),
-                        ParseNumber(textParallelepipedWidth.Text),
-                        ParseNumber(txtParallelepipedHeight.Text));
+                    CreatedShape = CreateParallelepiped();
                 }
 
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                if (CreatedShape == null)
+                {
+                    return;
+                }
+
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (FormatException)
             {
-                MessageBox.Show("Пожалуйста, введите корректные " +
-                    "числовые значения!\n" + "Используйте запятую для " +
-                    "разделения целой и дробной части.", "Ошибка формата",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Пожалуйста, введите корректные числовые значения!\n" +
+                    "Используйте запятую для разделения " +
+                    "целой и дробной части.",
+                    "Ошибка формата",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка валидации",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    ex.Message,
+                    "Ошибка валидации",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Произошла непредвиденная ошибка: " +
-                    $"{ex.Message}", "Ошибка",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    $"Произошла непредвиденная ошибка: {ex.Message}",
+                    "Ошибка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -193,12 +172,98 @@ namespace View
         /// Закрывает форму с результатом 
         /// <see cref="DialogResult.Cancel"/> без создания фигуры.
         /// </summary>
-        /// <param name="sender">Источник события (кнопка buyyonCancel).</param>
-        /// <param name="e">Аргументы события <see cref="EventArgs"/>.</param>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        /// <summary>
+        /// Проверяет, выбран ли тип фигуры.
+        /// </summary>
+        /// <returns>
+        /// Возвращает true, если выбран один из типов фигуры;
+        /// иначе false.
+        /// </returns>
+        private bool IsShapeTypeSelected()
+        {
+            return radioBattonSphere.Checked ||
+                radioBattonPyramid.Checked ||
+                radioBattonParallelepiped.Checked;
+        }
+
+        /// <summary>
+        /// Создаёт объект шара на основе данных формы.
+        /// </summary>
+        /// <returns>Созданный шар.</returns>
+        private IShape CreateSphere()
+        {
+            if (!Validator.AreTextBoxesFilled(
+                "Заполните радиус шара!",
+                textRadius))
+            {
+                return null;
+            }
+
+            return new Sphere(
+                ParseNumber(textRadius.Text));
+        }
+
+        /// <summary>
+        /// Создаёт объект пирамиды на основе данных формы.
+        /// </summary>
+        /// <returns>Созданная пирамида.</returns>
+        private IShape CreatePyramid()
+        {
+            if (!Validator.AreTextBoxesFilled(
+                "Заполните все поля пирамиды!",
+                textPyramidLength,
+                textPyramidWidth,
+                textPyramidHeight))
+            {
+                return null;
+            }
+
+            return new Pyramid(
+                ParseNumber(textPyramidLength.Text),
+                ParseNumber(textPyramidWidth.Text),
+                ParseNumber(textPyramidHeight.Text));
+        }
+
+        /// <summary>
+        /// Создаёт объект параллелепипеда на основе данных формы.
+        /// </summary>
+        /// <returns>Созданный параллелепипед.</returns>
+        private IShape CreateParallelepiped()
+        {
+            if (!Validator.AreTextBoxesFilled(
+                "Заполните все поля параллелепипеда!",
+                textParallelepipedLength,
+                textParallelepipedWidth,
+                txtParallelepipedHeight))
+            {
+                return null;
+            }
+
+            return new Parallelepiped(
+                ParseNumber(textParallelepipedLength.Text),
+                ParseNumber(textParallelepipedWidth.Text),
+                ParseNumber(txtParallelepipedHeight.Text));
+        }
+
+        /// <summary>
+        /// Привязывает универсальный обработчик KeyPress
+        /// к нескольким TextBox.
+        /// </summary>
+        /// <param name="textBoxes">Поля для привязки обработчика.</param>
+        private void AttachKeyPressHandlers(params TextBox[] textBoxes)
+        {
+            foreach (TextBox textBox in textBoxes)
+            {
+                AttachKeyPressHandler(textBox);
+            }
         }
 
         /// <summary>
@@ -216,10 +281,10 @@ namespace View
         /// <summary>
         /// Универсальный обработчик KeyPress для ввода положительных чисел.
         /// </summary>
-        /// <param name="sender">Источник события (TextBox).</param>
-        /// <param name="e">Аргументы события 
-        /// <see cref="KeyPressEventArgs"/>.</param>
-        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
+        private void NumericTextBox_KeyPress
+            (object sender, KeyPressEventArgs e)
         {
             const char decimalSeparator = ',';
 
@@ -238,30 +303,33 @@ namespace View
             }
         }
 
+#if DEBUG
         /// <summary>
-        /// Обработчик нажатия кнопки "Случайные данные" (отладочная функция).
+        /// Обработчик нажатия кнопки "Случайные данные".
         /// </summary>
-        /// <param name="sender">Источник события (кнопка buttonRandomData).</param>
-        /// <param name="e">Аргументы события <see cref="EventArgs"/>.</param>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void ButtonRandomData_Click(object sender, EventArgs e)
         {
             try
             {
                 if (radioBattonSphere.Checked)
                 {
-                    textRadius.Text = GenerateRandomNumber();
+                    FillTextBoxesWithRandomNumbers(textRadius);
                 }
                 else if (radioBattonPyramid.Checked)
                 {
-                    textPyramidLength.Text = GenerateRandomNumber();
-                    textPyramidWidth.Text = GenerateRandomNumber();
-                    textPyramidHeight.Text = GenerateRandomNumber();
+                    FillTextBoxesWithRandomNumbers(
+                        textPyramidLength,
+                        textPyramidWidth,
+                        textPyramidHeight);
                 }
                 else if (radioBattonParallelepiped.Checked)
                 {
-                    textParallelepipedLength.Text = GenerateRandomNumber();
-                    textParallelepipedWidth.Text = GenerateRandomNumber();
-                    txtParallelepipedHeight.Text = GenerateRandomNumber();
+                    FillTextBoxesWithRandomNumbers(
+                        textParallelepipedLength,
+                        textParallelepipedWidth,
+                        txtParallelepipedHeight);
                 }
                 else
                 {
@@ -280,19 +348,35 @@ namespace View
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-
         }
 
         /// <summary>
-        /// Генерирует случайное число в заданном диапазоне
+        /// Заполняет переданные TextBox случайными числами.
+        /// </summary>
+        /// <param name="textBoxes">Поля для заполнения.</param>
+        private void FillTextBoxesWithRandomNumbers(params TextBox[] textBoxes)
+        {
+            foreach (TextBox textBox in textBoxes)
+            {
+                if (textBox != null)
+                {
+                    textBox.Text = GenerateRandomNumber();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Генерирует случайное число в заданном диапазоне.
         /// </summary>
         /// <returns>Отформатированная строка со случайным числом.</returns>
         private string GenerateRandomNumber()
         {
             double value = _random.NextDouble() *
                 (MaxRandom - MinRandom) + MinRandom;
+
             return value.ToString(NumberFormat);
         }
+#endif
 
         /// <summary>
         /// Преобразует строку в double, заменяя запятую на точку.
@@ -303,23 +387,9 @@ namespace View
         {
             string normalized = text.Replace(',', '.');
 
-            return double.Parse(normalized,
-                System.Globalization.CultureInfo.InvariantCulture);
-        }
-
-        /// <summary>
-        /// Проверяет, что все TextBox заполнены.
-        /// </summary>
-        private bool AreTextBoxesFilled(params TextBox[] textBoxes)
-        {
-            foreach (var textBox in textBoxes)
-            {
-                if (string.IsNullOrWhiteSpace(textBox.Text))
-                {
-                    return false;
-                }
-            }
-            return true;
+            return double.Parse(
+                normalized,
+                CultureInfo.InvariantCulture);
         }
     }
 }
