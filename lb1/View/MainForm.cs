@@ -105,11 +105,14 @@ namespace View
 
                 UpdateParametersColumn();
 
-                MessageBox.Show(
-                    $"Удалено фигур: {indicesToDelete.Count}!",
-                    "Успех",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                if (indicesToDelete.Count > 1)
+                {
+                    MessageBox.Show(
+                        $"Удалено фигур: {indicesToDelete.Count}!",
+                        "Успех",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
             }
             else
             {

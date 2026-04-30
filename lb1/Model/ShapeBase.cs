@@ -66,7 +66,7 @@ namespace Model
         protected void ValidatePositiveNumber
             (double value, string parameterName)
         {
-            if (value <= 0)
+            if (double.IsNaN(value) || double.IsInfinity(value) || value <= 0)
             {
                 throw new ArgumentException(
                     $"Значение параметра '{parameterName}' " +
