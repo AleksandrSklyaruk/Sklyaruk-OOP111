@@ -120,6 +120,7 @@ namespace View
                 }
                 if (radioBattonSphere.Checked)
                 {
+                    //TODO: duplication
                     if (!AreTextBoxesFilled(textRadius))
                     {
                         MessageBox.Show("Заполните радиус шара!",
@@ -132,6 +133,7 @@ namespace View
                 }
                 else if (radioBattonPyramid.Checked)
                 {
+                    //TODO: duplication
                     if (!AreTextBoxesFilled(textPyramidLength,
                         textPyramidWidth, textPyramidHeight))
                     {
@@ -147,6 +149,7 @@ namespace View
                 }
                 else if (radioBattonParallelepiped.Checked)
                 {
+                    //TODO: duplication
                     if (!AreTextBoxesFilled(textParallelepipedLength,
                         textParallelepipedWidth,
                         txtParallelepipedHeight))
@@ -218,7 +221,6 @@ namespace View
         /// <see cref="KeyPressEventArgs"/>.</param>
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //TODO: RSDN +
             const char decimalSeparator = ',';
 
             if (!char.IsControl(e.KeyChar) &&
@@ -301,7 +303,6 @@ namespace View
         {
             string normalized = text.Replace(',', '.');
 
-            //TODO: RSDN +
             return double.Parse(normalized,
                 System.Globalization.CultureInfo.InvariantCulture);
         }

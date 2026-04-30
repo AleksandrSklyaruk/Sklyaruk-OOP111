@@ -45,7 +45,6 @@ namespace View
             dataGridViewShapes.DefaultCellStyle.WrapMode = 
                 DataGridViewTriState.True;
             dataGridViewShapes.RowTemplate.Height = 50;
-            //TODO: duplication +
             DataGridViewHelper.SetupShapeColumns(dataGridViewShapes);
         }
 
@@ -333,7 +332,6 @@ namespace View
             {
                 if (i < _shapes.Count)
                 {
-                    //TODO: to const +
                     dataGridViewShapes.Rows[i].Cells
                         [DataGridViewHelper.ColumnNameParameters].Value 
                         = _shapes[i].Parameters;

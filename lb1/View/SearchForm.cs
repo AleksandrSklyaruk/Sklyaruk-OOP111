@@ -57,7 +57,6 @@ namespace View
         /// </summary>
         private void SetupDataGridView()
         {
-            //TODO: duplication +
             DataGridViewHelper.SetupShapeColumns(dataGridViewResults);
         }
         /// <summary>
