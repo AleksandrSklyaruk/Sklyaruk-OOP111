@@ -200,15 +200,15 @@ namespace View
         /// <returns>Созданный шар.</returns>
         private IShape CreateSphere()
         {
-            if (!Validator.AreTextBoxesFilled(
+            if (Validator.AreTextBoxesFilled(
                 "Заполните радиус шара!",
                 textRadius))
             {
-                return null;
+                return new Sphere(
+                    ParseNumber(textRadius.Text));
             }
 
-            return new Sphere(
-                ParseNumber(textRadius.Text));
+            return null;
         }
 
         /// <summary>
@@ -217,19 +217,19 @@ namespace View
         /// <returns>Созданная пирамида.</returns>
         private IShape CreatePyramid()
         {
-            if (!Validator.AreTextBoxesFilled(
+            if (Validator.AreTextBoxesFilled(
                 "Заполните все поля пирамиды!",
                 textPyramidLength,
                 textPyramidWidth,
                 textPyramidHeight))
             {
-                return null;
+                return new Pyramid(
+                    ParseNumber(textPyramidLength.Text),
+                    ParseNumber(textPyramidWidth.Text),
+                    ParseNumber(textPyramidHeight.Text));
             }
 
-            return new Pyramid(
-                ParseNumber(textPyramidLength.Text),
-                ParseNumber(textPyramidWidth.Text),
-                ParseNumber(textPyramidHeight.Text));
+            return null;
         }
 
         /// <summary>
@@ -238,19 +238,19 @@ namespace View
         /// <returns>Созданный параллелепипед.</returns>
         private IShape CreateParallelepiped()
         {
-            if (!Validator.AreTextBoxesFilled(
+            if (Validator.AreTextBoxesFilled(
                 "Заполните все поля параллелепипеда!",
                 textParallelepipedLength,
                 textParallelepipedWidth,
                 txtParallelepipedHeight))
             {
-                return null;
+                return new Parallelepiped(
+                    ParseNumber(textParallelepipedLength.Text),
+                    ParseNumber(textParallelepipedWidth.Text),
+                    ParseNumber(txtParallelepipedHeight.Text));
             }
 
-            return new Parallelepiped(
-                ParseNumber(textParallelepipedLength.Text),
-                ParseNumber(textParallelepipedWidth.Text),
-                ParseNumber(txtParallelepipedHeight.Text));
+            return null;
         }
 
         /// <summary>

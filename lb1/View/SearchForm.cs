@@ -22,11 +22,6 @@ namespace View
         private List<IShape> _allShapes;
 
         /// <summary>
-        /// Формат отображения чисел.
-        /// </summary>
-        private const string NumberFormat = "F2";
-
-        /// <summary>
         /// Допустимая погрешность при сравнении чисел.
         /// </summary>
         private const double Epsilon = 0.01;
