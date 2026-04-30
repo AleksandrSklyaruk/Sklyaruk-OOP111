@@ -273,8 +273,10 @@ namespace View
         /// Десериализует список фигур из XML-файла
         /// </summary>
         /// <param name="filePath">Путь к файлу для загрузки</param>
-        /// <returns>Список загруженных фигур типа <see cref="IShape"/></returns>
-        /// <exception cref="Exception">Выбрасывается при ошибке десериализации</exception>
+        /// <returns>Список загруженных фигур типа <
+        /// see cref="IShape"/></returns>
+        /// <exception cref="Exception">
+        /// Выбрасывается при ошибке десериализации</exception>
         private List<IShape> DeserializeShapes(string filePath)
         {
             try

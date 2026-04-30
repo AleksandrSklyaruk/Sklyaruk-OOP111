@@ -62,7 +62,8 @@ namespace Model
         /// Метод валидации положительного числа.
         /// </summary>
         /// <param name="value">Проверяемое значение.</param>
-        /// <param name="parameterName">Имя параметра для сообщения об ошибке.</param>
+        /// <param name="parameterName">
+        /// Имя параметра для сообщения об ошибке.</param>
         protected void ValidatePositiveNumber
             (double value, string parameterName)
         {

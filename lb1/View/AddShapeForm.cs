@@ -320,15 +320,5 @@ namespace View
             }
             return true;
         }
-
-        private void textParallelepipedLength_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

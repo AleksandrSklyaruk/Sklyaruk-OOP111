@@ -125,7 +125,6 @@
             label1.Size = new Size(104, 15);
             label1.TabIndex = 6;
             label1.Text = "Длина основания";
-            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -281,7 +280,6 @@
             textParallelepipedLength.Name = "textParallelepipedLength";
             textParallelepipedLength.Size = new Size(100, 23);
             textParallelepipedLength.TabIndex = 33;
-            textParallelepipedLength.TextChanged += textParallelepipedLength_TextChanged;
             // 
             // contextMenuStrip1
             // 
