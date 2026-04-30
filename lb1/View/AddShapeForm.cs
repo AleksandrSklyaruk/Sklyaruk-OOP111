@@ -120,7 +120,7 @@ namespace View
                 }
                 if (radioBattonSphere.Checked)
                 {
-                    //TODO: duplication
+                    //TODO: duplication ?
                     if (!AreTextBoxesFilled(textRadius))
                     {
                         MessageBox.Show("Заполните радиус шара!",
@@ -133,7 +133,7 @@ namespace View
                 }
                 else if (radioBattonPyramid.Checked)
                 {
-                    //TODO: duplication
+                    //TODO: duplication ?
                     if (!AreTextBoxesFilled(textPyramidLength,
                         textPyramidWidth, textPyramidHeight))
                     {
@@ -149,7 +149,7 @@ namespace View
                 }
                 else if (radioBattonParallelepiped.Checked)
                 {
-                    //TODO: duplication
+                    //TODO: duplication ?
                     if (!AreTextBoxesFilled(textParallelepipedLength,
                         textParallelepipedWidth,
                         txtParallelepipedHeight))

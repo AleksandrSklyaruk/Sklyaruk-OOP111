@@ -182,7 +182,7 @@ namespace View
         {
             using (OpenFileDialog openDialog = new OpenFileDialog())
             {
-                openDialog.Filter = 
+                openDialog.Filter =
                     "Файлы фигур (*.shapes)|*.shapes|Все файлы (*.*)|*.*";
                 openDialog.Title = "Загрузить список фигур";
 
@@ -190,8 +190,10 @@ namespace View
                 {
                     try
                     {
+                        var loadedShapes = DeserializeShapes(openDialog.FileName);
+
                         _currentFilePath = openDialog.FileName;
-                        _shapes = DeserializeShapes(_currentFilePath);
+                        _shapes = loadedShapes;
 
                         dataGridViewShapes.DataSource = null;
                         dataGridViewShapes.DataSource = _shapes;
@@ -202,8 +204,8 @@ namespace View
                             dataGridViewShapes.ColumnHeadersVisible = true;
 
                             MessageBox.Show(
-                                $"Загружено фигур: " +
-                                $"{_shapes.Count}\nФайл: {_currentFilePath}",
+                                $"Загружено фигур: {_shapes.Count}\n" +
+                                $"Файл: {_currentFilePath}",
                                 "Успех",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
@@ -222,14 +224,11 @@ namespace View
                     catch (Exception ex)
                     {
                         MessageBox.Show(
-                            $"Ошибка при загрузке: {ex.Message}",
-                            "Ошибка",
+                            $"Ошибка при загрузке файла:\n{ex.Message}\n\n" +
+                            $"Текущие фигуры сохранены.",
+                            "Ошибка загрузки",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-
-                        _shapes = new List<IShape>();
-                        dataGridViewShapes.DataSource = null;
-                        dataGridViewShapes.DataSource = _shapes;
                     }
                 }
             }
