@@ -53,7 +53,8 @@ namespace Model
         /// </summary>
         string Parameters { get; }
 
-        double Volume => CalculateVolume();
+        //TODO: delete
+        // double Volume => CalculateVolume();
     }
 
 }

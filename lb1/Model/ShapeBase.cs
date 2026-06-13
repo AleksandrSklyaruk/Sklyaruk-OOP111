@@ -53,10 +53,11 @@ namespace Model
         /// </summary>
         public virtual double Radius => 0;
 
+        //TODO: delete
         /// <summary>
         /// Объём фигуры (для привязки к DataGridView).
         /// </summary>
-        public double Volume => CalculateVolume();
+        //public double Volume => CalculateVolume();
 
         /// <summary>
         /// Метод валидации положительного числа.
