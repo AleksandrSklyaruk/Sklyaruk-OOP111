@@ -1,26 +1,23 @@
-﻿namespace Model.Tests
+﻿namespace ModelTests
 {
     /// <summary>
-    /// Набор модульных тестов для класса Parallelepiped.
-    /// Обеспечивает 100% покрытие кода (строк и ветвей).
+    /// Набор модульных тестов для класса Parallelepiped
     /// </summary>
     public class ParallelepipedTests
     {
-        // Допустимая погрешность для чисел с плавающей точкой
-        private const double Tolerance = 1e-6;
-
+        /// <summary>
+        /// Проверяет, что конструктор корректно инициализирует 
+        /// все свойства параллелепипеда
+        /// </summary>
         [Test]
-        public void Constructor_ValidParameters_ShouldInitializeCorrectly()
+        public void ConstructorValidParametersShouldInitializeCorrectly()
         {
-            // Arrange
             double length = 2.0;
             double width = 3.0;
             double height = 4.0;
 
-            // Act
             var parallelepiped = new Parallelepiped(length, width, height);
 
-            // Assert
             Assert.That(parallelepiped, Is.Not.Null);
             Assert.That(parallelepiped.Name, Is.EqualTo("Параллелепипед"));
             Assert.That(parallelepiped.Length, Is.EqualTo(length));
@@ -29,94 +26,96 @@
         }
 
         /// <summary>
-        /// Проверка валидации данных (наследуется от ShapeBase).
-        /// Должно выбрасываться ArgumentException для некорректных значений.
+        /// Проверяет, что конструктор выбрасывает ArgumentException
+        /// при передаче некорректных параметров
         /// </summary>
+        /// <param name="length">Длина</param>
+        /// <param name="width">Ширина</param>
+        /// <param name="height">Высота</param>
         [TestCase(0, 3, 4)]
         [TestCase(2, -1, 4)]
         [TestCase(2, 3, double.NaN)]
         [TestCase(double.PositiveInfinity, 3, 4)]
-        public void Constructor_InvalidParameters_ShouldThrowArgumentException(
+        public void ConstructorInvalidParametersShouldThrowArgumentException(
             double length, double width, double height)
         {
-            // Act & Assert
-            Assert.Throws<ArgumentException>(() => new Parallelepiped(length, width, height));
+            Assert.Throws<ArgumentException>(() => 
+            new Parallelepiped(length, width, height));
         }
 
+        /// <summary>
+        /// Проверяет, что свойство Parallelepiped.Parameters 
+        /// возвращает строку в корректном формате
+        /// </summary>
         [Test]
-        public void Parameters_ShouldReturnCorrectFormat()
+        public void ParametersShouldReturnCorrectFormat()
         {
-            // Arrange
             double length = 2.5;
             double width = 3.5;
             double height = 4.5;
             var parallelepiped = new Parallelepiped(length, width, height);
 
             string expected = $"Длина = {length:F2}\n" +
-                              $"Ширина = {width:F2}\n" +
-                              $"Высота = {height:F2}";
+                $"Ширина = {width:F2}\nВысота = {height:F2}";
 
-            // Act
             string actual = parallelepiped.Parameters;
 
-            // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
 
         /// <summary>
-        /// ВАЖНО: Этот тест покрывает виртуальное свойство Radius из базового класса ShapeBase!
-        /// Так как параллелепипед не переопределяет Radius, вызывается базовый геттер (=> 0).
+        /// Проверяет, что свойство Parallelepiped.Radius возвращает ноль,
+        /// так как параллелепипед не переопределяет это свойство
         /// </summary>
         [Test]
-        public void Radius_ShouldReturnZero()
+        public void RadiusShouldReturnZero()
         {
-            // Arrange
             var parallelepiped = new Parallelepiped(2.0, 3.0, 4.0);
 
-            // Act & Assert
             Assert.That(parallelepiped.Radius, Is.EqualTo(0));
         }
 
         /// <summary>
-        /// Расчёт объёма по формуле V = a * b * c.
-        /// Идеальный кандидат для TestCase с одним Assert.
+        /// Проверяет корректность расчёта объёма параллелепипеда 
+        /// по формуле V = a × b × c
         /// </summary>
+        /// <param name="length">Длина</param>
+        /// <param name="width">Ширина</param>
+        /// <param name="height">Высота</param>
+        /// <param name="expectedVolume">Ожидаемый объём</param>
         [TestCase(2.0, 3.0, 4.0, 24.0)]
         [TestCase(1.0, 1.0, 1.0, 1.0)]
         [TestCase(5.5, 2.0, 3.0, 33.0)]
-        public void CalculateVolume_ValidParameters_ShouldReturnCorrectVolume(
-            double length, double width, double height, double expectedVolume)
+        public void CalculateVolumeValidParametersShouldReturnCorrectVolume(
+            double length, double width, 
+            double height, double expectedVolume)
         {
-            // Arrange
             var parallelepiped = new Parallelepiped(length, width, height);
 
-            // Act
             double actualVolume = parallelepiped.CalculateVolume();
 
-            // Assert
-            Assert.That(actualVolume, Is.EqualTo(expectedVolume).Within(Tolerance));
+            Assert.That(actualVolume, Is.EqualTo(expectedVolume).
+                Within(Settings.Tolerance));
         }
 
+        /// <summary>
+        /// Проверяет, что метод Parallelepiped.GetInfo 
+        /// возвращает строку в корректном формате.
+        /// </summary>
         [Test]
-        public void GetInfo_ShouldReturnCorrectFormat()
+        public void GetInfoShouldReturnCorrectFormat()
         {
-            // Arrange
             double length = 2.0;
             double width = 3.0;
             double height = 4.0;
             var parallelepiped = new Parallelepiped(length, width, height);
             double volume = parallelepiped.CalculateVolume();
 
-            // Ожидаемый формат строки (с запятыми и пробелами, как в коде)
-            string expected = $"Длина = {length:F2}, " +
-                              $"Ширина = {width:F2}, " +
-                              $"Высота = {height:F2}, " +
-                              $"Объём = {volume:F2}";
+            string expected = $"Длина = {length:F2}, Ширина = {width:F2}, " +
+                $"Высота = {height:F2}, Объём = {volume:F2}";
 
-            // Act
             string actualInfo = parallelepiped.GetInfo();
 
-            // Assert
             Assert.That(actualInfo, Is.EqualTo(expected));
         }
     }

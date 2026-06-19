@@ -80,7 +80,7 @@
         /// так как пирамида не переопределяет это свойство
         /// </summary>
         [Test]
-        public void Radius_ShouldReturnZero()
+        public void RadiusShouldReturnZero()
         {
             var pyramid = new Pyramid(3.0, 4.0, 5.0);
 
