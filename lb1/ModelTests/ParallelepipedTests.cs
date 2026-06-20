@@ -5,10 +5,7 @@
     /// </summary>
     public class ParallelepipedTests
     {
-        /// <summary>
-        /// Проверяет, что конструктор корректно инициализирует 
-        /// все свойства параллелепипеда
-        /// </summary>
+        [Description("Проверка инициализации свойств параллелепипеда")]
         [Test]
         public void ConstructorValidParametersShouldInitializeCorrectly()
         {
@@ -25,13 +22,8 @@
             Assert.That(parallelepiped.Height, Is.EqualTo(height));
         }
 
-        /// <summary>
-        /// Проверяет, что конструктор выбрасывает ArgumentException
-        /// при передаче некорректных параметров
-        /// </summary>
-        /// <param name="length">Длина</param>
-        /// <param name="width">Ширина</param>
-        /// <param name="height">Высота</param>
+        [Description("Проверка выброса исключения при некорректных " +
+            "параметрах параллелепипеда")]
         [TestCase(0, 3, 4)]
         [TestCase(2, -1, 4)]
         [TestCase(2, 3, double.NaN)]
@@ -43,10 +35,8 @@
             new Parallelepiped(length, width, height));
         }
 
-        /// <summary>
-        /// Проверяет, что свойство Parallelepiped.Parameters 
-        /// возвращает строку в корректном формате
-        /// </summary>
+        [Description("Проверка формата строки, возвращаемой свойством" +
+            " Parameters параллелепипеда")]
         [Test]
         public void ParametersShouldReturnCorrectFormat()
         {
@@ -63,10 +53,8 @@
             Assert.That(actual, Is.EqualTo(expected));
         }
 
-        /// <summary>
-        /// Проверяет, что свойство Parallelepiped.Radius возвращает ноль,
-        /// так как параллелепипед не переопределяет это свойство
-        /// </summary>
+        [Description("Проверка, что свойство Radius параллелепипеда" +
+            " возвращает ноль")]
         [Test]
         public void RadiusShouldReturnZero()
         {
@@ -75,14 +63,7 @@
             Assert.That(parallelepiped.Radius, Is.EqualTo(0));
         }
 
-        /// <summary>
-        /// Проверяет корректность расчёта объёма параллелепипеда 
-        /// по формуле V = a × b × c
-        /// </summary>
-        /// <param name="length">Длина</param>
-        /// <param name="width">Ширина</param>
-        /// <param name="height">Высота</param>
-        /// <param name="expectedVolume">Ожидаемый объём</param>
+        [Description("Проверка корректности расчёта объёма параллелепипеда")]
         [TestCase(2.0, 3.0, 4.0, 24.0)]
         [TestCase(1.0, 1.0, 1.0, 1.0)]
         [TestCase(5.5, 2.0, 3.0, 33.0)]
@@ -98,10 +79,8 @@
                 Within(Settings.Tolerance));
         }
 
-        /// <summary>
-        /// Проверяет, что метод Parallelepiped.GetInfo 
-        /// возвращает строку в корректном формате.
-        /// </summary>
+        [Description("Проверка формата строки, возвращаемой " +
+            "методом GetInfo параллелепипеда")]
         [Test]
         public void GetInfoShouldReturnCorrectFormat()
         {

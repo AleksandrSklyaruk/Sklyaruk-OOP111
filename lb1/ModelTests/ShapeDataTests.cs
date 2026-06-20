@@ -11,21 +11,16 @@ namespace ModelTests
     {
         #region Constructor and Properties
 
-        /// <summary>
-        /// Проверяет, что конструктор по умолчанию 
-        /// создаёт экземпляр класса
-        /// </summary>
+        [Description("Проверка создания экземпляра ShapeData через" +
+            " конструктор по умолчанию")]
         [Test]
         public void ConstructorShouldCreateInstance()
         {
             Assert.That(new ShapeData(), Is.Not.Null);
         }
 
-        /// <summary>
-        /// Проверяет корректность установки и получения 
-        /// свойства ShapeData.ShapeType
-        /// </summary>
-        /// <param name="type">Тип фигуры</param>
+        [Description("Проверка корректности установки и получения " +
+            "свойства ShapeType")]
         [TestCase("Шар")]
         [TestCase("Пирамида")]
         [TestCase("Параллелепипед")]
@@ -36,11 +31,8 @@ namespace ModelTests
             Assert.That(data.ShapeType, Is.EqualTo(type));
         }
 
-        /// <summary>
-        /// Проверяет корректность установки и получения 
-        /// свойства ShapeData.Length
-        /// </summary>
-        /// <param name="value">Значение длины</param>
+        [Description("Проверка корректности установки и получения " +
+            "свойства Length")]
         [TestCase(5.5)]
         [TestCase(0.0)]
         public void LengthShouldSetAndGetValue(double value)
@@ -50,11 +42,8 @@ namespace ModelTests
             Assert.That(data.Length, Is.EqualTo(value));
         }
 
-        /// <summary>
-        /// Проверяет корректность установки и получения 
-        /// свойства ShapeData.Width
-        /// </summary>
-        /// <param name="value">Значение ширины</param>
+        [Description("Проверка корректности установки и получения" +
+            " свойства Width")]
         [TestCase(3.14)]
         public void WidthShouldSetAndGetValue(double value)
         {
@@ -63,11 +52,8 @@ namespace ModelTests
             Assert.That(data.Width, Is.EqualTo(value));
         }
 
-        /// <summary>
-        /// Проверяет корректность установки и получения 
-        /// свойства ShapeData.Height
-        /// </summary>
-        /// <param name="value">Значение высоты</param>
+        [Description("Проверка корректности установки и получения " +
+            "свойства Height")]
         [TestCase(10.0)]
         public void HeightShouldSetAndGetValue(double value)
         {
@@ -76,11 +62,8 @@ namespace ModelTests
             Assert.That(data.Height, Is.EqualTo(value));
         }
 
-        /// <summary>
-        /// Проверяет корректность установки и получения 
-        /// свойства ShapeData.Radius
-        /// </summary>
-        /// <param name="value">Значение радиуса</param>
+        [Description("Проверка корректности установки и получения " +
+            "свойства Radius")]
         [TestCase(7.7)]
         public void RadiusShouldSetAndGetValue(double value)
         {
@@ -93,12 +76,8 @@ namespace ModelTests
 
         #region ShouldSerialize Methods
 
-        /// <summary>
-        /// Проверяет корректность работы 
-        /// метода ShapeData.ShouldSerializeLength
-        /// </summary>
-        /// <param name="shapeType">Тип фигуры</param>
-        /// <param name="expected">Ожидаемое значение</param>
+        [Description("Проверка корректности работы метода " +
+            "ShouldSerializeLength")]
         [TestCase("Пирамида", true)]
         [TestCase("Параллелепипед", true)]
         [TestCase("Шар", false)]
@@ -112,12 +91,8 @@ namespace ModelTests
                 Is.EqualTo(expected));
         }
 
-        /// <summary>
-        /// Проверяет корректность работы 
-        /// метода ShapeData.ShouldSerializeWidth
-        /// </summary>
-        /// <param name="shapeType">Тип фигуры</param>
-        /// <param name="expected">Ожидаемое значение</param>
+        [Description("Проверка корректности работы метода " +
+            "ShouldSerializeWidth")]
         [TestCase("Пирамида", true)]
         [TestCase("Параллелепипед", true)]
         [TestCase("Шар", false)]
@@ -131,12 +106,8 @@ namespace ModelTests
                 Is.EqualTo(expected));
         }
 
-        /// <summary>
-        /// Проверяет корректность работы 
-        /// метода ShapeData.ShouldSerializeHeight
-        /// </summary>
-        /// <param name="shapeType">Тип фигуры</param>
-        /// <param name="expected">Ожидаемое значение</param>
+        [Description("Проверка корректности работы метода" +
+            " ShouldSerializeHeight")]
         [TestCase("Пирамида", true)]
         [TestCase("Параллелепипед", true)]
         [TestCase("Шар", false)]
@@ -150,12 +121,8 @@ namespace ModelTests
                 Is.EqualTo(expected));
         }
 
-        /// <summary>
-        /// Проверяет корректность работы 
-        /// метода ShapeData.ShouldSerializeRadius
-        /// </summary>
-        /// <param name="shapeType">Тип фигуры</param>
-        /// <param name="expected">Ожидаемое значение</param>
+        [Description("Проверка корректности работы метода" +
+            " ShouldSerializeRadius")]
         [TestCase("Шар", true)]
         [TestCase("Пирамида", false)]
         [TestCase("Параллелепипед", false)]
@@ -173,10 +140,8 @@ namespace ModelTests
 
         #region FromShape Tests
 
-        /// <summary>
-        /// Проверяет, что метод ShapeData.FromShape выбрасывает 
-        /// ArgumentNullException при передаче null
-        /// </summary>
+        [Description("Проверка выброса ArgumentNullException при" +
+            " передаче null в FromShape")]
         [Test]
         public void FromShapeNullShapeThrowsArgumentNullException()
         {
@@ -184,10 +149,8 @@ namespace ModelTests
             ShapeData.FromShape(null));
         }
 
-        /// <summary>
-        /// Проверяет, что метод ShapeData.FromShape корректно 
-        /// устанавливает свойство ShapeData.ShapeType для шара
-        /// </summary>
+        [Description("Проверка установки ShapeType при конвертации" +
+            " шара в ShapeData")]
         [Test]
         public void FromShapeSphereSetsCorrectShapeType()
         {
@@ -196,10 +159,8 @@ namespace ModelTests
             Assert.That(data.ShapeType, Is.EqualTo("Шар"));
         }
 
-        /// <summary>
-        /// Проверяет, что метод ShapeData.FromShape корректно 
-        /// устанавливает свойство ShapeData.Radius для шара
-        /// </summary>
+        [Description("Проверка установки Radius при конвертации" +
+            " шара в ShapeData")]
         [Test]
         public void FromShapeSphereSetsCorrectRadius()
         {
@@ -208,10 +169,8 @@ namespace ModelTests
             Assert.That(data.Radius, Is.EqualTo(5.0));
         }
 
-        /// <summary>
-        /// Проверяет, что метод ShapeData.FromShape корректно 
-        /// устанавливает свойство ShapeData.ShapeType для пирамиды
-        /// </summary>
+        [Description("Проверка установки ShapeType при конвертации " +
+            "пирамиды в ShapeData")]
         [Test]
         public void FromShapePyramidSetsCorrectShapeType()
         {
@@ -220,10 +179,8 @@ namespace ModelTests
             Assert.That(data.ShapeType, Is.EqualTo("Пирамида"));
         }
 
-        /// <summary>
-        /// Проверяет, что метод ShapeData.FromShape корректно 
-        /// устанавливает свойство ShapeData.Length для пирамиды
-        /// </summary>
+        [Description("Проверка установки Length при конвертации " +
+            "пирамиды в ShapeData")]
         [Test]
         public void FromShapePyramidSetsCorrectLength()
         {
@@ -232,10 +189,8 @@ namespace ModelTests
             Assert.That(data.Length, Is.EqualTo(3.0));
         }
 
-        /// <summary>
-        /// Проверяет, что метод ShapeData.FromShape корректно 
-        /// устанавливает свойство ShapeData.ShapeType для параллелепипеда
-        /// </summary>
+        [Description("Проверка установки ShapeType при конвертации " +
+            "параллелепипеда в ShapeData")]
         [Test]
         public void FromShapeParallelepipedSetsCorrectShapeType()
         {
@@ -245,10 +200,8 @@ namespace ModelTests
             Assert.That(data.ShapeType, Is.EqualTo("Параллелепипед"));
         }
 
-        /// <summary>
-        /// Проверяет, что метод ShapeData.FromShape корректно 
-        /// устанавливает свойство ShapeData.Height для параллелепипеда
-        /// </summary>
+        [Description("Проверка установки Height при конвертации " +
+            "параллелепипеда в ShapeData")]
         [Test]
         public void FromShapeParallelepipedSetsCorrectHeight()
         {
@@ -258,10 +211,8 @@ namespace ModelTests
             Assert.That(data.Height, Is.EqualTo(4.0));
         }
 
-        /// <summary>
-        /// Проверяет, что при конвертации пирамиды в ShapeData
-        /// свойство ShapeData.Radius равно нулю
-        /// </summary>
+        [Description("Проверка, что при конвертации пирамиды в ShapeData " +
+            "свойство Radius равно нулю")]
         [Test]
         public void FromShapePyramidRadiusIsZero()
         {
@@ -270,10 +221,8 @@ namespace ModelTests
             Assert.That(data.Radius, Is.EqualTo(0));
         }
 
-        /// <summary>
-        /// Проверяет, что при конвертации шара в ShapeData 
-        /// свойство ShapeData.Length равно нулю
-        /// </summary>
+        [Description("Проверка, что при конвертации шара в ShapeData " +
+            "свойство Length равно нулю")]
         [Test]
         public void FromShapeSphereLengthIsZero()
         {
@@ -286,11 +235,8 @@ namespace ModelTests
 
         #region ToShape Tests
 
-        /// <summary>
-        /// Проверяет, что метод ShapeData.ToShape
-        /// возвращает экземпляр Sphere
-        /// для данных шара.
-        /// </summary>
+        [Description("Проверка, что метод ToShape возвращает экземпляр " +
+            "Sphere для данных шара")]
         [Test]
         public void ToShapeSphereDataReturnsSphereInstance()
         {
@@ -299,10 +245,8 @@ namespace ModelTests
             Assert.That(data.ToShape(), Is.InstanceOf<Sphere>());
         }
 
-        /// <summary>
-        /// Проверяет, что метод ShapeData.ToShape 
-        /// возвращает экземпляр Pyramid для данных пирамиды
-        /// </summary>
+        [Description("Проверка, что метод ToShape возвращает экземпляр " +
+            "Pyramid для данных пирамиды")]
         [Test]
         public void ToShapePyramidDataReturnsPyramidInstance()
         {
@@ -326,10 +270,8 @@ namespace ModelTests
             Assert.That(data.ToShape(), Is.InstanceOf<Parallelepiped>());
         }
 
-        /// <summary>
-        /// Проверяет, что метод ShapeData.ToShape корректно 
-        /// устанавливает свойство Sphere.Radius для шара
-        /// </summary>
+        [Description("Проверка, что метод ToShape возвращает экземпляр " +
+            "Parallelepiped для данных параллелепипеда")]
         [Test]
         public void ToShapeSphereDataSetsCorrectRadius()
         {
@@ -339,10 +281,9 @@ namespace ModelTests
             Assert.That(shape.Radius, Is.EqualTo(5.0));
         }
 
-        /// <summary>
-        /// Проверяет, что метод ShapeData.ToShape корректно 
-        /// устанавливает свойство Pyramid.Length для пирамиды
-        /// </summary>
+
+        [Description("Проверка установки Radius при десериализации шара " +
+            "из ShapeData")]
         [Test]
         public void ToShapePyramidDataSetsCorrectLength()
         {
@@ -353,10 +294,8 @@ namespace ModelTests
             Assert.That(shape.Length, Is.EqualTo(3.0));
         }
 
-        /// <summary>
-        /// Проверяет, что метод ShapeData.ToShape выбрасывает 
-        /// InvalidOperationException для неизвестного типа фигуры
-        /// </summary>
+        [Description("Проверка установки Length при десериализации " +
+            "пирамиды из ShapeData")]
         [Test]
         public void ToShapeUnknownTypeThrowsInvalidOperationException()
         {

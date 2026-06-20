@@ -5,10 +5,7 @@
     /// </summary>
     public class SphereTests
     {
-        /// <summary>
-        /// Проверяет, что конструктор корректно инициализирует 
-        /// свойство Sphere.Name
-        /// </summary>
+        [Description("Проверка инициализации имени шара")]
         [Category("Name Sphere")]
         [Test]
         public void ConstructorValidRadiusShouldInitializeCorrectly()
@@ -18,11 +15,7 @@
             Assert.AreEqual("Шар", sphere.Name);
         }
 
-        /// <summary>
-        /// Проверяет, что конструктор выбрасывает ArgumentException 
-        /// при передаче некорректного радиуса
-        /// </summary>
-        /// <param name="invalidRadius">Некорректное значение радиуса</param>
+        [Description("Проверка выброса исключения при некорректном радиусе")]
         [Category("Validation Sphere")]
         [TestCase(0)]
         [TestCase(-1.0)]
@@ -35,12 +28,7 @@
             Assert.Throws<ArgumentException>(() => new Sphere(invalidRadius));
         }
 
-        /// <summary>
-        /// Проверяет корректность расчёта объёма шара по формуле 
-        /// V = 4/3 × π × r³
-        /// </summary>
-        /// <param name="radius">Радиус шара</param>
-        /// <param name="expectedVolume">Ожидаемый объём</param>
+        [Description("Проверка корректности расчёта объёма шара")]
         [TestCase(3.0, 113.09733552923255)]
         [TestCase(1.0, 4.1887902047863905)]
         public void CalculateVolume_ValidRadius_ReturnsCorrectVolume(
@@ -55,10 +43,7 @@
                 Is.EqualTo(expectedVolume).Within(Settings.Tolerance));
         }
 
-        /// <summary>
-        /// Проверяет, что метод Sphere.GetInfo 
-        /// возвращает строку в корректном формате
-        /// </summary>
+        [Description("Проверка формата строки, возвращаемой методом GetInfo")]
         [Category("GetInfo")]
         [Test]
         public void GetInfoReturnsCorrectFormat()
@@ -76,10 +61,7 @@
             Assert.That(actualInfo, Is.EqualTo(expectedInfo));
         }
 
-        /// <summary>
-        /// Проверяет, что свойство Sphere.Parameters 
-        /// возвращает строку в корректном формате
-        /// </summary>
+        [Description("Проверка формата строки, возвращаемой свойством Parameters")]
         [Category("Parameters")]
         [Test]
         public void GetInfoReturnsCorrectParameters()
@@ -96,11 +78,8 @@
             Assert.That(actualInfo, Is.EqualTo(expectedInfo));
         }
 
-        /// <summary>
-        /// Проверяет, что свойство Sphere.Radius возвращает значение,
-        /// переданное в конструктор
-        /// </summary>
-        /// <param name="radius">Радиус шара</param>
+        [Description("Проверка корректности сохранения радиуса" +
+            " в свойстве Radius")]
         [Category("Radius")]
         [TestCase(1.0)]
         [TestCase(5.5)]
@@ -114,10 +93,8 @@
             Assert.That(sphere.Radius, Is.EqualTo(radius));
         }
 
-        /// <summary>
-        /// Проверяет, что при конвертации шара в ShapeData
-        /// свойство ShapeData.Height равно нулю
-        /// </summary>
+        [Description("Проверка, что при сериализации шара свойство" +
+            " Height равно нулю")]
         [Test]
         public void FromShapeHeightShouldSerializeCorrectly()
         {
@@ -128,10 +105,8 @@
             Assert.That(data.Height, Is.EqualTo(0));
         }
 
-        /// <summary>
-        /// Проверяет, что при конвертации шара в ShapeData
-        /// свойство ShapeData.Width равно нулю.
-        /// </summary>
+        [Description("Проверка, что при сериализации шара свойство" +
+            " Width равно нулю")]
         [Test]
         public void FromShapeWidthShouldSerializeCorrectly()
         {
