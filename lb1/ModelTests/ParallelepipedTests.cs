@@ -1,18 +1,18 @@
-﻿namespace ModelTests
+﻿using System.Xml.Linq;
+using NUnit.Framework;
+
+namespace ModelTests
 {
     /// <summary>
     /// Набор модульных тестов для класса Parallelepiped
     /// </summary>
     public class ParallelepipedTests
     {
-        [Description("Проверка инициализации свойств параллелепипеда")]
-        [Test]
-        public void ConstructorValidParametersShouldInitializeCorrectly()
+        [TestCase(2.0, 3.0, 4.0, 
+            TestName = "Проверка инициализации свойств параллелепипеда")]
+        public void Constructor_ValidParameters_ShouldInitializeCorrectly(
+            double length, double width, double height)
         {
-            double length = 2.0;
-            double width = 3.0;
-            double height = 4.0;
-
             var parallelepiped = new Parallelepiped(length, width, height);
 
             Assert.That(parallelepiped, Is.Not.Null);
@@ -22,12 +22,14 @@
             Assert.That(parallelepiped.Height, Is.EqualTo(height));
         }
 
-        [Description("Проверка выброса исключения при некорректных " +
-            "параметрах параллелепипеда")]
-        [TestCase(0, 3, 4)]
-        [TestCase(2, -1, 4)]
-        [TestCase(2, 3, double.NaN)]
-        [TestCase(double.PositiveInfinity, 3, 4)]
+        [TestCase(0, 3, 4, 
+            TestName = "Проверка валидации: длина = 0")]
+        [TestCase(2, -1, 4, 
+            TestName = "Проверка валидации: отрицательная ширина")]
+        [TestCase(2, 3, double.NaN, 
+            TestName = "Проверка валидации: высота = NaN")]
+        [TestCase(double.PositiveInfinity, 3, 4, 
+            TestName = "Проверка валидации: длина = бесконечность")]
         public void ConstructorInvalidParametersShouldThrowArgumentException(
             double length, double width, double height)
         {
@@ -35,14 +37,11 @@
             new Parallelepiped(length, width, height));
         }
 
-        [Description("Проверка формата строки, возвращаемой свойством" +
-            " Parameters параллелепипеда")]
-        [Test]
-        public void ParametersShouldReturnCorrectFormat()
+        [TestCase(2.5, 3.5, 4.5, 
+            TestName = "Проверка формата строки Parameters")]
+        public void Parameters_ShouldReturnCorrectFormat(
+            double length, double width, double height)
         {
-            double length = 2.5;
-            double width = 3.5;
-            double height = 4.5;
             var parallelepiped = new Parallelepiped(length, width, height);
 
             string expected = $"Длина = {length:F2}\n" +
@@ -53,20 +52,22 @@
             Assert.That(actual, Is.EqualTo(expected));
         }
 
-        [Description("Проверка, что свойство Radius параллелепипеда" +
-            " возвращает ноль")]
-        [Test]
-        public void RadiusShouldReturnZero()
+        [TestCase(2.0, 3.0, 4.0, 
+            TestName = "Проверка свойства Radius (возвращает 0)")]
+        public void Radius_ShouldReturnZero(
+            double length, double width, double height)
         {
-            var parallelepiped = new Parallelepiped(2.0, 3.0, 4.0);
+            var parallelepiped = new Parallelepiped(length, width, height);
 
             Assert.That(parallelepiped.Radius, Is.EqualTo(0));
         }
 
-        [Description("Проверка корректности расчёта объёма параллелепипеда")]
-        [TestCase(2.0, 3.0, 4.0, 24.0)]
-        [TestCase(1.0, 1.0, 1.0, 1.0)]
-        [TestCase(5.5, 2.0, 3.0, 33.0)]
+        [TestCase(2.0, 3.0, 4.0, 24.0, 
+            TestName = "Проверка корректности расчёта объёма: 2×3×4=24")]
+        [TestCase(1.0, 1.0, 1.0, 1.0, 
+            TestName = "Проверка корректности расчёта объёма: 1×1×1=1")]
+        [TestCase(5.5, 2.0, 3.0, 33.0, 
+            TestName = "Проверка корректности расчёта объёма: 5.5×2×3=33")]
         public void CalculateVolumeValidParametersShouldReturnCorrectVolume(
             double length, double width, 
             double height, double expectedVolume)
@@ -79,14 +80,11 @@
                 Within(Settings.Tolerance));
         }
 
-        [Description("Проверка формата строки, возвращаемой " +
-            "методом GetInfo параллелепипеда")]
-        [Test]
-        public void GetInfoShouldReturnCorrectFormat()
+        [TestCase(2.0, 3.0, 4.0, 
+            TestName = "Проверка формата строки GetInfo")]
+        public void GetInfo_ShouldReturnCorrectFormat(
+            double length, double width, double height)
         {
-            double length = 2.0;
-            double width = 3.0;
-            double height = 4.0;
             var parallelepiped = new Parallelepiped(length, width, height);
             double volume = parallelepiped.CalculateVolume();
 

@@ -11,19 +11,15 @@ namespace ModelTests
     {
         #region Constructor and Properties
 
-        [Description("Проверка создания экземпляра ShapeData через" +
-            " конструктор по умолчанию")]
-        [Test]
-        public void ConstructorShouldCreateInstance()
+        [TestCase(TestName = "Проверка создания экземпляра ShapeData")]
+        public void Constructor_ShouldCreateInstance()
         {
             Assert.That(new ShapeData(), Is.Not.Null);
         }
 
-        [Description("Проверка корректности установки и получения " +
-            "свойства ShapeType")]
-        [TestCase("Шар")]
-        [TestCase("Пирамида")]
-        [TestCase("Параллелепипед")]
+        [TestCase("Шар", TestName = "Проверка установки и получения ShapeType: Шар")]
+        [TestCase("Пирамида", TestName = "Проверка установки и получения ShapeType: Пирамида")]
+        [TestCase("Параллелепипед", TestName = "Проверка установки и получения ShapeType: Параллелепипед")]
         public void ShapeTypeShouldSetAndGetValue(string type)
         {
             var data = new ShapeData { ShapeType = type };
@@ -31,10 +27,8 @@ namespace ModelTests
             Assert.That(data.ShapeType, Is.EqualTo(type));
         }
 
-        [Description("Проверка корректности установки и получения " +
-            "свойства Length")]
-        [TestCase(5.5)]
-        [TestCase(0.0)]
+        [TestCase(5.5, TestName = "Проверка установки и получения Length: 5.5")]
+        [TestCase(0.0, TestName = "Проверка установки и получения Length: 0.0")]
         public void LengthShouldSetAndGetValue(double value)
         {
             var data = new ShapeData { Length = value };
@@ -42,9 +36,7 @@ namespace ModelTests
             Assert.That(data.Length, Is.EqualTo(value));
         }
 
-        [Description("Проверка корректности установки и получения" +
-            " свойства Width")]
-        [TestCase(3.14)]
+        [TestCase(3.14, TestName = "Проверка установки и получения Width: 3.14")]
         public void WidthShouldSetAndGetValue(double value)
         {
             var data = new ShapeData { Width = value };
@@ -52,9 +44,7 @@ namespace ModelTests
             Assert.That(data.Width, Is.EqualTo(value));
         }
 
-        [Description("Проверка корректности установки и получения " +
-            "свойства Height")]
-        [TestCase(10.0)]
+        [TestCase(10.0, TestName = "Проверка установки и получения Height: 10.0")]
         public void HeightShouldSetAndGetValue(double value)
         {
             var data = new ShapeData { Height = value };
@@ -62,9 +52,7 @@ namespace ModelTests
             Assert.That(data.Height, Is.EqualTo(value));
         }
 
-        [Description("Проверка корректности установки и получения " +
-            "свойства Radius")]
-        [TestCase(7.7)]
+        [TestCase(7.7, TestName = "Проверка установки и получения Radius: 7.7")]
         public void RadiusShouldSetAndGetValue(double value)
         {
             var data = new ShapeData { Radius = value };
@@ -76,12 +64,10 @@ namespace ModelTests
 
         #region ShouldSerialize Methods
 
-        [Description("Проверка корректности работы метода " +
-            "ShouldSerializeLength")]
-        [TestCase("Пирамида", true)]
-        [TestCase("Параллелепипед", true)]
-        [TestCase("Шар", false)]
-        [TestCase("Куб", false)]
+        [TestCase("Пирамида", true, TestName = "ShouldSerializeLength: Пирамида = true")]
+        [TestCase("Параллелепипед", true, TestName = "ShouldSerializeLength: Параллелепипед = true")]
+        [TestCase("Шар", false, TestName = "ShouldSerializeLength: Шар = false")]
+        [TestCase("Куб", false, TestName = "ShouldSerializeLength: Куб = false")]
         public void ShouldSerializeLengthReturnsCorrectValue
             (string shapeType, bool expected)
         {
@@ -91,12 +77,10 @@ namespace ModelTests
                 Is.EqualTo(expected));
         }
 
-        [Description("Проверка корректности работы метода " +
-            "ShouldSerializeWidth")]
-        [TestCase("Пирамида", true)]
-        [TestCase("Параллелепипед", true)]
-        [TestCase("Шар", false)]
-        [TestCase("Куб", false)]
+        [TestCase("Пирамида", true, TestName = "ShouldSerializeWidth: Пирамида = true")]
+        [TestCase("Параллелепипед", true, TestName = "ShouldSerializeWidth: Параллелепипед = true")]
+        [TestCase("Шар", false, TestName = "ShouldSerializeWidth: Шар = false")]
+        [TestCase("Куб", false, TestName = "ShouldSerializeWidth: Куб = false")]
         public void ShouldSerializeWidthReturnsCorrectValue
             (string shapeType, bool expected)
         {
@@ -106,12 +90,10 @@ namespace ModelTests
                 Is.EqualTo(expected));
         }
 
-        [Description("Проверка корректности работы метода" +
-            " ShouldSerializeHeight")]
-        [TestCase("Пирамида", true)]
-        [TestCase("Параллелепипед", true)]
-        [TestCase("Шар", false)]
-        [TestCase("Куб", false)]
+        [TestCase("Пирамида", true, TestName = "ShouldSerializeHeight: Пирамида = true")]
+        [TestCase("Параллелепипед", true, TestName = "ShouldSerializeHeight: Параллелепипед = true")]
+        [TestCase("Шар", false, TestName = "ShouldSerializeHeight: Шар = false")]
+        [TestCase("Куб", false, TestName = "ShouldSerializeHeight: Куб = false")]
         public void ShouldSerializeHeightReturnsCorrectValue
             (string shapeType, bool expected)
         {
@@ -121,12 +103,10 @@ namespace ModelTests
                 Is.EqualTo(expected));
         }
 
-        [Description("Проверка корректности работы метода" +
-            " ShouldSerializeRadius")]
-        [TestCase("Шар", true)]
-        [TestCase("Пирамида", false)]
-        [TestCase("Параллелепипед", false)]
-        [TestCase("Куб", false)]
+        [TestCase("Шар", true, TestName = "ShouldSerializeRadius: Шар = true")]
+        [TestCase("Пирамида", false, TestName = "ShouldSerializeRadius: Пирамида = false")]
+        [TestCase("Параллелепипед", false, TestName = "ShouldSerializeRadius: Параллелепипед = false")]
+        [TestCase("Куб", false, TestName = "ShouldSerializeRadius: Куб = false")]
         public void ShouldSerializeRadiusReturnsCorrectValue
             (string shapeType, bool expected)
         {
@@ -140,93 +120,93 @@ namespace ModelTests
 
         #region FromShape Tests
 
-        [Description("Проверка выброса ArgumentNullException при" +
-            " передаче null в FromShape")]
-        [Test]
-        public void FromShapeNullShapeThrowsArgumentNullException()
+        [TestCase(TestName = "FromShape: null должен выбросить ArgumentNullException")]
+        public void FromShape_NullShape_ShouldThrowArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => 
-            ShapeData.FromShape(null));
+            Assert.Throws<ArgumentNullException>(() => ShapeData.FromShape(null));
         }
 
-        [Description("Проверка установки ShapeType при конвертации" +
-            " шара в ShapeData")]
-        [Test]
-        public void FromShapeSphereSetsCorrectShapeType()
+        [TestCase(5.0, TestName = "FromShape(Шар): установка ShapeType")]
+        public void FromShape_Sphere_SetsCorrectShapeType(double radius)
         {
-            var data = ShapeData.FromShape(new Sphere(5.0));
+            var sphere = new Sphere(radius);
+
+            var data = ShapeData.FromShape(sphere);
 
             Assert.That(data.ShapeType, Is.EqualTo("Шар"));
         }
 
-        [Description("Проверка установки Radius при конвертации" +
-            " шара в ShapeData")]
-        [Test]
-        public void FromShapeSphereSetsCorrectRadius()
+        [TestCase(5.0, TestName = "FromShape(Шар): установка Radius")]
+        public void FromShape_Sphere_SetsCorrectRadius(double radius)
         {
-            var data = ShapeData.FromShape(new Sphere(5.0));
+            var sphere = new Sphere(radius);
 
-            Assert.That(data.Radius, Is.EqualTo(5.0));
+            var data = ShapeData.FromShape(sphere);
+
+            Assert.That(data.Radius, Is.EqualTo(radius));
         }
 
-        [Description("Проверка установки ShapeType при конвертации " +
-            "пирамиды в ShapeData")]
-        [Test]
-        public void FromShapePyramidSetsCorrectShapeType()
+        [TestCase(3.0, 4.0, 5.0, TestName = "FromShape(Пирамида): установка ShapeType")]
+        public void FromShape_Pyramid_SetsCorrectShapeType(
+            double length, double width, double height)
         {
-            var data = ShapeData.FromShape(new Pyramid(3.0, 4.0, 5.0));
+            var pyramid = new Pyramid(length, width, height);
+
+            var data = ShapeData.FromShape(pyramid);
 
             Assert.That(data.ShapeType, Is.EqualTo("Пирамида"));
         }
 
-        [Description("Проверка установки Length при конвертации " +
-            "пирамиды в ShapeData")]
-        [Test]
-        public void FromShapePyramidSetsCorrectLength()
+        [TestCase(3.0, 4.0, 5.0, TestName = "FromShape(Пирамида): установка Length")]
+        public void FromShape_Pyramid_SetsCorrectLength(
+            double length, double width, double height)
         {
-            var data = ShapeData.FromShape(new Pyramid(3.0, 4.0, 5.0));
+            var pyramid = new Pyramid(length, width, height);
 
-            Assert.That(data.Length, Is.EqualTo(3.0));
+            var data = ShapeData.FromShape(pyramid);
+
+            Assert.That(data.Length, Is.EqualTo(length));
         }
 
-        [Description("Проверка установки ShapeType при конвертации " +
-            "параллелепипеда в ShapeData")]
-        [Test]
-        public void FromShapeParallelepipedSetsCorrectShapeType()
+        [TestCase(2.0, 3.0, 4.0, TestName = "FromShape(Параллелепипед): установка ShapeType")]
+        public void FromShape_Parallelepiped_SetsCorrectShapeType(
+            double length, double width, double height)
         {
-            var data = ShapeData.FromShape
-                (new Parallelepiped(2.0, 3.0, 4.0));
+            var parallelepiped = new Parallelepiped(length, width, height);
+
+            var data = ShapeData.FromShape(parallelepiped);
 
             Assert.That(data.ShapeType, Is.EqualTo("Параллелепипед"));
         }
 
-        [Description("Проверка установки Height при конвертации " +
-            "параллелепипеда в ShapeData")]
-        [Test]
-        public void FromShapeParallelepipedSetsCorrectHeight()
+        [TestCase(2.0, 3.0, 4.0, TestName = "FromShape(Параллелепипед): установка Height")]
+        public void FromShape_Parallelepiped_SetsCorrectHeight(
+            double length, double width, double height)
         {
-            var data = ShapeData.FromShape
-                (new Parallelepiped(2.0, 3.0, 4.0));
+            var parallelepiped = new Parallelepiped(length, width, height);
 
-            Assert.That(data.Height, Is.EqualTo(4.0));
+            var data = ShapeData.FromShape(parallelepiped);
+
+            Assert.That(data.Height, Is.EqualTo(height));
         }
 
-        [Description("Проверка, что при конвертации пирамиды в ShapeData " +
-            "свойство Radius равно нулю")]
-        [Test]
-        public void FromShapePyramidRadiusIsZero()
+        [TestCase(3.0, 4.0, 5.0, TestName = "FromShape(Пирамида): Radius = 0")]
+        public void FromShape_Pyramid_RadiusIsZero(
+            double length, double width, double height)
         {
-            var data = ShapeData.FromShape(new Pyramid(3.0, 4.0, 5.0));
+            var pyramid = new Pyramid(length, width, height);
+
+            var data = ShapeData.FromShape(pyramid);
 
             Assert.That(data.Radius, Is.EqualTo(0));
         }
 
-        [Description("Проверка, что при конвертации шара в ShapeData " +
-            "свойство Length равно нулю")]
-        [Test]
-        public void FromShapeSphereLengthIsZero()
+        [TestCase(5.0, TestName = "FromShape(Шар): Length = 0")]
+        public void FromShape_Sphere_LengthIsZero(double radius)
         {
-            var data = ShapeData.FromShape(new Sphere(5.0));
+            var sphere = new Sphere(radius);
+
+            var data = ShapeData.FromShape(sphere);
 
             Assert.That(data.Length, Is.EqualTo(0));
         }
@@ -235,71 +215,83 @@ namespace ModelTests
 
         #region ToShape Tests
 
-        [Description("Проверка, что метод ToShape возвращает экземпляр " +
-            "Sphere для данных шара")]
-        [Test]
-        public void ToShapeSphereDataReturnsSphereInstance()
+        [TestCase(5.0, TestName = "ToShape(Шар): возврат экземпляра Sphere")]
+        public void ToShape_SphereData_ReturnsSphereInstance(double radius)
         {
-            var data = new ShapeData { ShapeType = "Шар", Radius = 5.0 };
+            var data = new ShapeData { ShapeType = "Шар", Radius = radius };
 
-            Assert.That(data.ToShape(), Is.InstanceOf<Sphere>());
+            var shape = data.ToShape();
+
+            Assert.That(shape, Is.InstanceOf<Sphere>());
         }
 
-        [Description("Проверка, что метод ToShape возвращает экземпляр " +
-            "Pyramid для данных пирамиды")]
-        [Test]
-        public void ToShapePyramidDataReturnsPyramidInstance()
+        [TestCase(3.0, 4.0, 5.0, TestName = "ToShape(Пирамида): возврат экземпляра Pyramid")]
+        public void ToShape_PyramidData_ReturnsPyramidInstance(
+            double length, double width, double height)
         {
-            var data = new ShapeData 
-            { ShapeType = "Пирамида", Length = 3, Width = 4, Height = 5 };
+            var data = new ShapeData
+            {
+                ShapeType = "Пирамида",
+                Length = length,
+                Width = width,
+                Height = height
+            };
 
-            Assert.That(data.ToShape(), Is.InstanceOf<Pyramid>());
+            var shape = data.ToShape();
+
+            Assert.That(shape, Is.InstanceOf<Pyramid>());
         }
 
-        /// <summary>
-        /// Проверяет, что метод ShapeData.ToShape возвращает 
-        /// экземпляр Parallelepiped для данных параллелепипеда
-        /// </summary>
-        [Test]
-        public void ToShapeParallelepipedDataReturnsParallelepipedInstance()
+        [TestCase(2.0, 3.0, 4.0, TestName = "ToShape(Параллелепипед): возврат экземпляра Parallelepiped")]
+        public void ToShape_ParallelepipedData_ReturnsParallelepipedInstance(
+            double length, double width, double height)
         {
-            var data = new ShapeData 
-            { ShapeType = "Параллелепипед", 
-                Length = 2, Width = 3, Height = 4 };
+            var data = new ShapeData
+            {
+                ShapeType = "Параллелепипед",
+                Length = length,
+                Width = width,
+                Height = height
+            };
 
-            Assert.That(data.ToShape(), Is.InstanceOf<Parallelepiped>());
+            var shape = data.ToShape();
+
+            Assert.That(shape, Is.InstanceOf<Parallelepiped>());
         }
 
-        [Description("Проверка, что метод ToShape возвращает экземпляр " +
-            "Parallelepiped для данных параллелепипеда")]
-        [Test]
-        public void ToShapeSphereDataSetsCorrectRadius()
+        [TestCase(5.0, TestName = "ToShape(Шар): установка Radius")]
+        public void ToShape_SphereData_SetsCorrectRadius(double radius)
         {
-            var shape = (Sphere)new ShapeData 
-            { ShapeType = "Шар", Radius = 5.0 }.ToShape();
+            var data = new ShapeData { ShapeType = "Шар", Radius = radius };
 
-            Assert.That(shape.Radius, Is.EqualTo(5.0));
+            var shape = (Sphere)data.ToShape();
+
+            Assert.That(shape.Radius, Is.EqualTo(radius));
         }
 
 
-        [Description("Проверка установки Radius при десериализации шара " +
-            "из ShapeData")]
-        [Test]
-        public void ToShapePyramidDataSetsCorrectLength()
+        [TestCase(3.0, 4.0, 5.0, TestName = "ToShape(Пирамида): установка Length")]
+        public void ToShape_PyramidData_SetsCorrectLength(
+            double length, double width, double height)
         {
-            var shape = (Pyramid)new ShapeData 
-            { ShapeType = "Пирамида", 
-                Length = 3, Width = 4, Height = 5 }.ToShape();
+            var data = new ShapeData
+            {
+                ShapeType = "Пирамида",
+                Length = length,
+                Width = width,
+                Height = height
+            };
 
-            Assert.That(shape.Length, Is.EqualTo(3.0));
+            var shape = (Pyramid)data.ToShape();
+
+            Assert.That(shape.Length, Is.EqualTo(length));
         }
 
-        [Description("Проверка установки Length при десериализации " +
-            "пирамиды из ShapeData")]
-        [Test]
-        public void ToShapeUnknownTypeThrowsInvalidOperationException()
+        [TestCase(TestName = "ToShape(неизвестный тип): выброс InvalidOperationException")]
+        public void ToShape_UnknownType_ShouldThrowInvalidOperationException()
         {
             var data = new ShapeData { ShapeType = "Куб" };
+
             Assert.Throws<InvalidOperationException>(() => data.ToShape());
         }
 
